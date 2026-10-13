@@ -19,7 +19,7 @@ Instala o agent harness canônico num projeto alvo — novo ou existente.
 **Motor determinístico:** a detecção, o plano e a aplicação de arquivos rodam via
 `scripts/install_harness.py` — não improvise `find`/`grep`/`cp` livres. O script também funciona
 como **CLI standalone**, fora de uma sessão Claude Code — via o launcher guiado na raiz do
-canônico (`install-harness` e `INSTALL-HARNESS-CLI.md` são ferramentas de instalação do próprio
+canônico (`install-harness` e `docs/manuais/install-harness-cli.md` são ferramentas de instalação do próprio
 canônico — **não** são propagados para o projeto de destino):
 
 ```bash

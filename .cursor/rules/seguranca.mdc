@@ -80,11 +80,11 @@ Claude PreToolUse e Cursor `beforeShellExecution`:
   `--no-verify`, clone sem hooks e bypass env existem — nenhum gate impede de fato sem
   controle server-side
 - **`DE-A002` é ortogonal:** checa código versionado DE; agent-policies freia Bash de sessão.
-  Não unificar kernels — só cross-link (ver `docs/agent-policies-cheatsheet.md`)
+  Não unificar kernels — só cross-link (ver `docs/cheatsheets/agent-policies-cheatsheet.md`)
 - Githooks permanecem secrets-only (não anti-shell)
 
 CLI: `python -m config.agent_policies check|generate` · cheatsheet:
-`docs/agent-policies-cheatsheet.md`
+`docs/cheatsheets/agent-policies-cheatsheet.md`
 
 ## SI no fluxo de desenvolvimento
 

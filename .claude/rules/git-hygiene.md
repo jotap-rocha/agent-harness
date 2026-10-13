@@ -8,7 +8,7 @@ Regra **transversal** e **agnóstica de SCM** (Azure Repos, GitHub, etc.). A esc
 (`az` vs `gh`) é do adapter `scm` — esta rule não crava um provedor.
 
 Fonte única de regex e tipos: `git-hygiene.yaml` na raiz do repositório.
-Cheatsheet de uma página: `docs/git-hygiene-cheatsheet.md` · atalho `/git-ajuda`.
+Cheatsheet de uma página: `docs/cheatsheets/git-hygiene-cheatsheet.md` · atalho `/git-ajuda`.
 
 ## Invariantes
 

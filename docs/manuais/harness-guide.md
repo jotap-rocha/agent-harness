@@ -1,15 +1,15 @@
 # HARNESS-GUIDE — como trabalhar com o harness instalado
 
 > Referência rápida para projetos que já têm o agent harness configurado.
-> Para quem está clonando o template do zero, veja `COMO-USAR.md`.
+> Para quem está clonando o template do zero, veja `docs/manuais/como-usar.md`.
 
 ---
 
 ## Git Hygiene (convenção)
 
-- Fonte: `git-hygiene.yaml` · rule `git-hygiene` · cheatsheet `docs/git-hygiene-cheatsheet.md`
+- Fonte: `git-hygiene.yaml` · rule `git-hygiene` · cheatsheet `docs/cheatsheets/git-hygiene-cheatsheet.md`
 - Comandos: `/nova-branch` (criar branch) · `/git-ajuda` (contrato de 1 página)
-- Adapter SCM: `scm: azure | github` (detecta pelo remote; ver `docs/scm-pr-hibrido.md`)
+- Adapter SCM: `scm: azure | github` (detecta pelo remote; ver `docs/cheatsheets/scm-pr-hibrido.md`)
 - Hooks locais: `.githooks/` + `./scripts/bootstrap-githooks.sh` (só após confirmação no install)
 - Soft-block `GIT_PREFLIGHT` nos agents `harness-*` e Dev Loop — commit/push só com acordo
 
@@ -151,7 +151,7 @@ não edite à mão.
 `./install-harness` (launcher guiado — pergunta destino e novo/existente) ou, direto com flags,
 `python3 .claude/skills/install-harness/scripts/install_harness.py <destino>`. Detecta o projeto,
 mostra o Install Plan e pergunta (`input()`) antes de tocar qualquer arquivo que já exista. Veja
-`INSTALL-HARNESS-CLI.md`.
+`docs/manuais/install-harness-cli.md`.
 
 ---
 

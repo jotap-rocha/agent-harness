@@ -639,7 +639,7 @@ def build_hooks(stack_summary: str) -> dict:
 def mirror_to_cursor(target: Path, canonical: Path, rel_path: str) -> None:
     p = Path(rel_path)
     parts = p.parts
-    if rel_path in ("CLAUDE.md", "AGENTS.md", "CONTEXT.md", "README.md", "HANDOFF.md", "HARNESS-GUIDE.md"):
+    if rel_path in ("CLAUDE.md", "AGENTS.md", "CONTEXT.md", "README.md", "HANDOFF.md", "docs/manuais/harness-guide.md"):
         return
     if rel_path == ".claude/settings.json":
         return
@@ -752,7 +752,9 @@ def apply_plan(plan: list[dict], target: Path, canonical: Path, project_name: st
                 )
             dest.parent.mkdir(parents=True, exist_ok=True)
             if src.is_dir():
-                shutil.copytree(src, dest)
+                # docs/rascunhos = planos internos do canônico; não propagar aos filhos.
+                ignore = shutil.ignore_patterns("rascunhos") if rel == "docs" else None
+                shutil.copytree(src, dest, ignore=ignore)
             else:
                 shutil.copy2(src, dest)
             # Seed runtime: o filho passa a ser dono (baseline/waivers) — nunca auto-update.

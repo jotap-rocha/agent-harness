@@ -211,7 +211,7 @@ Informe em PT-BR, curto, **ao começar a implementar** (antes da 1ª task):
 - Opcional (poll):  
   `python -m http.server 8765 --directory .claude/projetos/{slug}/fluxo`  
   → `http://localhost:8765/live.html`
-- Atalho docs: `/fluxo-live` · cheatsheet: `docs/fluxo-events-cheatsheet.md`
+- Atalho docs: `/fluxo-live` · cheatsheet: `docs/cheatsheets/fluxo-events-cheatsheet.md`
 - Complementar a STATUS.md / scorecard / evidence-gate; **não** cobre Dev Loop neste MVP
 
 Se o HTML ainda não existir, rode `python -m config.fluxo_events render --slug {slug}` (fail-soft).

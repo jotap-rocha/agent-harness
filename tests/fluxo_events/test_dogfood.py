@@ -60,11 +60,11 @@ def test_project_fluxo_artifacts() -> None:
 
 
 def test_docs_fluxo_live_present() -> None:
-    assert (REPO_ROOT / "docs" / f"{X}-events-cheatsheet.md").is_file()
+    assert (REPO_ROOT / "docs" / "cheatsheets" / f"{X}-events-cheatsheet.md").is_file()
     assert (REPO_ROOT / "docs" / "adr" / f"005-kernel-{X}-events.md").is_file()
     assert (REPO_ROOT / ".claude" / "commands" / f"{X}-live.md").is_file()
     assert (REPO_ROOT / ".cursor" / "commands" / f"{X}-live.md").is_file()
-    cheat = (REPO_ROOT / "docs" / f"{X}-events-cheatsheet.md").read_text(encoding="utf-8")
+    cheat = (REPO_ROOT / "docs" / "cheatsheets" / f"{X}-events-cheatsheet.md").read_text(encoding="utf-8")
     assert "1.3" in cheat
     assert "evidence-gate" in cheat
     assert "agent-policies" in cheat

@@ -12,7 +12,7 @@ subpastas de vertical (`data-engineering/`, `visual-explainer/`) — ver "Raiz v
 | `/novo-guia` | 0 — entrada | Fluxo guiado de criação de guia passo-a-passo didático (qualquer assunto técnico): tema → escopo → roteiro → etapas → HTML final | `guia-brainstorm` (e os demais `guia-*` conforme a fase) |
 | `/dev` | Qualquer — tarefa pontual de 1-4h | Dev Loop: PROMPT.md dirigido, verificação por exit code, recovery de sessão — ver `DEV-LOOP.md` na raiz | `prompt-crafter` (craft) / `dev-loop-executor` (execução) |
 | `/nova-branch` | Qualquer — higiene Git | fetch → sync tronco `--ff-only` → acordo → cria `tipo/escopo` → sugere título de PR | — (agente conduz; valida via `git-hygiene.yaml`) |
-| `/git-ajuda` | Qualquer — higiene Git | Exibe o cheatsheet (`docs/git-hygiene-cheatsheet.md`) + declaração §1.3 | — |
+| `/git-ajuda` | Qualquer — higiene Git | Exibe o cheatsheet (`docs/cheatsheets/git-hygiene-cheatsheet.md`) + declaração §1.3 | — |
 | `/validar` | Qualquer, antes de commit | Gate: `ruff` + `mypy` + `pytest`; data-check se marker DE **ou** auto-detect SDP/DLT (`data_check_validate_argv`; DAB isolado não ativa) | Código como no hook `Stop` (backend/src); sem pastas típicas, gate na raiz. DE é lane só deste comando |
 | `/scorecard` | Fechamento | Scorecard de entrega: correção, aderência ao padrão, throughput, autonomia | — (lê `git`/`gh`/`metrics/entregas.jsonl` direto, nunca inventa número) |
 | `/sync-context` | Fechamento | Sincroniza `CLAUDE.md`/`AGENTS.md`/`CONTEXT.md`/`HANDOFF.md` com o código real — critério 7 da DoD | — (aciona a skill `sync-context` + seus dois scripts de detecção/derivação) |

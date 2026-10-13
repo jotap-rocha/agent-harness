@@ -127,12 +127,12 @@ python -m config.fluxo_events check|emit|render|truncate
 | Dev Loop | `.cursor/dev/` | progress/logs/templates (conceitual `DEV-LOOP.md`) — **≠** `tasks/{slug}/` do SDD |
 | Design docs | `.cursor/design/` | features/, archive/, reports/ |
 | Projetos do harness | `.cursor/projetos/` | histórico de evoluções |
-| Guias passo-a-passo | `.cursor/guias/` | tutoriais didáticos via `/novo-guia` — ver `GUIA-PASSO-A-PASSO.md` |
+| Guias passo-a-passo | `.cursor/guias/` | tutoriais didáticos via `/novo-guia` — ver `docs/manuais/passo-a-passo.md` |
 | Guias HTML | `docs/guia/` | 16 slides (01–16) |
 | Contrato Git hygiene | `git-hygiene.yaml` | fonte única de regex (branch + título PR) |
 | Rule Git hygiene | `.cursor/rules/git-hygiene.mdc` | invariantes SCM-agnósticos (espelho `.mdc`) |
-| Cheatsheet Git | `docs/git-hygiene-cheatsheet.md` | 1 página + declaração §1.3 |
-| Adapter SCM / PR híbrido | `config/git_hygiene/` · `docs/scm-pr-hibrido.md` | azure \| github |
+| Cheatsheet Git | `docs/cheatsheets/git-hygiene-cheatsheet.md` | 1 página + declaração §1.3 |
+| Adapter SCM / PR híbrido | `config/git_hygiene/` · `docs/cheatsheets/scm-pr-hibrido.md` | azure \| github |
 | Githooks locais | `.githooks/` | pre-commit (segredos), commit-msg, pre-push |
 | Template PR Azure | `.azuredevops/pull_request_template.md` | checklist versionado |
 | Testes Git hygiene | `tests/git_hygiene/` | contrato + fixtures + scm |
@@ -149,24 +149,24 @@ python -m config.fluxo_events check|emit|render|truncate
 | Contrato agent-policies | `agent-policies.yaml` | famílias / patterns / severity (deny\|ask) |
 | Engine agent-policies | `config/agent_policies/` | load · match · generate · guard · CLI · hooks adapters |
 | Seed policies | `config/agent_policies/templates/policies/` | → `.harness/policies/` (`seed: true` KEEP) |
-| Cheatsheet policies | `docs/agent-policies-cheatsheet.md` | 1 página + §1.3 + cross-link DE-A002 |
+| Cheatsheet policies | `docs/cheatsheets/agent-policies-cheatsheet.md` | 1 página + §1.3 + cross-link DE-A002 |
 | Hooks dual | `.claude/hooks/` · `.cursor/hooks.json` + `.cursor/hooks/` | PreToolUse + beforeShellExecution |
 | Contrato evidence-gate | `evidence-gate.yaml` | schema manifesto · cap 2 MiB · fator 2× · check rules |
 | Engine evidence-gate | `config/evidence_gate/` | load · collect · check · close · audit · CLI |
 | Seed evidence-gate | `config/evidence_gate/templates/evidencias/` | → `.harness/evidence-gate/` (`seed: true` KEEP) |
-| Cheatsheet evidence-gate | `docs/evidence-gate-cheatsheet.md` | 1 página + §1.3 + cross-link policies/`/validar` |
+| Cheatsheet evidence-gate | `docs/cheatsheets/evidence-gate-cheatsheet.md` | 1 página + §1.3 + cross-link policies/`/validar` |
 | Testes evidence-gate | `tests/evidence_gate/` | contrato · collect · check · audit · wiring · install |
 | Contrato fluxo-events | `fluxo-events.yaml` | schema eventos · cap 2 MiB · rotate keep-tail · `sdd_map` 0–4 · `dev_loop_map` 0–6 · IDs causais aditivos |
 | Engine fluxo-events | `config/fluxo_events/` | load · emit · stack · render Opção C + dual-map · slug_from_prompt · rotate · truncate · CLI (`build_causal_svg` testável) |
 | Seed fluxo-events | `config/fluxo_events/templates/fluxo/` | → `.harness/fluxo-events/` (`seed: true` KEEP) |
-| Cheatsheet fluxo-events | `docs/fluxo-events-cheatsheet.md` | 1 página + Opção C + delegação task/subagente + Dev Loop + naming PT-BR + §1.3 |
+| Cheatsheet fluxo-events | `docs/cheatsheets/fluxo-events-cheatsheet.md` | 1 página + Opção C + delegação task/subagente + Dev Loop + naming PT-BR + §1.3 |
 | Command `/fluxo-live` | `.cursor/commands/fluxo-live.md` | abrir/servir `live.html` do slug |
 | Testes fluxo-events | `tests/fluxo_events/` | contrato · emit · stack · exec trail · delegação · causal SVG · dual-map · Dev Loop · naming · wiring · install · dogfood |
 | Template CLAUDE.md | `.cursor/skills/harness-architect/references/claude-dir-templates.md` | — |
 | Schema do manifest | `.cursor/skills/install-harness/references/install-manifest-schema.md` | — |
-| Guia de uso do harness | `HARNESS-GUIDE.md` | — |
-| Setup de template (clone) | `COMO-USAR.md` | — |
-| Guia da CLI de install (standalone) | `INSTALL-HARNESS-CLI.md` | — |
+| Guia de uso do harness | `docs/manuais/harness-guide.md` | — |
+| Setup de template (clone) | `docs/manuais/como-usar.md` | — |
+| Guia da CLI de install (standalone) | `docs/manuais/install-harness-cli.md` | — |
 | Conceito Dev Loop (execução ágil de tarefa pontual) | `DEV-LOOP.md` | — |
 
 <!-- agents-only:start -->
@@ -190,5 +190,5 @@ Todos os artefatos estão espelhados em `.cursor/` para acesso via `@`-mention:
 
 ## Referência rápida de agents e skills
 
-Ver `HARNESS-GUIDE.md` para a lista completa com descrição de cada agent e skill.
+Ver `docs/manuais/harness-guide.md` para a lista completa com descrição de cada agent e skill.
 <!-- agents-only:end -->

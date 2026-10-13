@@ -178,7 +178,7 @@ Cada execução de `/dev` pode emitir metadados sob o slug sintético
 
 - Painel: `.claude/projetos/dev-loop-{nome}/fluxo/live.html` (+ espelho `.cursor/`)
 - Opcional: `python -m http.server 8765 --directory .claude/projetos/dev-loop-{nome}/fluxo` → `http://localhost:8765/live.html`
-- Atalho: `/fluxo-live` · cheatsheet: `docs/fluxo-events-cheatsheet.md`
+- Atalho: `/fluxo-live` · cheatsheet: `docs/cheatsheets/fluxo-events-cheatsheet.md`
 - Mapa Dev Loop fases 0–6 (LOAD→…→SYNC); fail-soft (`|| true`)
 - **`--dry-run` não emite** telemetria
 - `EXIT_COMPLETE`: emit exit + `truncate --keep 100` + re-render
@@ -193,7 +193,7 @@ Cada execução de `/dev` pode emitir metadados sob o slug sintético
 - `.claude/agents/dev/dev-loop-executor.md` — agente de execução
 - `.claude/commands/dev.md` — definição do comando `/dev`
 - `.claude/skills/sync-context/SKILL.md` — step SYNC (fechamento do ciclo de contexto)
-- `docs/fluxo-events-cheatsheet.md` — telemetria live (SDD + Dev Loop)
+- `docs/cheatsheets/fluxo-events-cheatsheet.md` — telemetria live (SDD + Dev Loop)
 - [11 Tips For AI Coding With Ralph Wiggum](https://www.aihero.dev/tips-for-ai-coding-with-ralph-wiggum) — Matt Pocock
 - [Effective Harnesses for Long-Running Agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents) — Anthropic
 

@@ -38,4 +38,4 @@ python -m config.fluxo_events truncate --slug {slug} --keep 100
 Emit omitível/forjável; HTML pode ficar stale; telemetria local ≠ fidelidade perfeita.
 Sem Edit policies nenhum gate impede de fato.
 
-Ver: `docs/fluxo-events-cheatsheet.md` · ADR `docs/adr/005-kernel-fluxo-events.md`.
+Ver: `docs/cheatsheets/fluxo-events-cheatsheet.md` · ADR `docs/adr/005-kernel-fluxo-events.md`.

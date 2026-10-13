@@ -147,7 +147,7 @@ Atualize `.claude/projetos/{slug}/STATUS.md`:
 ## Abertura de PR (híbrido SCM)
 
 Após ship (e com acordo para push), use o adapter documentado em
-[`docs/scm-pr-hibrido.md`](../../../docs/scm-pr-hibrido.md):
+[`docs/cheatsheets/scm-pr-hibrido.md`](../../../docs/cheatsheets/scm-pr-hibrido.md):
 
 1. Detectar SCM: `config.git_hygiene.scm.detect_scm(remote_url)` → `azure` | `github` | `ambiguous`.
 2. Sugerir título convencional `tipo(escopo): resumo` (validar com `git-hygiene.yaml`).

@@ -24,7 +24,7 @@ O que fazer:
   - Se for intencional (hotfix acordado), ok — este hook NÃO bloqueia no MVP.
 
 Por quê: sem Edit policies, push no tronco não é barrado no servidor; o aviso
-torna o desvio visível. Ver docs/git-hygiene-cheatsheet.md (§1.3).
+torna o desvio visível. Ver docs/cheatsheets/git-hygiene-cheatsheet.md (§1.3).
 
 EOF
   fi

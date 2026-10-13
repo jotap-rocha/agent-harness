@@ -4,6 +4,22 @@
 > kernels de qualidade propagados via `/install-harness` para projetos alvo. Não é um produto
 > de aplicação; é o ambiente que governa como Claude Code e Cursor agem no seu projeto.
 
+## Por onde começar
+
+| Quero… | Vá para |
+|---|---|
+| Usar como template de projeto novo | [docs/manuais/como-usar.md](docs/manuais/como-usar.md) |
+| Entender o método e os fluxos | [docs/manuais/harness-guide.md](docs/manuais/harness-guide.md) |
+| Instalar o harness num projeto existente | [docs/manuais/install-harness-cli.md](docs/manuais/install-harness-cli.md) |
+| Aprender fazendo (tutorial didático) | [docs/manuais/passo-a-passo.md](docs/manuais/passo-a-passo.md) |
+| Consultar um kernel em 1 página | `docs/cheatsheets/` |
+| Ver decisões de arquitetura | `docs/adr/` |
+
+**Mapa da raiz:** `*.yaml` = contratos dos kernels (lidos pelos loaders em `config/`; ficam na
+raiz porque os projetos filhos os procuram ali) · `config/` = engines Python (ver
+[config/README.md](config/README.md)) · `docs/` = toda a documentação · `.claude/` e `.cursor/` =
+artefatos do harness (espelhados) · `tests/` = testes dos kernels.
+
 ## O que é
 
 Este repositório é o **framework** do Agent Harness Method. É a fonte canônica de agents,
@@ -51,7 +67,7 @@ cp .env.example .env   # preencher; nunca commitar .env
 /novo-projeto          # na sessão Claude Code / Cursor
 ```
 
-Passo a passo: [COMO-USAR.md](COMO-USAR.md).
+Passo a passo: [docs/manuais/como-usar.md](docs/manuais/como-usar.md).
 
 ### Modo 2 — instalar/atualizar num projeto existente
 
@@ -61,7 +77,7 @@ Passo a passo: [COMO-USAR.md](COMO-USAR.md).
 /install-harness
 ```
 
-CLI completa (flags, `--json`, automação): [INSTALL-HARNESS-CLI.md](INSTALL-HARNESS-CLI.md).
+CLI completa (flags, `--json`, automação): [docs/manuais/install-harness-cli.md](docs/manuais/install-harness-cli.md).
 
 ## Fluxo SDD (nível 3)
 
@@ -76,7 +92,7 @@ harness-build       → implementação task a task (/validar + revisor-codigo)
 harness-ship        → scorecard + retrospectiva
 ```
 
-Referência pós-install: [HARNESS-GUIDE.md](HARNESS-GUIDE.md).
+Referência pós-install: [docs/manuais/harness-guide.md](docs/manuais/harness-guide.md).
 
 ## Kernels e gates (canônico)
 
@@ -86,10 +102,10 @@ Contratos YAML na raiz + engines em `config/`. Ortogonais entre si (aceite ≠ t
 |---|---|---|---|
 | Validação | — | `/validar` (ruff + mypy + pytest; data-check condicional) | `.claude/commands/validar.md` |
 | Eng. dados | `data-engineering.yaml` | `python -m config.canonical_data_check validate …` | skill `de-conformidade` |
-| Agent-policies | `agent-policies.yaml` | `python -m config.agent_policies check\|generate` | [docs/agent-policies-cheatsheet.md](docs/agent-policies-cheatsheet.md) |
-| Evidence-gate | `evidence-gate.yaml` | `python -m config.evidence_gate collect\|check` | [docs/evidence-gate-cheatsheet.md](docs/evidence-gate-cheatsheet.md) |
-| fluxo-events | `fluxo-events.yaml` | `python -m config.fluxo_events …` · `/fluxo-live` | [docs/fluxo-events-cheatsheet.md](docs/fluxo-events-cheatsheet.md) |
-| Git hygiene | `git-hygiene.yaml` | `/nova-branch` · `/git-ajuda` | [docs/git-hygiene-cheatsheet.md](docs/git-hygiene-cheatsheet.md) |
+| Agent-policies | `agent-policies.yaml` | `python -m config.agent_policies check\|generate` | [docs/cheatsheets/agent-policies-cheatsheet.md](docs/cheatsheets/agent-policies-cheatsheet.md) |
+| Evidence-gate | `evidence-gate.yaml` | `python -m config.evidence_gate collect\|check` | [docs/cheatsheets/evidence-gate-cheatsheet.md](docs/cheatsheets/evidence-gate-cheatsheet.md) |
+| fluxo-events | `fluxo-events.yaml` | `python -m config.fluxo_events …` · `/fluxo-live` | [docs/cheatsheets/fluxo-events-cheatsheet.md](docs/cheatsheets/fluxo-events-cheatsheet.md) |
+| Git hygiene | `git-hygiene.yaml` | `/nova-branch` · `/git-ajuda` | [docs/cheatsheets/git-hygiene-cheatsheet.md](docs/cheatsheets/git-hygiene-cheatsheet.md) |
 
 Telemetria live (`live.html`, layout Opção C): mapa previsto esmaecido + trilha de execução
 real (agentes, tasks `task_enter`/`task_exit`, subagentes delegados via `parent_event_id`) +
@@ -164,7 +180,7 @@ Catálogo: [`.claude/agents/README.md`](.claude/agents/README.md) ·
 ## SI / Segurança
 
 - **Agent-policies** — deny-hard / ask em Bash (Claude PreToolUse + Cursor `beforeShellExecution`);
-  bypass consciente `HARNESS_ALLOW_DESTRUCTIVE=1`; ver [docs/agent-policies-cheatsheet.md](docs/agent-policies-cheatsheet.md)
+  bypass consciente `HARNESS_ALLOW_DESTRUCTIVE=1`; ver [docs/cheatsheets/agent-policies-cheatsheet.md](docs/cheatsheets/agent-policies-cheatsheet.md)
 - **Rules** — `seguranca.md` (LGPD, PII, produção somente-leitura por padrão, sem secrets
   hardcoded) e `definicao-de-pronto.md` (aceite testável, gate verde, revisor, `metrics/entregas.jsonl`)
 - **Githooks** — `.githooks/pre-commit` (heurística de segredos), commit-msg, pre-push
@@ -194,7 +210,7 @@ Configurado em `.mcp.json`:
 ```
 .
 ├── CLAUDE.md · AGENTS.md · CONTEXT.md
-├── HARNESS-GUIDE.md · COMO-USAR.md · INSTALL-HARNESS-CLI.md · DEV-LOOP.md
+├── docs/manuais/harness-guide.md · docs/manuais/como-usar.md · docs/manuais/install-harness-cli.md · DEV-LOOP.md
 ├── install-harness
 ├── agent-policies.yaml · evidence-gate.yaml · fluxo-events.yaml
 ├── data-engineering.yaml · git-hygiene.yaml
@@ -250,6 +266,6 @@ Abra `docs/guia/` (16 slides):
 
 ## Personalização
 
-- Clone template: [COMO-USAR.md](COMO-USAR.md)
-- Install em projeto existente: [INSTALL-HARNESS-CLI.md](INSTALL-HARNESS-CLI.md)
-- Uso do harness instalado: [HARNESS-GUIDE.md](HARNESS-GUIDE.md)
+- Clone template: [docs/manuais/como-usar.md](docs/manuais/como-usar.md)
+- Install em projeto existente: [docs/manuais/install-harness-cli.md](docs/manuais/install-harness-cli.md)
+- Uso do harness instalado: [docs/manuais/harness-guide.md](docs/manuais/harness-guide.md)

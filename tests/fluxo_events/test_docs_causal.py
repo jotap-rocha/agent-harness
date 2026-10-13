@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-CHEATSHEET = REPO_ROOT / "docs" / "fluxo-events-cheatsheet.md"
+CHEATSHEET = REPO_ROOT / "docs" / "cheatsheets" / "fluxo-events-cheatsheet.md"
 ADR005 = REPO_ROOT / "docs" / "adr" / "005-kernel-fluxo-events.md"
 
 

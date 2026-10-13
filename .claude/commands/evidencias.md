@@ -10,7 +10,7 @@ python -m config.evidence_gate collect --root <evidencias/> --task NN --criterio
 python -m config.evidence_gate check --root <evidencias/> --task NN --entregas metrics/entregas.jsonl --issue NN
 ```
 
-Cheatsheet: `docs/evidence-gate-cheatsheet.md`  
+Cheatsheet: `docs/cheatsheets/evidence-gate-cheatsheet.md`  
 Contrato: `evidence-gate.yaml`  
 Seed filho: `.harness/evidence-gate/`
 

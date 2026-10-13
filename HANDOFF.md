@@ -28,5 +28,5 @@
 ## Referências
 
 - `.claude/dev/tasks/PROMPT_FLUXO_EMIT_RUNTIME.md`
-- `docs/fluxo-events-cheatsheet.md`
+- `docs/cheatsheets/fluxo-events-cheatsheet.md`
 - `config/fluxo_events/cli.py`

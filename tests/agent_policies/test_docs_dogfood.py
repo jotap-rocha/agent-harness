@@ -11,7 +11,7 @@ REPO = Path(__file__).resolve().parents[2]
 
 
 def test_cheatsheet_exists() -> None:
-    path = REPO / "docs" / "agent-policies-cheatsheet.md"
+    path = REPO / "docs" / "cheatsheets" / "agent-policies-cheatsheet.md"
     text = path.read_text(encoding="utf-8")
     assert "§1.3" in text or "1.3" in text
     assert "DE-A002" in text

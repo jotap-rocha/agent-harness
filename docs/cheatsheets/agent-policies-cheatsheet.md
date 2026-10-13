@@ -1,6 +1,6 @@
 # Agent-policies — cheatsheet (1 página)
 
-Fonte: [`agent-policies.yaml`](../agent-policies.yaml) · CLI: `python -m config.agent_policies check|generate`
+Fonte: [`agent-policies.yaml`](../../agent-policies.yaml) · CLI: `python -m config.agent_policies check|generate`
 
 ## O que é
 
