@@ -383,7 +383,7 @@ Informe em PT-BR, curto, **antes** de seguir a entrevista/SI:
 - Opcional (poll):  
   `python -m http.server 8765 --directory .claude/projetos/{slug}/fluxo`  
   → `http://localhost:8765/live.html`
-- Atalho docs: `/fluxo-live` · cheatsheet: `docs/fluxo-events-cheatsheet.md`
+- Atalho docs: `/fluxo-live` · cheatsheet: `docs/cheatsheets/fluxo-events-cheatsheet.md`
 - Complementar a STATUS.md / scorecard; **não** cobre Dev Loop neste MVP
 
 Se o HTML ainda não existir, diga que aparece após o primeiro `emit` (ou rode

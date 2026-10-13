@@ -148,7 +148,7 @@ Informe em PT-BR, curto:
   `.claude/projetos/dev-loop-{nome}/fluxo/live.html`  
   (espelho: `.cursor/projetos/dev-loop-{nome}/fluxo/live.html`)
 - Opcional: `python -m http.server 8765 --directory .claude/projetos/dev-loop-{nome}/fluxo` → `http://localhost:8765/live.html`
-- Atalho: `/fluxo-live` · cheatsheet: `docs/fluxo-events-cheatsheet.md`
+- Atalho: `/fluxo-live` · cheatsheet: `docs/cheatsheets/fluxo-events-cheatsheet.md`
 
 ### Emit enter/exit
 

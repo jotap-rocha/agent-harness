@@ -73,7 +73,7 @@ Quando a descrição mencionar pipeline, medallion, bronze, silver, gold ou inge
 - `.claude/dev/_index.md` — documentação técnica detalhada
 - `.claude/agents/dev/prompt-crafter.md` — agente de crafting
 - `.claude/agents/dev/dev-loop-executor.md` — agente de execução
-- `docs/fluxo-events-cheatsheet.md` — telemetria live Dev Loop (`dev-loop-*`)
+- `docs/cheatsheets/fluxo-events-cheatsheet.md` — telemetria live Dev Loop (`dev-loop-*`)
 - `/fluxo-live` — abrir/servir `live.html`
 
 ## Telemetria live (fluxo-events)

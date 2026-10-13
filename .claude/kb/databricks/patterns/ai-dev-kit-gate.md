@@ -16,7 +16,7 @@ iniciar SDD ou Dev Loop em projetos Databricks. Ele traz:
 - Templates e wiring que o Agent Harness **não** substitui — complementa o `/install-harness`.
 
 Fonte de modernização no canônico: pesquisa `ai-dev-kit-main-databricks` (ver
-`sketch/data-engineering/pesquisa-4-repos-pipelines-boas-praticas.md`).
+`docs/rascunhos/data-engineering/pesquisa-4-repos-pipelines-boas-praticas.md`).
 
 ## Quando acionar
 

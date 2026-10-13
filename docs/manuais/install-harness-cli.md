@@ -163,9 +163,9 @@ Claude Code) que não têm um TTY interativo real para repassar ao usuário.
 - **Arquivos gerados** (`CLAUDE.md`, `AGENTS.md`, `CONTEXT.md`, `HANDOFF.md`, `.claude/settings.json`)
   — stubs mínimos, sempre marcados `customized: true` (protegidos desde o início; refine com
   `/grill-me` e `/grill-with-docs` depois).
-- **Arquivos de raiz do canônico** — `HARNESS-GUIDE.md`, `COMO-USAR.md`, `.env.example`,
+- **Arquivos de raiz do canônico** — `docs/manuais/harness-guide.md`, `docs/manuais/como-usar.md`, `.env.example`,
   `.gitignore`, `.mcp.json`, `requirements.txt` — copiados como estão. **Exceção:** `README.md`,
-  `install-harness` e este próprio `INSTALL-HARNESS-CLI.md` **nunca** são propagados — são material
+  `install-harness` e este próprio `docs/manuais/install-harness-cli.md` **nunca** são propagados — são material
   do canônico sobre como instalar, não conteúdo do harness.
 - **`config/`, `docs/`, `metrics/`** — copiados inteiros, sempre (não são condicionados à stack).
 - **`.cursor/`** — espelho estrutural de tudo em `.claude/` (incluindo `sdd/`), com as `rules/*.md`

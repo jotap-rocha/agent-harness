@@ -33,19 +33,7 @@
           "kind": "generate"
         },
         {
-          "path": "HARNESS-GUIDE.md",
-          "kind": "copy"
-        },
-        {
-          "path": "COMO-USAR.md",
-          "kind": "copy"
-        },
-        {
           "path": "DEV-LOOP.md",
-          "kind": "copy"
-        },
-        {
-          "path": "GUIA-PASSO-A-PASSO.md",
           "kind": "copy"
         },
         {
@@ -106,6 +94,18 @@
         },
         {
           "path": "docs",
+          "kind": "copy"
+        },
+        {
+          "path": "docs/manuais/harness-guide.md",
+          "kind": "copy"
+        },
+        {
+          "path": "docs/manuais/como-usar.md",
+          "kind": "copy"
+        },
+        {
+          "path": "docs/manuais/passo-a-passo.md",
           "kind": "copy"
         },
         {
@@ -325,11 +325,11 @@
           "kind": "copy"
         },
         {
-          "path": "docs/git-hygiene-cheatsheet.md",
+          "path": "docs/cheatsheets/git-hygiene-cheatsheet.md",
           "kind": "copy"
         },
         {
-          "path": "docs/scm-pr-hibrido.md",
+          "path": "docs/cheatsheets/scm-pr-hibrido.md",
           "kind": "copy"
         },
         {

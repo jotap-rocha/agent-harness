@@ -9,7 +9,7 @@ description: >-
 
 Leia e **exiba** (ou resuma fielmente) o cheatsheet canônico:
 
-[`docs/git-hygiene-cheatsheet.md`](../../docs/git-hygiene-cheatsheet.md)
+[`docs/cheatsheets/git-hygiene-cheatsheet.md`](../../docs/cheatsheets/git-hygiene-cheatsheet.md)
 
 Fonte de regex / tipos: [`git-hygiene.yaml`](../../git-hygiene.yaml) — **não** invente padrões
 diferentes dos do YAML.

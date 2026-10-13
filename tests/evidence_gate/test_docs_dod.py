@@ -42,7 +42,7 @@ def test_revisor_soft_not_hard_check() -> None:
 
 
 def test_docs_and_adr_and_command_exist() -> None:
-    assert (REPO_ROOT / "docs/evidence-gate-cheatsheet.md").is_file()
+    assert (REPO_ROOT / "docs/cheatsheets/evidence-gate-cheatsheet.md").is_file()
     assert (REPO_ROOT / "docs/adr/004-kernel-evidence-gate.md").is_file()
     idx = (REPO_ROOT / "docs/adr/README.md").read_text(encoding="utf-8")
     assert "004-kernel-evidence-gate" in idx
@@ -58,7 +58,7 @@ def test_claude_agents_context_list_kernel() -> None:
 
 
 def test_cheatsheet_cross_links_validar_and_policies() -> None:
-    text = (REPO_ROOT / "docs/evidence-gate-cheatsheet.md").read_text(encoding="utf-8")
+    text = (REPO_ROOT / "docs/cheatsheets/evidence-gate-cheatsheet.md").read_text(encoding="utf-8")
     assert "/validar" in text
     assert "agent-policies" in text or "Bash deny" in text
     assert "§1.3" in text or "1.3" in text

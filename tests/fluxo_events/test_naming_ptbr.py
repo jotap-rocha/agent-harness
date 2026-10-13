@@ -17,7 +17,7 @@ PACKAGE_SCAN_ROOTS: tuple[Path, ...] = (
     REPO_ROOT / ".claude" / "commands" / f"{_PTBR}-live.md",
     REPO_ROOT / ".cursor" / "commands" / f"{_PTBR}-live.md",
     REPO_ROOT / "config" / f"{_PTBR}_events" / "templates" / _PTBR,
-    REPO_ROOT / "docs" / f"{_PTBR}-events-cheatsheet.md",
+    REPO_ROOT / "docs" / "cheatsheets" / f"{_PTBR}-events-cheatsheet.md",
 )
 
 

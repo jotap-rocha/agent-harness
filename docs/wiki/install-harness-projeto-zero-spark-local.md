@@ -32,7 +32,7 @@ Funciona como **instalador**: copia e configura artefatos do repositório canôn
 | Repositório canônico | **Agent Harness Canônico V2** no Azure DevOps |
 | Acesso | Wiki → Files → buscar `agent harness canônico V2` → **Clone** |
 | Pasta de destino | Projeto vazio (ex.: `Databricks Mapa Corporativa`) |
-| Leitura obrigatória | `INSTALL-HARNESS-CLI.md` ou `COMO-USAR.md` na raiz do canônico |
+| Leitura obrigatória | `docs/manuais/install-harness-cli.md` ou `docs/manuais/como-usar.md` na raiz do canônico |
 
 ---
 
@@ -106,8 +106,8 @@ Após instalação bem-sucedida, a pasta de destino deve conter, entre outros:
 
 Ler os arquivos gerados no **canônico** e no **destino**:
 
-- **COMO-USAR.md** / guia passo a passo
-- **HARNESS-GUIDE.md**: comandos disponíveis
+- **docs/manuais/como-usar.md** / guia passo a passo
+- **docs/manuais/harness-guide.md**: comandos disponíveis
 - Fluxos: **brainstorm**, **design**, **define**, **grill**, **tasks**, etc.
 
 > Familiaridade com esses materiais acelera o uso do harness no dia a dia.

@@ -1,6 +1,6 @@
 # Git Hygiene — cheatsheet (1 página)
 
-Fonte de verdade: [`git-hygiene.yaml`](../git-hygiene.yaml) · Comando: `/git-ajuda`
+Fonte de verdade: [`git-hygiene.yaml`](../../git-hygiene.yaml) · Comando: `/git-ajuda`
 
 ## Declaração §1.3 — limites reais dos gates
 

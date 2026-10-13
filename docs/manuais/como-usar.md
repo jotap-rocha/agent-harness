@@ -1,4 +1,4 @@
-# COMO-USAR.md — Guia de personalização passo a passo
+# docs/manuais/como-usar.md — Guia de personalização passo a passo
 
 Este guia explica como transformar o template canônico no harness do seu projeto específico.
 Siga na ordem. Não pule etapas.

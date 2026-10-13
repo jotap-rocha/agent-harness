@@ -19,7 +19,7 @@ This skill helps you discover and install skills from the open agent skills ecos
 - **Propagar para projeto-filho:** só `/install-harness`. Nunca copiar skill na mão para outro repo.
 - **Deixar skill neste repo:** não basta `npx skills add -g` (`~/.agents/skills`). Vendorize em
   `.claude/skills/<nome>/` **e** `.cursor/skills/<nome>/`, inclua no `stack_map.json`
-  (`dev_workflow`), atualize inventário (CLAUDE.md / AGENTS.md / README.md / HARNESS-GUIDE.md /
+  (`dev_workflow`), atualize inventário (CLAUDE.md / AGENTS.md / README.md / docs/manuais/harness-guide.md /
   freeze test). Opcional: snapshot em `.agents/skills/<nome>/` + `skills-lock.json`.
 
 ## When to Use This Skill

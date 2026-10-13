@@ -178,7 +178,7 @@ Slug: `slug_from_prompt_path(PROMPT_*.md)` → `dev-loop-{nome}` sob
 
 - Abra `.claude/projetos/dev-loop-{nome}/fluxo/live.html` no browser
 - Opcional: `python -m http.server 8765 --directory .claude/projetos/dev-loop-{nome}/fluxo` → `http://localhost:8765/live.html`
-- Atalho: `/fluxo-live` · `docs/fluxo-events-cheatsheet.md`
+- Atalho: `/fluxo-live` · `docs/cheatsheets/fluxo-events-cheatsheet.md`
 
 ### Emit por fase (mapa Dev 0–6)
 
