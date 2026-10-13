@@ -59,6 +59,9 @@ python -m config.fluxo_events check|emit|render|truncate
 - **Agents e skills devem ser genéricos** — reutilizáveis em qualquer projeto, sem acoplamento
 - **`/install-harness` é o único mecanismo de propagação** — nunca copiar manualmente para projetos
 - **Ao renomear pasta:** atualizar `install-harness/SKILL.md` + guias HTML relevantes em `docs/guia/`
+- **Contratos YAML ficam na raiz** (`*.yaml`): os loaders em `config/` e os projetos filhos os
+  localizam ali — não mover ao "arrumar" a raiz. `docs/rascunhos/` é interno e **não** é
+  propagado (exclusão em `install_harness.py`); guias instalados nos filhos vão para `docs/manuais/`
 - **Ao evoluir um KB:** verificar se o KB está referenciado na tabela stack-layer de `install-harness/SKILL.md`
 - **Agents e skills devem ter `description:` claro** — é o único texto que o agente vê para decidir quando usar
 - **Toda edição em `.claude/{agents,skills,rules,kb,commands,guias}` deve ser espelhada em `.cursor/`**
@@ -129,6 +132,10 @@ python -m config.fluxo_events check|emit|render|truncate
 | Projetos do harness | `.cursor/projetos/` | histórico de evoluções |
 | Guias passo-a-passo | `.cursor/guias/` | tutoriais didáticos via `/novo-guia` — ver `docs/manuais/passo-a-passo.md` |
 | Guias HTML | `docs/guia/` | 16 slides (01–16) |
+| Manuais | `docs/manuais/` | `harness-guide`, `como-usar`, `install-harness-cli`, `passo-a-passo` |
+| Cheatsheets | `docs/cheatsheets/` | 1 página por kernel + `scm-pr-hibrido` |
+| Rascunhos | `docs/rascunhos/` | planos/pesquisas internas — não propagado aos filhos |
+| Mapa de `config/` | `config/README.md` | pacote ↔ contrato ↔ CLI |
 | Contrato Git hygiene | `git-hygiene.yaml` | fonte única de regex (branch + título PR) |
 | Rule Git hygiene | `.cursor/rules/git-hygiene.mdc` | invariantes SCM-agnósticos (espelho `.mdc`) |
 | Cheatsheet Git | `docs/cheatsheets/git-hygiene-cheatsheet.md` | 1 página + declaração §1.3 |
