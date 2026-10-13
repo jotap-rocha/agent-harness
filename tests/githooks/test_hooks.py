@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-import stat
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -18,6 +18,27 @@ _PEM_FAKE = "-----BEGIN " + "PRIVATE KEY-----"
 _PASSWORD_FAKE = "pass" + "word=supersecret"
 
 
+def _index_mode(path: Path) -> str:
+    """Modo do arquivo no índice git (fonte de verdade; o FS do Windows não tem +x)."""
+    rel = path.relative_to(REPO_ROOT).as_posix()
+    out = subprocess.run(
+        ["git", "ls-files", "-s", "--", rel],
+        cwd=REPO_ROOT,
+        text=True,
+        capture_output=True,
+        check=True,
+    ).stdout
+    return out.split()[0] if out else ""
+
+
+def _hook_command(hook: Path) -> list[str]:
+    if os.name == "nt":
+        bash = shutil.which("bash")
+        assert bash, "bash ausente (Git Bash) para executar hooks no Windows"
+        return [bash, hook.as_posix()]
+    return [str(hook)]
+
+
 def _run_hook(
     name: str,
     *args: str,
@@ -27,12 +48,12 @@ def _run_hook(
 ) -> subprocess.CompletedProcess[str]:
     hook = HOOKS_DIR / name
     assert hook.is_file(), f"hook ausente: {hook}"
-    assert os.access(hook, os.X_OK), f"hook não executável: {hook}"
+    assert _index_mode(hook) == "100755", f"hook sem +x no índice: {hook}"
     merged_env = os.environ.copy()
     if env:
         merged_env.update(env)
     return subprocess.run(
-        [str(hook), *args],
+        [*_hook_command(hook), *args],
         input=input_text,
         text=True,
         capture_output=True,
@@ -65,8 +86,7 @@ def test_hooks_are_executable() -> None:
     for name in ("pre-commit", "commit-msg", "pre-push"):
         path = HOOKS_DIR / name
         assert path.is_file()
-        mode = path.stat().st_mode
-        assert mode & (stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+        assert _index_mode(path) == "100755"
 
 
 @pytest.mark.parametrize(
