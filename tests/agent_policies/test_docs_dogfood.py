@@ -51,7 +51,7 @@ def test_dogfood_settings_aligned_no_machine_path() -> None:
     generated = generate_artifacts(contract_path=REPO / "agent-policies.yaml")
     assert set(deny) == set(generated.claude_deny)
     blob = json.dumps(settings)
-    assert "/home/fabiano" not in blob
+    assert "/home/" not in blob
     assert "PreToolUse" in settings.get("hooks", {})
 
     hooks = json.loads((REPO / ".cursor" / "hooks.json").read_text(encoding="utf-8"))
