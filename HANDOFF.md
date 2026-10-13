@@ -1,22 +1,22 @@
 # HANDOFF — Agent Harness Canônico
 
-> Ponto de continuidade da sessão. Atualizado em 2026-08-24 via Dev Loop FLUXO_EMIT_RUNTIME.
+> Ponto de continuidade da sessão. Atualizado em 2026-10-13.
 
 ## Estado atual
 
 | Item | Valor |
 |---|---|
-| Branch | `master` (Dev Loop local — commit pendente) |
-| Dev Loop | `PROMPT_FLUXO_EMIT_RUNTIME` — **COMPLETE** |
-| Gate | `pytest tests/fluxo_events/` — 92 testes verdes |
+| Branch | `main` (protegida: PR obrigatório, sem force-push) |
+| Repositório | público — https://github.com/jotap-rocha/agent-harness (MIT) |
+| PRs mergeados | #1 hooks (pre-commit rápido, +x), #2 estrutura (`docs/manuais`, `docs/cheatsheets`, `docs/rascunhos`) |
+| Testes | 24 falhas pré-existentes no Windows (instalador / evidence-gate / fluxo install); nenhuma nova |
 
-## Entregue neste loop
+## Entregue recentemente
 
-1. **`EmitResult.event_id` / `run_id`** + helper `parse_emit_line()` (`emit.py`)
-2. **CLI** `--print-event-id` e `--json` (`cli.py`) — default legado preservado
-3. **Wiring** `harness-build.md` + `revisor-codigo.md` (+ espelho `.cursor/`)
-4. **Cheatsheet** atualizado
-5. **Testes** `test_cli_emit_output.py` (6 casos + integração build→task→SVG)
+1. Hooks `.githooks/*` mais rápidos e executáveis; testes leem o modo no índice git
+2. `.github/pull_request_template.md`, `.gitattributes`, `LICENSE`
+3. Raiz enxuta; guias em `docs/manuais/`; mapa em `README.md` e `config/README.md`
+4. Instalador ignora `docs/rascunhos` e instala guias em `docs/manuais/` nos filhos
 
 ## Pendências fluxo live (próximos loops)
 
