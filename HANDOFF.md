@@ -9,7 +9,7 @@
 | Branch | `main` (protegida: PR obrigatório, sem force-push) |
 | Repositório | público — https://github.com/jotap-rocha/agent-harness (MIT) |
 | PRs mergeados | #1 hooks (pre-commit rápido, +x), #2 estrutura (`docs/manuais`, `docs/cheatsheets`, `docs/rascunhos`) |
-| Testes | 24 falhas pré-existentes no Windows (instalador / evidence-gate / fluxo install); nenhuma nova |
+| Testes | suíte completa verde no Windows (546 passed); 24 falhas de encoding/quoting corrigidas só nos testes |
 
 ## Entregue recentemente
 

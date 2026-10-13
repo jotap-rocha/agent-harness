@@ -114,10 +114,9 @@ def test_data_engineering_yaml_unchanged() -> None:
         ["git", "show", "HEAD:data-engineering.yaml"],
         cwd=REPO_ROOT,
         capture_output=True,
-        text=True,
         check=True,
     )
-    assert path.read_text(encoding="utf-8") == result.stdout
+    assert path.read_bytes().decode("utf-8") == result.stdout.decode("utf-8")
 
 
 def test_tasks_index_file_exists() -> None:
