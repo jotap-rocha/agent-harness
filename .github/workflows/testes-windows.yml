@@ -1,0 +1,27 @@
+name: testes-windows
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  pytest:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Instalar dependências de teste
+        run: python -m pip install pytest pyyaml
+      - name: Identidade git (testes criam repositórios temporários)
+        run: |
+          git config --global user.email "ci@example.invalid"
+          git config --global user.name "ci"
+      - name: Rodar suíte
+        # Sem PYTHONUTF8 aqui de propósito: tests/conftest.py já o define para os subprocessos.
+        run: python -m pytest tests -q
