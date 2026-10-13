@@ -1,0 +1,30 @@
+task_id: "58"
+criteria:
+  importable:
+    id: importable
+    command: "python -m pytest -q tests/fluxo_events/test_contract_loader.py::test_package_importable"
+    test_paths:
+      - "tests/fluxo_events/test_contract_loader.py"
+    exit_code: 0
+    log_path: "logs/58/importable.log"
+  invalid-fails:
+    id: invalid-fails
+    command: "python -m pytest -q tests/fluxo_events/test_contract_loader.py::test_invalid_contract_fails"
+    test_paths:
+      - "tests/fluxo_events/test_contract_loader.py"
+    exit_code: 0
+    log_path: "logs/58/invalid-fails.log"
+  loads-defaults:
+    id: loads-defaults
+    command: "python -m pytest -q tests/fluxo_events/test_contract_loader.py::test_loads_defaults"
+    test_paths:
+      - "tests/fluxo_events/test_contract_loader.py"
+    exit_code: 0
+    log_path: "logs/58/loads-defaults.log"
+  no-sla:
+    id: no-sla
+    command: "python -m pytest -q tests/fluxo_events/test_contract_loader.py::test_no_sla_latency_field"
+    test_paths:
+      - "tests/fluxo_events/test_contract_loader.py"
+    exit_code: 0
+    log_path: "logs/58/no-sla.log"

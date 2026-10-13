@@ -1,0 +1,677 @@
+{
+  "_comment": "Fonte única da tabela stack -> artefatos usada por install_harness.py. Espelha o Passo 2 do SKILL.md — se um artefato do canônico mudar de lugar, atualize aqui (o SKILL.md só referencia este arquivo).",
+  "categories": [
+    {
+      "name": "foundation",
+      "label": "Foundation (sempre)",
+      "condition": {
+        "type": "always"
+      },
+      "artifacts": [
+        {
+          "path": "CLAUDE.md",
+          "kind": "generate"
+        },
+        {
+          "path": "AGENTS.md",
+          "kind": "generate"
+        },
+        {
+          "path": "CONTEXT.md",
+          "kind": "generate"
+        },
+        {
+          "path": "README.md",
+          "kind": "generate"
+        },
+        {
+          "path": ".claude/settings.json",
+          "kind": "generate"
+        },
+        {
+          "path": "HANDOFF.md",
+          "kind": "generate"
+        },
+        {
+          "path": "HARNESS-GUIDE.md",
+          "kind": "copy"
+        },
+        {
+          "path": "COMO-USAR.md",
+          "kind": "copy"
+        },
+        {
+          "path": "DEV-LOOP.md",
+          "kind": "copy"
+        },
+        {
+          "path": "GUIA-PASSO-A-PASSO.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".env.example",
+          "kind": "copy"
+        },
+        {
+          "path": ".gitignore",
+          "kind": "copy"
+        },
+        {
+          "path": ".mcp.json",
+          "kind": "copy"
+        },
+        {
+          "path": "requirements.txt",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/novo-projeto.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/scorecard.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/validar.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/sync-context.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/evidencias.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/design",
+          "kind": "scaffold"
+        },
+        {
+          "path": ".claude/projetos",
+          "kind": "scaffold"
+        },
+        {
+          "path": ".claude/guias",
+          "kind": "scaffold"
+        },
+        {
+          "path": ".claude/sdd",
+          "kind": "scaffold"
+        },
+        {
+          "path": "config",
+          "kind": "copy"
+        },
+        {
+          "path": "docs",
+          "kind": "copy"
+        },
+        {
+          "path": "metrics",
+          "kind": "copy"
+        },
+        {
+          "path": "agent-policies.yaml",
+          "kind": "copy"
+        },
+        {
+          "path": "evidence-gate.yaml",
+          "kind": "copy"
+        },
+        {
+          "path": ".cursor/hooks.json",
+          "kind": "generate"
+        },
+        {
+          "path": ".claude/hooks",
+          "kind": "copy"
+        },
+        {
+          "path": ".cursor/hooks",
+          "kind": "copy"
+        },
+        {
+          "path": ".harness/policies",
+          "kind": "copy",
+          "from": "config/agent_policies/templates/policies",
+          "seed": true
+        },
+        {
+          "path": ".harness/evidence-gate",
+          "kind": "copy",
+          "from": "config/evidence_gate/templates/evidencias",
+          "seed": true
+        },
+        {
+          "path": "fluxo-events.yaml",
+          "kind": "copy"
+        },
+        {
+          "path": ".harness/fluxo-events",
+          "kind": "copy",
+          "from": "config/fluxo_events/templates/fluxo",
+          "seed": true
+        },
+        {
+          "path": ".claude/commands/fluxo-live.md",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "dev_workflow",
+      "label": "Dev workflow (sempre)",
+      "condition": {
+        "type": "always"
+      },
+      "artifacts": [
+        {
+          "path": ".claude/skills/harness-architect",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/grill-me",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/grill-with-docs",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/to-prd",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/to-brd",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/to-tasks",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/to-issues",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/new-adr",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/sync-context",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/make-readme",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/handoff",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/write-a-skill",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/documentation-writer",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/find-skills",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/guia-architect",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/dev/prompt-crafter.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/dev/dev-loop-executor.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/harness-brainstorm.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/harness-define.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/harness-design.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/harness-build.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/harness-iterate.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/harness-ship.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/guia-brainstorm.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/guia-escopo.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/guia-roteiro.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/guia-etapas.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/guia-publish.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/workflow/guia-iterate.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/design-instrucional",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/dev.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/novo-guia.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/dev",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "git_hygiene",
+      "label": "Git Hygiene (sempre)",
+      "condition": {
+        "type": "always"
+      },
+      "artifacts": [
+        {
+          "path": "git-hygiene.yaml",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/git-hygiene.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/nova-branch.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/git-ajuda.md",
+          "kind": "copy"
+        },
+        {
+          "path": "docs/git-hygiene-cheatsheet.md",
+          "kind": "copy"
+        },
+        {
+          "path": "docs/scm-pr-hibrido.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".githooks",
+          "kind": "copy"
+        },
+        {
+          "path": "scripts/bootstrap-githooks.sh",
+          "kind": "copy"
+        },
+        {
+          "path": ".azuredevops/pull_request_template.md",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "code_quality",
+      "label": "Code quality (sempre)",
+      "condition": {
+        "type": "always"
+      },
+      "artifacts": [
+        {
+          "path": ".claude/skills/gen-tests",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/estilo-codigo.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/testes.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/seguranca.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/definicao-de-pronto.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/dev/codebase-explorer.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/dev/revisor-codigo.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/dev/meeting-analyst.md",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "python_fastapi",
+      "label": "Python/FastAPI",
+      "condition": {
+        "type": "file_exists",
+        "files": [
+          "pyproject.toml"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".claude/kb/fastapi",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/backend.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/architect/sql-architect.md",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "langgraph",
+      "label": "LangGraph",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "langgraph"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".claude/kb/langgraph",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/langgraph.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/dev/prompt-engineer.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/architect/rag-architect.md",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "supabase",
+      "label": "Supabase",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "supabase"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".claude/kb/supabase",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "react_frontend",
+      "label": "React/Frontend",
+      "condition": {
+        "type": "file_exists",
+        "files": [
+          "package.json"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".claude/rules/frontend.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/testing/patterns/vitest-patterns.md",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "multi_tenant",
+      "label": "Multi-tenant",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "tenant",
+          "rls"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".claude/kb/multi-tenant",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/multi-tenant.md",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "observabilidade",
+      "label": "Observabilidade",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "langfuse"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".claude/kb/observabilidade",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "rag_vetorial",
+      "label": "RAG/Vetorial",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "qdrant",
+          "pgvector"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "artifacts": [
+        {
+          "path": ".claude/kb/rag",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/rag.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/architect/rag-architect.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/architect/search-strategy-advisor.md",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "pipeline_dados",
+      "label": "Pipeline/dados (sempre)",
+      "condition": {
+        "type": "always"
+      },
+      "_comment": "Pacote completo DE (Loop 3): norma + rule + KBs DE (pipeline + databricks + adjacentes) + seed .harness/data-check/ + agents/commands data-engineering + skill de-conformidade. CLI via foundation (config/). Seed KEEP no re-install. Instalado por padrão em todo projeto (condition always).",
+      "artifacts": [
+        {
+          "path": "data-engineering.yaml",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/pipeline",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/databricks",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/airflow",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/spark",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/lakehouse",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/data-quality",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/dbt",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/data-modeling",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/sql-patterns",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/streaming",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/cloud-platforms",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/pipeline.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/agents/data-engineering",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/commands/data-engineering",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/de-conformidade",
+          "kind": "copy"
+        },
+        {
+          "path": ".harness/data-check",
+          "kind": "copy",
+          "from": "config/canonical_data_check/templates/data-check",
+          "seed": true
+        }
+      ]
+    },
+    {
+      "name": "cloud_secrets",
+      "label": "Cloud secrets / Key Vault (condicional)",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "secret_store",
+          "keyvault",
+          "azure-keyvault",
+          "oci-vault"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "_comment": "Categoria nova (não always; não acoplada a pipeline_dados). Dispara com marker secret_store (inject no detect) OU deps keyvault/azure-keyvault/oci-vault. Propaga skill cloud-secrets + KBs oci-vault e azure-keyvault. Examples keyvault-*-min fora do install.",
+      "artifacts": [
+        {
+          "path": ".claude/skills/cloud-secrets",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/oci-vault",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/azure-keyvault",
+          "kind": "copy"
+        }
+      ]
+    }
+  ]
+}

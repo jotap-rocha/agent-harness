@@ -1,0 +1,6 @@
+# Política de schema rescue — escolha explícita fail vs quarantine (DE-D004)
+schema_rescue:
+  on_drift: quarantine
+  alternatives:
+    - fail
+    - quarantine

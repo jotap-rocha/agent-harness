@@ -1,0 +1,23 @@
+task_id: "74"
+criteria:
+  adr:
+    id: adr
+    command: "python3 -m pytest -q tests/fluxo_events/test_docs_dev_loop.py::test_adr_addendum_present"
+    test_paths:
+      - "tests/fluxo_events/test_docs_dev_loop.py"
+    exit_code: 0
+    log_path: "logs/74/adr.log"
+  docs:
+    id: docs
+    command: "python3 -m pytest -q tests/fluxo_events/test_docs_dev_loop.py"
+    test_paths:
+      - "tests/fluxo_events/test_docs_dev_loop.py"
+    exit_code: 0
+    log_path: "logs/74/docs.log"
+  orthogonal:
+    id: orthogonal
+    command: "python3 -m pytest -q tests/fluxo_events/test_docs_dev_loop.py::test_orthogonal_mention"
+    test_paths:
+      - "tests/fluxo_events/test_docs_dev_loop.py"
+    exit_code: 0
+    log_path: "logs/74/orthogonal.log"

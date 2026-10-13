@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Fluxo live — fluxo-grafo-causal</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9bb4;
+      --accent: #3d8bfd;
+      --active: #f0a500;
+    }
+    body {
+      margin: 0; font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1e3a5f 0%, var(--bg) 55%);
+      color: var(--text); min-height: 100vh;
+    }
+    header {
+      padding: 1.5rem 2rem 0.5rem; border-bottom: 1px solid #243044;
+    }
+    header h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.02em; }
+    header .meta { color: var(--muted); margin-top: 0.35rem; font-size: 0.9rem; }
+    main {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.25rem;
+      padding: 1.25rem 2rem 2rem;
+    }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+    .map, .timeline {
+      background: color-mix(in srgb, var(--panel) 92%, black);
+      border: 1px solid #2a3a52; border-radius: 10px; padding: 1rem 1.1rem;
+    }
+    .phase { margin-bottom: 0.9rem; padding: 0.65rem 0.75rem; border-radius: 8px;
+      border: 1px solid transparent; }
+    .phase.active { border-color: var(--active); background: #2a2418; }
+    .phase h2 { margin: 0 0 0.4rem; font-size: 0.95rem; color: var(--muted); }
+    .phase.active h2 { color: var(--active); }
+    .agents { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .agent {
+      padding: 0.25rem 0.55rem; border-radius: 6px; background: #243044;
+      font-size: 0.85rem; border: 1px solid #334860;
+    }
+    .agent.active {
+      background: var(--active); color: #1a1200; border-color: #ffd36a; font-weight: 600;
+    }
+    .timeline h2 { margin: 0 0 0.75rem; font-size: 1rem; }
+    .timeline ol { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+    .timeline .event { margin-bottom: 0.45rem; font-size: 0.85rem; }
+    .timeline code { color: var(--accent); }
+    .graph {
+      grid-column: 1 / -1; overflow-x: auto;
+      background: color-mix(in srgb, var(--panel) 92%, black);
+      border: 1px solid #2a3a52; border-radius: 10px; padding: 0.75rem 1rem 1rem;
+    }
+    .graph h2 { margin: 0 0 0.5rem; font-size: 1rem; }
+    .fluxograma { display: block; min-width: 640px; }
+    .fluxograma text {
+      fill: var(--text); font-size: 13px;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+    }
+    .fluxograma .node rect { fill: #1c2942; stroke: #334860; stroke-width: 1.5; }
+    .fluxograma .node.done rect { stroke: var(--accent); }
+    .fluxograma .node.done text { fill: #cfe0ff; }
+    .fluxograma .node.active rect { fill: #2a2418; stroke: var(--active); stroke-width: 2.5; }
+    .fluxograma .node.active text { fill: var(--active); font-weight: 600; }
+    .fluxograma .node-agent rect { fill: #20293a; stroke: #334860; stroke-width: 1.2; }
+    .fluxograma .node-agent text { font-size: 12px; }
+    .fluxograma .node-agent.active rect { fill: var(--active); stroke: #ffd36a; }
+    .fluxograma .node-agent.active text { fill: #1a1200; font-weight: 600; }
+    .fluxograma .edge { stroke: #3a4a63; stroke-width: 2; }
+    .fluxograma .edge.done { stroke: var(--accent); }
+    .fluxograma .link { stroke: #2c3a52; stroke-width: 1.2; stroke-dasharray: 3 3; }
+    .fluxograma .link.done { stroke: #34558a; }
+    .fluxograma .arrow-fill { fill: #3a4a63; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Visão gráfica do fluxo</h1>
+    <p class="meta">slug: <strong>fluxo-grafo-causal</strong> · ativo: fase 0 / harness-brainstorm</p>
+  </header>
+  <main>
+    <section class="graph" data-testid="graph">
+      <h2>Fluxograma — Mapa SDD 0–4</h2>
+      <svg data-testid="fluxograma" class="fluxograma" viewBox="0 0 1056 258" width="100%" preserveAspectRatio="xMinYMin meet" role="img" aria-label="Fluxograma do fluxo de agentes"><defs><marker id="arrowhead" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" class="arrow-fill"/></marker></defs><line class="edge" x1="192" y1="56" x2="230" y2="56" marker-end="url(#arrowhead)"/><line class="edge" x1="402" y1="56" x2="440" y2="56" marker-end="url(#arrowhead)"/><line class="edge" x1="612" y1="56" x2="650" y2="56" marker-end="url(#arrowhead)"/><line class="edge" x1="822" y1="56" x2="860" y2="56" marker-end="url(#arrowhead)"/><g class="node phase active" data-node-phase="0"><rect x="24" y="32" width="168" height="48" rx="9"/><text x="108" y="61" text-anchor="middle">Fase 0 · IDEIA</text></g><line class="link done" x1="108" y1="98" x2="108" y2="110"/><g class="node-agent active" data-node-agent="harness-brainstorm"><rect x="24" y="110" width="168" height="32" rx="7"/><text x="108" y="131" text-anchor="middle">harness-brainstorm</text></g><g class="node phase" data-node-phase="1"><rect x="234" y="32" width="168" height="48" rx="9"/><text x="318" y="61" text-anchor="middle">Fase 1 · REQUISITOS</text></g><line class="link" x1="318" y1="98" x2="318" y2="110"/><g class="node-agent" data-node-agent="grill-me"><rect x="234" y="110" width="168" height="32" rx="7"/><text x="318" y="131" text-anchor="middle">grill-me</text></g><line class="link" x1="318" y1="142" x2="318" y2="154"/><g class="node-agent" data-node-agent="harness-define"><rect x="234" y="154" width="168" height="32" rx="7"/><text x="318" y="175" text-anchor="middle">harness-define</text></g><g class="node phase" data-node-phase="2"><rect x="444" y="32" width="168" height="48" rx="9"/><text x="528" y="61" text-anchor="middle">Fase 2 · PRD_HARNESS</text></g><line class="link" x1="528" y1="98" x2="528" y2="110"/><g class="node-agent" data-node-agent="harness-design"><rect x="444" y="110" width="168" height="32" rx="7"/><text x="528" y="131" text-anchor="middle">harness-design</text></g><line class="link" x1="528" y1="142" x2="528" y2="154"/><g class="node-agent" data-node-agent="to-prd"><rect x="444" y="154" width="168" height="32" rx="7"/><text x="528" y="175" text-anchor="middle">to-prd</text></g><line class="link" x1="528" y1="186" x2="528" y2="198"/><g class="node-agent" data-node-agent="harness-architect"><rect x="444" y="198" width="168" height="32" rx="7"/><text x="528" y="219" text-anchor="middle">harness-architect</text></g><g class="node phase" data-node-phase="3"><rect x="654" y="32" width="168" height="48" rx="9"/><text x="738" y="61" text-anchor="middle">Fase 3 · IMPLEMENTAR</text></g><line class="link" x1="738" y1="98" x2="738" y2="110"/><g class="node-agent" data-node-agent="to-tasks"><rect x="654" y="110" width="168" height="32" rx="7"/><text x="738" y="131" text-anchor="middle">to-tasks</text></g><line class="link" x1="738" y1="142" x2="738" y2="154"/><g class="node-agent" data-node-agent="harness-build"><rect x="654" y="154" width="168" height="32" rx="7"/><text x="738" y="175" text-anchor="middle">harness-build</text></g><line class="link" x1="738" y1="186" x2="738" y2="198"/><g class="node-agent" data-node-agent="revisor-codigo"><rect x="654" y="198" width="168" height="32" rx="7"/><text x="738" y="219" text-anchor="middle">revisor-codigo</text></g><g class="node phase" data-node-phase="4"><rect x="864" y="32" width="168" height="48" rx="9"/><text x="948" y="61" text-anchor="middle">Fase 4 · ENCERRAR</text></g><line class="link" x1="948" y1="98" x2="948" y2="110"/><g class="node-agent" data-node-agent="harness-ship"><rect x="864" y="110" width="168" height="32" rx="7"/><text x="948" y="131" text-anchor="middle">harness-ship</text></g><line class="link" x1="948" y1="142" x2="948" y2="154"/><g class="node-agent" data-node-agent="/scorecard"><rect x="864" y="154" width="168" height="32" rx="7"/><text x="948" y="175" text-anchor="middle">/scorecard</text></g></svg>
+    </section>
+    <div class="map" data-testid="sdd-map">
+      <h2 style="margin-top:0">Mapa SDD 0–4</h2>
+      <section class="phase active" data-phase="0"><h2>Fase 0 — IDEIA</h2><ul class="agents"><li class="agent active" data-agent="harness-brainstorm">harness-brainstorm</li></ul></section><section class="phase" data-phase="1"><h2>Fase 1 — REQUISITOS</h2><ul class="agents"><li class="agent" data-agent="grill-me">grill-me</li><li class="agent" data-agent="harness-define">harness-define</li></ul></section><section class="phase" data-phase="2"><h2>Fase 2 — PRD_HARNESS</h2><ul class="agents"><li class="agent" data-agent="harness-design">harness-design</li><li class="agent" data-agent="to-prd">to-prd</li><li class="agent" data-agent="harness-architect">harness-architect</li></ul></section><section class="phase" data-phase="3"><h2>Fase 3 — IMPLEMENTAR</h2><ul class="agents"><li class="agent" data-agent="to-tasks">to-tasks</li><li class="agent" data-agent="harness-build">harness-build</li><li class="agent" data-agent="revisor-codigo">revisor-codigo</li></ul></section><section class="phase" data-phase="4"><h2>Fase 4 — ENCERRAR</h2><ul class="agents"><li class="agent" data-agent="harness-ship">harness-ship</li><li class="agent" data-agent="/scorecard">/scorecard</li></ul></section>
+    </div>
+    <aside class="timeline" data-testid="timeline">
+      <h2>Timeline</h2>
+      <ol><li class="event" data-type="phase_enter"><time>2026-08-18T13:39:05.397287+00:00</time> · fase 0 · harness-brainstorm · <code>phase_enter</code></li><li class="event" data-type="agent_enter"><time>2026-08-18T13:39:05.645296+00:00</time> · fase 0 · harness-brainstorm · <code>agent_enter</code></li><li class="event" data-type="agent_exit"><time>2026-08-18T13:39:28.834661+00:00</time> · fase 0 · harness-brainstorm · <code>agent_exit</code></li></ol>
+    </aside>
+  </main>
+</body>
+</html>

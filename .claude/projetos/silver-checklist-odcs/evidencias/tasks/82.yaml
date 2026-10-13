@@ -1,0 +1,9 @@
+task_id: "82"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_silver_checklist_kb.py"
+    test_paths:
+      - "tests/data_engineering/test_silver_checklist_kb.py"
+    exit_code: 0
+    log_path: "logs/82/gate.log"

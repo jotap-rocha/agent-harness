@@ -1,0 +1,23 @@
+task_id: "73"
+criteria:
+  detect:
+    id: detect
+    command: "python3 -m pytest -q tests/fluxo_events/test_naming_ptbr.py::test_scan_detects_spanish_flujo"
+    test_paths:
+      - "tests/fluxo_events/test_naming_ptbr.py"
+    exit_code: 0
+    log_path: "logs/73/detect.log"
+  naming:
+    id: naming
+    command: "python3 -m pytest -q tests/fluxo_events/test_naming_ptbr.py"
+    test_paths:
+      - "tests/fluxo_events/test_naming_ptbr.py"
+    exit_code: 0
+    log_path: "logs/73/naming.log"
+  scope:
+    id: scope
+    command: "python3 -m pytest -q tests/fluxo_events/test_naming_ptbr.py::test_scan_roots_are_scoped"
+    test_paths:
+      - "tests/fluxo_events/test_naming_ptbr.py"
+    exit_code: 0
+    log_path: "logs/73/scope.log"

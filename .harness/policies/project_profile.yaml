@@ -1,0 +1,3 @@
+# Dogfood canônico — core always-on; extras vazios por default
+# (não use families: [] — loader interpreta como string)
+families:

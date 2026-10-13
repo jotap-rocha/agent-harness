@@ -1,0 +1,3 @@
+{"event_type":"agent_enter","ts":"2026-08-17T18:25:26.099838+00:00","phase":4,"agent":"harness-ship","slug":"chore-tasks-por-slug"}
+{"event_type":"ship_truncate","ts":"2026-08-17T18:28:05.818800+00:00","phase":4,"agent":"harness-ship","slug":"chore-tasks-por-slug","source":"cli"}
+{"event_type":"agent_exit","ts":"2026-08-17T18:28:06.023014+00:00","phase":4,"agent":"harness-ship","slug":"chore-tasks-por-slug"}

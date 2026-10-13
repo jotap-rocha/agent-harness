@@ -1,0 +1,23 @@
+task_id: "71"
+criteria:
+  executor_doc:
+    id: executor_doc
+    command: "python3 -m pytest -q tests/fluxo_events/test_dev_loop_truncate.py::test_executor_mentions_truncate"
+    test_paths:
+      - "tests/fluxo_events/test_dev_loop_truncate.py"
+    exit_code: 0
+    log_path: "logs/71/executor_doc.log"
+  fail_soft:
+    id: fail_soft
+    command: "python3 -m pytest -q tests/fluxo_events/test_dev_loop_truncate.py::test_truncate_fail_soft"
+    test_paths:
+      - "tests/fluxo_events/test_dev_loop_truncate.py"
+    exit_code: 0
+    log_path: "logs/71/fail_soft.log"
+  truncate:
+    id: truncate
+    command: "python3 -m pytest -q tests/fluxo_events/test_dev_loop_truncate.py"
+    test_paths:
+      - "tests/fluxo_events/test_dev_loop_truncate.py"
+    exit_code: 0
+    log_path: "logs/71/truncate.log"

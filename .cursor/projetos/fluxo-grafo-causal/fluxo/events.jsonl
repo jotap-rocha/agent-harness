@@ -1,0 +1,3 @@
+{"event_type":"phase_enter","ts":"2026-08-18T13:39:05.397287+00:00","phase":0,"agent":"harness-brainstorm","slug":"fluxo-grafo-causal"}
+{"event_type":"agent_enter","ts":"2026-08-18T13:39:05.645296+00:00","phase":0,"agent":"harness-brainstorm","slug":"fluxo-grafo-causal"}
+{"event_type":"agent_exit","ts":"2026-08-18T13:39:28.834661+00:00","phase":0,"agent":"harness-brainstorm","slug":"fluxo-grafo-causal"}

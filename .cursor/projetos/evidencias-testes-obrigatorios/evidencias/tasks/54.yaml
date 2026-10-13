@@ -1,0 +1,9 @@
+task_id: "54"
+criteria:
+  install:
+    id: install
+    command: "python3 -m pytest -q tests/evidence_gate/test_install_foundation.py"
+    test_paths:
+      - "tests/evidence_gate/test_install_foundation.py"
+    exit_code: 0
+    log_path: "logs/54/install.log"

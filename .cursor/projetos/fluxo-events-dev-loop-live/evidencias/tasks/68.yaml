@@ -1,0 +1,23 @@
+task_id: "68"
+criteria:
+  emit_path:
+    id: emit_path
+    command: "python3 -m pytest -q tests/fluxo_events/test_slug_from_prompt.py::test_emit_path_dev_loop"
+    test_paths:
+      - "tests/fluxo_events/test_slug_from_prompt.py"
+    exit_code: 0
+    log_path: "logs/68/emit_path.log"
+  sanitize:
+    id: sanitize
+    command: "python3 -m pytest -q tests/fluxo_events/test_slug_from_prompt.py::test_slug_sanitizes"
+    test_paths:
+      - "tests/fluxo_events/test_slug_from_prompt.py"
+    exit_code: 0
+    log_path: "logs/68/sanitize.log"
+  slug:
+    id: slug
+    command: "python3 -m pytest -q tests/fluxo_events/test_slug_from_prompt.py"
+    test_paths:
+      - "tests/fluxo_events/test_slug_from_prompt.py"
+    exit_code: 0
+    log_path: "logs/68/slug.log"

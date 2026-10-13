@@ -1,0 +1,4 @@
+# Metadados mínimos do pipeline exemplo (sintético, sem PII)
+owner: data-platform
+run_id_field: run_id
+logging: structured

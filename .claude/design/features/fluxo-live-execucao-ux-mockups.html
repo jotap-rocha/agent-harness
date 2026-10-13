@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Mockups — live.html execução de agentes</title>
+  <style>
+    :root {
+      --bg: #0b1018;
+      --panel: #151d2b;
+      --text: #e8edf5;
+      --muted: #8fa0bc;
+      --accent: #3d8bfd;
+      --ok: #3ecf8e;
+      --warn: #f0a500;
+      --bad: #f07178;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      background: radial-gradient(900px 500px at 0% 0%, #1a3055 0%, var(--bg) 50%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header {
+      padding: 2rem 2.5rem 1rem;
+      border-bottom: 1px solid #243044;
+    }
+    header h1 { margin: 0 0 0.4rem; font-size: 1.6rem; }
+    header p { margin: 0; color: var(--muted); max-width: 72ch; }
+    main { padding: 1.5rem 2.5rem 3rem; max-width: 1200px; }
+    section {
+      background: color-mix(in srgb, var(--panel) 94%, black);
+      border: 1px solid #2a3a52;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    h2 { margin: 0 0 0.75rem; font-size: 1.15rem; }
+    h3 { margin: 1.25rem 0 0.5rem; font-size: 1rem; color: var(--accent); }
+    ul { margin: 0.4rem 0; padding-left: 1.2rem; color: var(--muted); }
+    li { margin-bottom: 0.35rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .card {
+      border: 1px solid #334860;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #101722;
+    }
+    .card img { width: 100%; display: block; }
+    .card figcaption { padding: 0.75rem 1rem; font-size: 0.9rem; }
+    .badge {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-right: 0.35rem;
+    }
+    .badge.rec { background: #2a2418; color: var(--warn); border: 1px solid #ffd36a; }
+    .badge.alt { background: #1c2942; color: #cfe0ff; border: 1px solid #34558a; }
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 800px) { .compare { grid-template-columns: 1fr; } }
+    .pain { border-left: 3px solid var(--bad); padding-left: 0.75rem; }
+    .gain { border-left: 3px solid var(--ok); padding-left: 0.75rem; }
+    code {
+      background: #1c2942;
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    .flow-demo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.35rem;
+      margin: 0.75rem 0;
+    }
+    .pill {
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      background: #243044;
+      border: 1px solid #44556e;
+      font-size: 0.82rem;
+    }
+    .pill.done { border-color: var(--accent); color: #cfe0ff; }
+    .pill.active { background: var(--warn); color: #1a1200; font-weight: 600; }
+    .arrow { color: var(--accent); font-weight: bold; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th, td {
+      border: 1px solid #2a3a52;
+      padding: 0.5rem 0.65rem;
+      text-align: left;
+    }
+    th { background: #1c2942; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mockups — UX do live.html (execução real)</h1>
+    <p>
+      Proposta de evolução do painel <code>fluxo/live.html</code> antes de implementar.
+      Slug de referência: <strong>silver-checklist-odcs</strong>.
+      Foco: mostrar <em>quais agentes rodaram</em>, com setas entre eles — sem
+      <code>agent_enter</code>, UUID ou ruído técnico na superfície.
+    </p>
+  </header>
+  <main>
+    <section>
+      <h2>Problemas do estado atual</h2>
+      <div class="compare">
+        <div class="pain">
+          <h3>Grafo causal</h3>
+          <ul>
+            <li>Rótulo <code>agent_enter</code> + UUID truncado</li>
+            <li>Layout em grade — difícil ler ordem temporal</li>
+            <li>Parent sparse: poucas setas entre nós irmãos</li>
+            <li>Não destaca múltiplos agentes no mesmo gate</li>
+          </ul>
+        </div>
+        <div class="pain">
+          <h3>Timeline + mapa lateral</h3>
+          <ul>
+            <li>Lista crua de enter/exit com timestamp ISO</li>
+            <li>Redundante com fluxograma canônico + causal</li>
+            <li>4 painéis na mesma tela — sobrecarga visual</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Sequência real (silver-checklist-odcs)</h2>
+      <p style="color:var(--muted);margin-top:0">
+        Derivada de <code>agent_enter</code> cronológico — o que o visual deve contar:
+      </p>
+      <div class="flow-demo">
+        <span class="pill done">harness-brainstorm</span>
+        <span class="arrow">→</span>
+        <span class="pill done">grill-me</span>
+        <span class="arrow">→</span>
+        <span class="pill done">harness-define</span>
+        <span class="arrow">→</span>
+        <span class="pill done">harness-design</span>
+        <span class="arrow">→</span>
+        <span class="pill done">to-tasks</span>
+        <span class="arrow">→</span>
+        <span class="pill done">harness-build</span>
+        <span class="arrow">→</span>
+        <span class="pill done">revisor-codigo</span>
+        <span class="arrow">→</span>
+        <span class="pill active">harness-ship</span>
+      </div>
+      <p style="color:var(--muted);font-size:0.9rem">
+        Fase 1: 2 agentes · Fase 3→4: build invoca revisor (filho causal) antes do ship.
+        O visual precisa mostrar isso sem expor IDs.
+      </p>
+    </section>
+
+    <section>
+      <h2>Três opções visuais</h2>
+      <div class="grid">
+        <figure class="card">
+          <img src="../../../docs/design/fluxo-live-mockups/fluxo-live-mockup-opcao-a-trilha.png" alt="Opção A trilha horizontal"/>
+          <figcaption>
+            <span class="badge alt">A</span>
+            <strong>Trilha horizontal</strong> — uma fila só, ordem cronológica.
+            Simples; fase vira badge pequeno. Bom para telas largas.
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <img src="../../../docs/design/fluxo-live-mockups/fluxo-live-mockup-opcao-b-gates.png" alt="Opção B gates por fase"/>
+          <figcaption>
+            <span class="badge rec">B · recomendada</span>
+            <strong>Gates por fase</strong> — colunas SDD 0–4; só agentes usados;
+            setas verticais dentro do gate e horizontais entre fases.
+          </figcaption>
+        </figure>
+        <figure class="card">
+          <img src="../../../docs/design/fluxo-live-mockups/fluxo-live-mockup-opcao-c-dual.png" alt="Opção C dual mapa"/>
+          <figcaption>
+            <span class="badge alt">C</span>
+            <strong>Previsto + real</strong> — mapa canônico esmaecido + trilha bold embaixo.
+            Resumo lateral com checklist de agentes.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <h2>Comparativo rápido</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Critério</th>
+            <th>A — Trilha</th>
+            <th>B — Gates</th>
+            <th>C — Dual</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Só nome do agente</td>
+            <td>Sim</td>
+            <td>Sim</td>
+            <td>Sim</td>
+          </tr>
+          <tr>
+            <td>Múltiplos agentes por fase</td>
+            <td>Badge F1 repetido</td>
+            <td>Coluna empilhada</td>
+            <td>Coluna + resumo</td>
+          </tr>
+          <tr>
+            <td>Setas agente→agente</td>
+            <td>Horizontais</td>
+            <td>Vert + horiz</td>
+            <td>Horiz + fork</td>
+          </tr>
+          <tr>
+            <td>Mapa canônico SDD</td>
+            <td>Removido / tab</td>
+            <td>Substituído</td>
+            <td>Mantém esmaecido</td>
+          </tr>
+          <tr>
+            <td>Complexidade implementação</td>
+            <td>Baixa</td>
+            <td>Média</td>
+            <td>Alta</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Recomendação (Opção B + ajustes)</h2>
+      <div class="gain">
+        <h3>Substituir “Grafo causal” por “Trilha de execução”</h3>
+        <ul>
+          <li>Nova função pura <code>build_execution_trail_svg(events)</code> em <code>render.py</code></li>
+          <li>Entrada: lista de <code>agent_enter</code> ordenada por <code>ts</code></li>
+          <li>Nó: só <code>agent</code> + badge <code>F{n}</code>; estado done/active</li>
+          <li>Arestas: seta do enter anterior → próximo (ordem temporal)</li>
+          <li>Layout: colunas por fase; dentro da coluna, stack vertical com setas</li>
+          <li>UUID / event_type: tooltip ou modo debug (<kbd>D</kbd>), não no rótulo</li>
+        </ul>
+        <h3>Timeline → “Resumo humano”</h3>
+        <ul>
+          <li>Colapsar enter+exit: “grill-me · 9 min · concluído”</li>
+          <li>Ocultar <code>ship_truncate</code> na vista default</li>
+        </ul>
+        <h3>Remover redundância</h3>
+        <ul>
+          <li>Manter 1 fluxograma (execução) + 1 painel resumo</li>
+          <li>Mapa canônico 0–4: aba “Previsto” ou accordion colapsado</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Próximo passo (Dev Loop)</h2>
+      <p style="margin:0;color:var(--muted)">
+        Após escolha (B recomendada): criar branch <code>feat/fluxo-live-exec-trail</code>,
+        task em <code>tests/fluxo_events/</code>, alterar <code>build_causal_svg</code> ou
+        adicionar SVG paralelo, re-render dogfood em <code>silver-checklist-odcs</code>.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

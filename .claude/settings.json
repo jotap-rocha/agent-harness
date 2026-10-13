@@ -1,0 +1,114 @@
+{
+  "env": {
+    "PYTHONUNBUFFERED": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Bash(uv run:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv add:*)",
+      "Bash(uv lock:*)",
+      "Bash(uvx:*)",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(pytest:*)",
+      "Bash(pip:*)",
+      "Bash(python:*)",
+      "Bash(alembic:*)",
+      "Bash(npm:*)",
+      "Bash(npx:*)",
+      "Bash(node:*)",
+      "Bash(gh:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git log:*)",
+      "Bash(git branch:*)",
+      "Bash(git switch:*)",
+      "Bash(git checkout:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker ps:*)",
+      "Bash(docker logs:*)",
+      "Bash(databricks:*)",
+      "Bash(spark-submit:*)",
+      "Bash(airflow:*)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(touch:*)",
+      "Bash(cp:*)",
+      "Bash(mv:*)",
+      "Edit(/.claude/skills/visual-explainer/**)",
+      "Bash(python3 .claude/skills/sync-context/scripts/*)",
+      "Bash(python3 -c ' *)",
+      "Bash(echo \"exit code: $?\")",
+      "Bash(echo \"diff exit code: $?\")"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(mkfs:*)",
+      "Bash(docker compose down -v:*)",
+      "Bash(docker compose down --volumes:*)",
+      "Bash(docker volume rm:*)",
+      "Bash(docker volume prune:*)",
+      "Bash(dropdb:*)",
+      "Bash(mysqladmin drop:*)",
+      "Bash(*DROP TABLE*)",
+      "Bash(terraform destroy:*)",
+      "Bash(terraform apply -destroy:*)",
+      "Bash(kubectl delete --all:*)",
+      "Bash(kubectl delete namespace:*)",
+      "Bash(kubectl drain:*)"
+    ],
+    "additionalDirectories": []
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "SRC=$([ -d backend ] && echo backend || [ -d src ] && echo src || echo ''); [ -z \"$SRC\" ] && exit 0; uv run ruff format $SRC 2>/dev/null; uv run ruff check --fix $SRC 2>/dev/null; true"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "SRC=$([ -d backend ] && echo backend || [ -d src ] && echo src || echo ''); [ -z \"$SRC\" ] && exit 0; uv run ruff check $SRC && uv run mypy $SRC && uv run pytest -q || exit 2"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "S=.claude/skills/sync-context/scripts/check_context_drift.py; [ -f \"$S\" ] || exit 0; STAMP=.claude/.context-drift-stamp; [ -n \"$(find $STAMP -mmin -240 2>/dev/null)\" ] && exit 0; touch $STAMP; python3 $S --warn; exit 0"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/agent_policies_pretooluse.sh"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{"event_type":"phase_enter","ts":"2026-08-17T18:53:34.636365+00:00","phase":0,"agent":"harness-brainstorm","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_enter","ts":"2026-08-17T18:53:34.892874+00:00","phase":0,"agent":"harness-brainstorm","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"phase_enter","ts":"2026-08-17T19:19:56.938811+00:00","phase":1,"agent":"grill-me","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_enter","ts":"2026-08-17T19:19:57.154834+00:00","phase":1,"agent":"grill-me","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_exit","ts":"2026-08-17T19:34:40.073524+00:00","phase":1,"agent":"grill-me","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_enter","ts":"2026-08-17T19:38:35.933053+00:00","phase":1,"agent":"harness-define","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_enter","ts":"2026-08-17T19:40:45.863147+00:00","phase":2,"agent":"harness-design","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_exit","ts":"2026-08-17T19:45:03.506595+00:00","phase":2,"agent":"harness-design","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_enter","ts":"2026-08-17T19:46:06.812831+00:00","phase":2,"agent":"harness-design","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_exit","ts":"2026-08-17T19:47:21.600225+00:00","phase":2,"agent":"harness-design","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_enter","ts":"2026-08-17T19:48:02.643592+00:00","phase":2,"agent":"to-tasks","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_enter","ts":"2026-08-17T19:51:32.894444+00:00","phase":3,"agent":"harness-build","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"phase_enter","ts":"2026-08-17T19:51:33.120343+00:00","phase":3,"agent":"harness-build","slug":"fluxo-events-dev-loop-live"}
+{"event_type":"agent_enter","ts":"2026-08-17T19:51:42.513015+00:00","phase":3,"agent":"harness-build","slug":"fluxo-events-dev-loop-live"}

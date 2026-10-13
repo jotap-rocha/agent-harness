@@ -1,0 +1,20 @@
+bundle:
+  name: databricks-dlt-min
+
+include:
+  - config/pipeline.yaml
+
+resources:
+  pipelines:
+    orders_dlt:
+      name: orders_dlt
+      catalog: main
+      target: orders
+      libraries:
+        - file:
+            path: ./pipelines/orders_dlt.py
+
+targets:
+  dev:
+    mode: development
+    default: true

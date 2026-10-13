@@ -1,0 +1,23 @@
+task_id: "63"
+criteria:
+  child-tpl:
+    id: child-tpl
+    command: "python -m pytest -q tests/fluxo_events/test_install_foundation.py::test_child_template_fluxo"
+    test_paths:
+      - "tests/fluxo_events/test_install_foundation.py"
+    exit_code: 0
+    log_path: "logs/63/child-tpl.log"
+  foundation:
+    id: foundation
+    command: "python -m pytest -q tests/fluxo_events/test_install_foundation.py::test_foundation_includes_fluxo"
+    test_paths:
+      - "tests/fluxo_events/test_install_foundation.py"
+    exit_code: 0
+    log_path: "logs/63/foundation.log"
+  seed-keep:
+    id: seed-keep
+    command: "python -m pytest -q tests/fluxo_events/test_install_foundation.py::test_seed_keep"
+    test_paths:
+      - "tests/fluxo_events/test_install_foundation.py"
+    exit_code: 0
+    log_path: "logs/63/seed-keep.log"

@@ -1,0 +1,9 @@
+task_id: "77"
+criteria:
+  AC11:
+    id: AC11
+    command: "python3 -m pytest -q tests/fluxo_events/test_cli_causal_flags.py::test_emit_cli_run_and_parent"
+    test_paths:
+      - "tests/fluxo_events/test_cli_causal_flags.py"
+    exit_code: 0
+    log_path: "logs/77/AC11.log"

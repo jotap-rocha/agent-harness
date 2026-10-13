@@ -1,0 +1,4 @@
+{"event_type":"agent_exit","ts":"2026-08-24T11:41:56.103936+00:00","phase":2,"agent":"harness-design","slug":"medallion-sdd-gates","event_id":"6f482109-7828-443d-b98e-acf65de1f535","run_id":"12e5bcc6-9c6d-48d4-b2ce-2e6fa41b9093"}
+{"event_type":"agent_exit","ts":"2026-08-24T11:47:02.290261+00:00","phase":4,"agent":"revisor-codigo","slug":"medallion-sdd-gates","event_id":"cc7d716d-7424-40d1-90ab-da615eebce61","run_id":"f0292da5-e44d-4a8c-a747-0b3d89935ed7"}
+{"event_type":"agent_exit","ts":"2026-08-24T11:48:23.500246+00:00","phase":4,"agent":"harness-ship","slug":"medallion-sdd-gates","event_id":"6626ed40-3ead-40fa-8cae-cfc9cfeb4775","run_id":"d4595f21-33fe-4480-9304-e591011bd33f"}
+{"event_type":"ship_truncate","ts":"2026-08-24T11:48:23.723024+00:00","phase":4,"agent":"harness-ship","slug":"medallion-sdd-gates","event_id":"217c84c0-5679-4f7e-b59a-96322b1eaf51","run_id":"736a733c-703b-4d5a-8b81-6396adf19dc4","source":"cli"}

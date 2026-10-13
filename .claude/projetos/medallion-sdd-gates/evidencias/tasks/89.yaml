@@ -1,0 +1,9 @@
+task_id: "89"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_medallion_sdd_gates.py::test_brainstorm_gate_section tests/data_engineering/test_medallion_sdd_gates.py::test_agents_dual_tree"
+    test_paths:
+      - "tests/data_engineering/test_medallion_sdd_gates.py"
+    exit_code: 0
+    log_path: "logs/89/gate.log"

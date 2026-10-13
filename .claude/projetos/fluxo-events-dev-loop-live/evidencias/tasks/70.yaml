@@ -1,0 +1,30 @@
+task_id: "70"
+criteria:
+  docs_live:
+    id: docs_live
+    command: "python3 -m pytest -q tests/fluxo_events/test_wiring_dev_loop.py::test_docs_mention_live"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_dev_loop.py"
+    exit_code: 0
+    log_path: "logs/70/docs_live.log"
+  dry_run:
+    id: dry_run
+    command: "python3 -m pytest -q tests/fluxo_events/test_wiring_dev_loop.py::test_dry_run_no_emit_documented"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_dev_loop.py"
+    exit_code: 0
+    log_path: "logs/70/dry_run.log"
+  dual:
+    id: dual
+    command: "python3 -m pytest -q tests/fluxo_events/test_wiring_dev_loop.py::test_dual_tree"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_dev_loop.py"
+    exit_code: 0
+    log_path: "logs/70/dual.log"
+  wiring:
+    id: wiring
+    command: "python3 -m pytest -q tests/fluxo_events/test_wiring_dev_loop.py"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_dev_loop.py"
+    exit_code: 0
+    log_path: "logs/70/wiring.log"

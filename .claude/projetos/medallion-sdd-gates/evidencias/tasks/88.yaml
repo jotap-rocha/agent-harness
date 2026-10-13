@@ -1,0 +1,9 @@
+task_id: "88"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_medallion_sdd_gates.py::test_kb_pattern_file_exists tests/data_engineering/test_medallion_sdd_gates.py::test_kb_pattern_dual_tree tests/data_engineering/test_medallion_sdd_gates.py::test_kb_pattern_required_sections"
+    test_paths:
+      - "tests/data_engineering/test_medallion_sdd_gates.py"
+    exit_code: 0
+    log_path: "logs/88/gate.log"

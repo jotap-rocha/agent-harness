@@ -1,0 +1,22 @@
+# Casos inválidos de nome de branch (um por linha; # = comentário)
+tmp
+teste
+nova-branch
+feat/tmp
+feat/teste
+feat/nova-branch
+fix/tmp
+chore/teste
+feat/configuração
+feat/validação-acento
+feat/escopo-com-mais-de-quarenta-caracteres-excedentes
+docs/foo
+hotfix/parser
+feat/2026-08-06
+feat/20260806
+feat/
+feat/UpperCase
+feat/espaços aqui
+master
+main
+feature/gate-branch-isolada

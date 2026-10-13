@@ -1,0 +1,16 @@
+task_id: "80"
+criteria:
+  AC17:
+    id: AC17
+    command: "python3 -m pytest -q tests/fluxo_events/test_docs_causal.py::test_cheatsheet_causal"
+    test_paths:
+      - "tests/fluxo_events/test_docs_causal.py"
+    exit_code: 0
+    log_path: "logs/80/AC17.log"
+  AC19:
+    id: AC19
+    command: "python3 -m pytest -q tests/fluxo_events/test_naming_ptbr.py tests/fluxo_events/test_docs_causal.py::test_adr_causal_addendum"
+    test_paths:
+      - "tests/fluxo_events/test_docs_causal.py"
+    exit_code: 0
+    log_path: "logs/80/AC19.log"

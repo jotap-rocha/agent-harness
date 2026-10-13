@@ -1,0 +1,1 @@
+{"timestamp": "2026-08-13T20:41:35Z", "task_id": "57", "criterion_id": "readme_banner", "exit_code": 0, "log_path": "logs/57/readme_banner.log", "command_summary": "python3 -m pytest -q tests/install_harness/test_context_rebind.py", "collect_ok": true, "invalid_cap": false}

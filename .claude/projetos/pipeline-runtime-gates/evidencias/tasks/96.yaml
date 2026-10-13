@@ -1,0 +1,9 @@
+task_id: "96"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_pipeline_runtime_gates.py::test_define_runtime_validation"
+    test_paths:
+      - "tests/data_engineering/test_pipeline_runtime_gates.py"
+    exit_code: 0
+    log_path: "logs/96/gate.log"

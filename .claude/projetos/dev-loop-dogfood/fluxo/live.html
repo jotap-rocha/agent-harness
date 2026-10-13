@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Fluxo live — dev-loop-dogfood</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9bb4;
+      --accent: #3d8bfd;
+      --active: #f0a500;
+    }
+    body {
+      margin: 0; font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1e3a5f 0%, var(--bg) 55%);
+      color: var(--text); min-height: 100vh;
+    }
+    header {
+      padding: 1.5rem 2rem 0.5rem; border-bottom: 1px solid #243044;
+    }
+    header h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.02em; }
+    header .meta { color: var(--muted); margin-top: 0.35rem; font-size: 0.9rem; }
+    main {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.25rem;
+      padding: 1.25rem 2rem 2rem;
+    }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+    .map, .timeline {
+      background: color-mix(in srgb, var(--panel) 92%, black);
+      border: 1px solid #2a3a52; border-radius: 10px; padding: 1rem 1.1rem;
+    }
+    .phase { margin-bottom: 0.9rem; padding: 0.65rem 0.75rem; border-radius: 8px;
+      border: 1px solid transparent; }
+    .phase.active { border-color: var(--active); background: #2a2418; }
+    .phase h2 { margin: 0 0 0.4rem; font-size: 0.95rem; color: var(--muted); }
+    .phase.active h2 { color: var(--active); }
+    .agents { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .agent {
+      padding: 0.25rem 0.55rem; border-radius: 6px; background: #243044;
+      font-size: 0.85rem; border: 1px solid #334860;
+    }
+    .agent.active {
+      background: var(--active); color: #1a1200; border-color: #ffd36a; font-weight: 600;
+    }
+    .timeline h2 { margin: 0 0 0.75rem; font-size: 1rem; }
+    .timeline ol { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+    .timeline .event { margin-bottom: 0.45rem; font-size: 0.85rem; }
+    .timeline code { color: var(--accent); }
+    .graph {
+      grid-column: 1 / -1; overflow-x: auto;
+      background: color-mix(in srgb, var(--panel) 92%, black);
+      border: 1px solid #2a3a52; border-radius: 10px; padding: 0.75rem 1rem 1rem;
+    }
+    .graph h2 { margin: 0 0 0.5rem; font-size: 1rem; }
+    .fluxograma { display: block; min-width: 640px; }
+    .fluxograma text {
+      fill: var(--text); font-size: 13px;
+      font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+    }
+    .fluxograma .node rect { fill: #1c2942; stroke: #334860; stroke-width: 1.5; }
+    .fluxograma .node.done rect { stroke: var(--accent); }
+    .fluxograma .node.done text { fill: #cfe0ff; }
+    .fluxograma .node.active rect { fill: #2a2418; stroke: var(--active); stroke-width: 2.5; }
+    .fluxograma .node.active text { fill: var(--active); font-weight: 600; }
+    .fluxograma .node-agent rect { fill: #20293a; stroke: #334860; stroke-width: 1.2; }
+    .fluxograma .node-agent text { font-size: 12px; }
+    .fluxograma .node-agent.active rect { fill: var(--active); stroke: #ffd36a; }
+    .fluxograma .node-agent.active text { fill: #1a1200; font-weight: 600; }
+    .fluxograma .edge { stroke: #3a4a63; stroke-width: 2; }
+    .fluxograma .edge.done { stroke: var(--accent); }
+    .fluxograma .link { stroke: #2c3a52; stroke-width: 1.2; stroke-dasharray: 3 3; }
+    .fluxograma .link.done { stroke: #34558a; }
+    .fluxograma .arrow-fill { fill: #3a4a63; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Visão gráfica do fluxo</h1>
+    <p class="meta">slug: <strong>dev-loop-dogfood</strong> · ativo: fase 0 / dev-loop-executor</p>
+  </header>
+  <main>
+    <section class="graph" data-testid="graph">
+      <h2>Fluxograma — Mapa Dev Loop 0–6</h2>
+      <svg data-testid="fluxograma" class="fluxograma" viewBox="0 0 1476 214" width="100%" preserveAspectRatio="xMinYMin meet" role="img" aria-label="Fluxograma do fluxo de agentes"><defs><marker id="arrowhead" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L7,3 L0,6 Z" class="arrow-fill"/></marker></defs><line class="edge" x1="192" y1="56" x2="230" y2="56" marker-end="url(#arrowhead)"/><line class="edge" x1="402" y1="56" x2="440" y2="56" marker-end="url(#arrowhead)"/><line class="edge" x1="612" y1="56" x2="650" y2="56" marker-end="url(#arrowhead)"/><line class="edge" x1="822" y1="56" x2="860" y2="56" marker-end="url(#arrowhead)"/><line class="edge" x1="1032" y1="56" x2="1070" y2="56" marker-end="url(#arrowhead)"/><line class="edge" x1="1242" y1="56" x2="1280" y2="56" marker-end="url(#arrowhead)"/><g class="node phase active" data-node-phase="0"><rect x="24" y="32" width="168" height="48" rx="9"/><text x="108" y="61" text-anchor="middle">Fase 0 · LOAD</text></g><line class="link done" x1="108" y1="98" x2="108" y2="110"/><g class="node-agent" data-node-agent="prompt-crafter"><rect x="24" y="110" width="168" height="32" rx="7"/><text x="108" y="131" text-anchor="middle">prompt-crafter</text></g><line class="link done" x1="108" y1="142" x2="108" y2="154"/><g class="node-agent active" data-node-agent="dev-loop-executor"><rect x="24" y="154" width="168" height="32" rx="7"/><text x="108" y="175" text-anchor="middle">dev-loop-executor</text></g><g class="node phase" data-node-phase="1"><rect x="234" y="32" width="168" height="48" rx="9"/><text x="318" y="61" text-anchor="middle">Fase 1 · VALIDATE</text></g><line class="link" x1="318" y1="98" x2="318" y2="110"/><g class="node-agent" data-node-agent="prompt-crafter"><rect x="234" y="110" width="168" height="32" rx="7"/><text x="318" y="131" text-anchor="middle">prompt-crafter</text></g><line class="link" x1="318" y1="142" x2="318" y2="154"/><g class="node-agent" data-node-agent="dev-loop-executor"><rect x="234" y="154" width="168" height="32" rx="7"/><text x="318" y="175" text-anchor="middle">dev-loop-executor</text></g><g class="node phase" data-node-phase="2"><rect x="444" y="32" width="168" height="48" rx="9"/><text x="528" y="61" text-anchor="middle">Fase 2 · INIT_PICK</text></g><line class="link" x1="528" y1="98" x2="528" y2="110"/><g class="node-agent" data-node-agent="prompt-crafter"><rect x="444" y="110" width="168" height="32" rx="7"/><text x="528" y="131" text-anchor="middle">prompt-crafter</text></g><line class="link" x1="528" y1="142" x2="528" y2="154"/><g class="node-agent" data-node-agent="dev-loop-executor"><rect x="444" y="154" width="168" height="32" rx="7"/><text x="528" y="175" text-anchor="middle">dev-loop-executor</text></g><g class="node phase" data-node-phase="3"><rect x="654" y="32" width="168" height="48" rx="9"/><text x="738" y="61" text-anchor="middle">Fase 3 · EXECUTE_VERIFY</text></g><line class="link" x1="738" y1="98" x2="738" y2="110"/><g class="node-agent" data-node-agent="prompt-crafter"><rect x="654" y="110" width="168" height="32" rx="7"/><text x="738" y="131" text-anchor="middle">prompt-crafter</text></g><line class="link" x1="738" y1="142" x2="738" y2="154"/><g class="node-agent" data-node-agent="dev-loop-executor"><rect x="654" y="154" width="168" height="32" rx="7"/><text x="738" y="175" text-anchor="middle">dev-loop-executor</text></g><g class="node phase" data-node-phase="4"><rect x="864" y="32" width="168" height="48" rx="9"/><text x="948" y="61" text-anchor="middle">Fase 4 · UPDATE_CHECK</text></g><line class="link" x1="948" y1="98" x2="948" y2="110"/><g class="node-agent" data-node-agent="prompt-crafter"><rect x="864" y="110" width="168" height="32" rx="7"/><text x="948" y="131" text-anchor="middle">prompt-crafter</text></g><line class="link" x1="948" y1="142" x2="948" y2="154"/><g class="node-agent" data-node-agent="dev-loop-executor"><rect x="864" y="154" width="168" height="32" rx="7"/><text x="948" y="175" text-anchor="middle">dev-loop-executor</text></g><g class="node phase" data-node-phase="5"><rect x="1074" y="32" width="168" height="48" rx="9"/><text x="1158" y="61" text-anchor="middle">Fase 5 · LOOP_LOG</text></g><line class="link" x1="1158" y1="98" x2="1158" y2="110"/><g class="node-agent" data-node-agent="prompt-crafter"><rect x="1074" y="110" width="168" height="32" rx="7"/><text x="1158" y="131" text-anchor="middle">prompt-crafter</text></g><line class="link" x1="1158" y1="142" x2="1158" y2="154"/><g class="node-agent" data-node-agent="dev-loop-executor"><rect x="1074" y="154" width="168" height="32" rx="7"/><text x="1158" y="175" text-anchor="middle">dev-loop-executor</text></g><g class="node phase" data-node-phase="6"><rect x="1284" y="32" width="168" height="48" rx="9"/><text x="1368" y="61" text-anchor="middle">Fase 6 · SYNC</text></g><line class="link" x1="1368" y1="98" x2="1368" y2="110"/><g class="node-agent" data-node-agent="prompt-crafter"><rect x="1284" y="110" width="168" height="32" rx="7"/><text x="1368" y="131" text-anchor="middle">prompt-crafter</text></g><line class="link" x1="1368" y1="142" x2="1368" y2="154"/><g class="node-agent" data-node-agent="dev-loop-executor"><rect x="1284" y="154" width="168" height="32" rx="7"/><text x="1368" y="175" text-anchor="middle">dev-loop-executor</text></g></svg>
+    </section>
+    <div class="map" data-testid="dev-loop-map">
+      <h2 style="margin-top:0">Mapa Dev Loop 0–6</h2>
+      <section class="phase active" data-phase="0"><h2>Fase 0 — LOAD</h2><ul class="agents"><li class="agent" data-agent="prompt-crafter">prompt-crafter</li><li class="agent active" data-agent="dev-loop-executor">dev-loop-executor</li></ul></section><section class="phase" data-phase="1"><h2>Fase 1 — VALIDATE</h2><ul class="agents"><li class="agent" data-agent="prompt-crafter">prompt-crafter</li><li class="agent" data-agent="dev-loop-executor">dev-loop-executor</li></ul></section><section class="phase" data-phase="2"><h2>Fase 2 — INIT_PICK</h2><ul class="agents"><li class="agent" data-agent="prompt-crafter">prompt-crafter</li><li class="agent" data-agent="dev-loop-executor">dev-loop-executor</li></ul></section><section class="phase" data-phase="3"><h2>Fase 3 — EXECUTE_VERIFY</h2><ul class="agents"><li class="agent" data-agent="prompt-crafter">prompt-crafter</li><li class="agent" data-agent="dev-loop-executor">dev-loop-executor</li></ul></section><section class="phase" data-phase="4"><h2>Fase 4 — UPDATE_CHECK</h2><ul class="agents"><li class="agent" data-agent="prompt-crafter">prompt-crafter</li><li class="agent" data-agent="dev-loop-executor">dev-loop-executor</li></ul></section><section class="phase" data-phase="5"><h2>Fase 5 — LOOP_LOG</h2><ul class="agents"><li class="agent" data-agent="prompt-crafter">prompt-crafter</li><li class="agent" data-agent="dev-loop-executor">dev-loop-executor</li></ul></section><section class="phase" data-phase="6"><h2>Fase 6 — SYNC</h2><ul class="agents"><li class="agent" data-agent="prompt-crafter">prompt-crafter</li><li class="agent" data-agent="dev-loop-executor">dev-loop-executor</li></ul></section>
+    </div>
+    <aside class="timeline" data-testid="timeline">
+      <h2>Timeline</h2>
+      <ol><li class="event" data-type="agent_enter"><time>2026-08-17T19:58:03.798985+00:00</time> · fase 0 · dev-loop-executor · <code>agent_enter</code></li></ol>
+    </aside>
+  </main>
+</body>
+</html>

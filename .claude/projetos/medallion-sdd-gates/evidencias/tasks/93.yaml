@@ -1,0 +1,9 @@
+task_id: "93"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_medallion_sdd_gates.py && test -z \"$(git diff data-engineering.yaml)\""
+    test_paths:
+      - "tests/data_engineering/test_medallion_sdd_gates.py"
+    exit_code: 0
+    log_path: "logs/93/gate.log"

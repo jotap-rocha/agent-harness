@@ -1,0 +1,30 @@
+task_id: "66"
+criteria:
+  brainstorm:
+    id: brainstorm
+    command: "python -m pytest -q tests/fluxo_events/test_ux_aviso_live.py::test_brainstorm_avisar_usuario"
+    test_paths:
+      - "tests/fluxo_events/test_ux_aviso_live.py"
+    exit_code: 0
+    log_path: "logs/66/brainstorm.log"
+  build:
+    id: build
+    command: "python -m pytest -q tests/fluxo_events/test_ux_aviso_live.py::test_build_avisar_usuario"
+    test_paths:
+      - "tests/fluxo_events/test_ux_aviso_live.py"
+    exit_code: 0
+    log_path: "logs/66/build.log"
+  dual_tree:
+    id: dual_tree
+    command: "python -m pytest -q tests/fluxo_events/test_ux_aviso_live.py::test_dual_tree_ux"
+    test_paths:
+      - "tests/fluxo_events/test_ux_aviso_live.py"
+    exit_code: 0
+    log_path: "logs/66/dual_tree.log"
+  fluxo_live:
+    id: fluxo_live
+    command: "python -m pytest -q tests/fluxo_events/test_ux_aviso_live.py::test_fluxo_live_command_docs"
+    test_paths:
+      - "tests/fluxo_events/test_ux_aviso_live.py"
+    exit_code: 0
+    log_path: "logs/66/fluxo_live.log"

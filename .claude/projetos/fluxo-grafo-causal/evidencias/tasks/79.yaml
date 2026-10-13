@@ -1,0 +1,23 @@
+task_id: "79"
+criteria:
+  AC16a:
+    id: AC16a
+    command: "python3 -m pytest -q tests/fluxo_events/test_wiring_causal.py::test_sdd_wiring_mentions_causal"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_causal.py"
+    exit_code: 0
+    log_path: "logs/79/AC16a.log"
+  AC16b:
+    id: AC16b
+    command: "python3 -m pytest -q tests/fluxo_events/test_wiring_causal.py::test_dev_wiring_mentions_causal"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_causal.py"
+    exit_code: 0
+    log_path: "logs/79/AC16b.log"
+  AC16c:
+    id: AC16c
+    command: "python3 -m pytest -q tests/fluxo_events/test_wiring_causal.py::test_dual_tree"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_causal.py"
+    exit_code: 0
+    log_path: "logs/79/AC16c.log"

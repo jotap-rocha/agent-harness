@@ -1,0 +1,23 @@
+task_id: "67"
+criteria:
+  invalid:
+    id: invalid
+    command: "python3 -m pytest -q tests/fluxo_events/test_dev_loop_map.py::test_invalid_dev_loop_map_fails"
+    test_paths:
+      - "tests/fluxo_events/test_dev_loop_map.py"
+    exit_code: 0
+    log_path: "logs/67/invalid.log"
+  limits:
+    id: limits
+    command: "python3 -m pytest -q tests/fluxo_events/test_dev_loop_map.py::test_limits_unchanged"
+    test_paths:
+      - "tests/fluxo_events/test_dev_loop_map.py"
+    exit_code: 0
+    log_path: "logs/67/limits.log"
+  loads:
+    id: loads
+    command: "python3 -m pytest -q tests/fluxo_events/test_dev_loop_map.py"
+    test_paths:
+      - "tests/fluxo_events/test_dev_loop_map.py"
+    exit_code: 0
+    log_path: "logs/67/loads.log"

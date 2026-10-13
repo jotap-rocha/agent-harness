@@ -1,0 +1,13 @@
+version: 1
+name: orders_synth
+owner: data-platform
+fields:
+  - name: order_id
+    type: string
+    nullable: false
+  - name: amount_cents
+    type: integer
+    nullable: false
+  - name: currency
+    type: string
+    nullable: false

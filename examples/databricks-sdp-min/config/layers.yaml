@@ -1,0 +1,5 @@
+# Camadas medallion explícitas para SDP (DE-D002)
+layers:
+  - bronze
+  - silver
+  - gold

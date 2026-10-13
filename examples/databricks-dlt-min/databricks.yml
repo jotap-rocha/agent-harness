@@ -1,0 +1,8 @@
+# Databricks Asset Bundle (stub estático — não executável no CI do canônico)
+bundle:
+  name: orders-dlt-min
+
+run_as:
+  service_principal_name: sp-orders-dlt-runner
+
+owner: data-platform

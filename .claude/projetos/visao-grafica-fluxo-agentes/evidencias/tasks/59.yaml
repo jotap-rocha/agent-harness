@@ -1,0 +1,37 @@
+task_id: "59"
+criteria:
+  best-effort:
+    id: best-effort
+    command: "python -m pytest -q tests/fluxo_events/test_emit.py::test_append_best_effort"
+    test_paths:
+      - "tests/fluxo_events/test_emit.py::test_append_best_effort"
+    exit_code: 0
+    log_path: "logs/59/best-effort.log"
+  emit-appends:
+    id: emit-appends
+    command: "python -m pytest -q tests/fluxo_events/test_emit.py::test_emit_appends_jsonl"
+    test_paths:
+      - "tests/fluxo_events/test_emit.py::test_emit_appends_jsonl"
+    exit_code: 0
+    log_path: "logs/59/emit-appends.log"
+  fail-soft:
+    id: fail-soft
+    command: "python -m pytest -q tests/fluxo_events/test_emit.py::test_emit_fail_soft"
+    test_paths:
+      - "tests/fluxo_events/test_emit.py::test_emit_fail_soft"
+    exit_code: 0
+    log_path: "logs/59/fail-soft.log"
+  fixtures-meta:
+    id: fixtures-meta
+    command: "python -m pytest -q tests/fluxo_events/test_emit.py::test_fixtures_metadata_only"
+    test_paths:
+      - "tests/fluxo_events/test_emit.py::test_fixtures_metadata_only"
+    exit_code: 0
+    log_path: "logs/59/fixtures-meta.log"
+  rejects-non-meta:
+    id: rejects-non-meta
+    command: "python -m pytest -q tests/fluxo_events/test_emit.py::test_rejects_non_metadata"
+    test_paths:
+      - "tests/fluxo_events/test_emit.py::test_rejects_non_metadata"
+    exit_code: 0
+    log_path: "logs/59/rejects-non-meta.log"

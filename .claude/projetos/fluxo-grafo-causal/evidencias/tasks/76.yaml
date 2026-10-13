@@ -1,0 +1,30 @@
+task_id: "76"
+criteria:
+  AC12:
+    id: AC12
+    command: "python3 -m pytest -q tests/fluxo_events/test_stack_parent.py::test_stack_path_and_gitignore"
+    test_paths:
+      - "tests/fluxo_events/test_stack_parent.py"
+    exit_code: 0
+    log_path: "logs/76/AC12.log"
+  AC13:
+    id: AC13
+    command: "python3 -m pytest -q tests/fluxo_events/test_stack_parent.py::test_stack_fail_soft"
+    test_paths:
+      - "tests/fluxo_events/test_stack_parent.py"
+    exit_code: 0
+    log_path: "logs/76/AC13.log"
+  AC4:
+    id: AC4
+    command: "python3 -m pytest -q tests/fluxo_events/test_stack_parent.py::test_explicit_parent_wins"
+    test_paths:
+      - "tests/fluxo_events/test_stack_parent.py"
+    exit_code: 0
+    log_path: "logs/76/AC4.log"
+  AC5:
+    id: AC5
+    command: "python3 -m pytest -q tests/fluxo_events/test_stack_parent.py::test_uses_stack_top"
+    test_paths:
+      - "tests/fluxo_events/test_stack_parent.py"
+    exit_code: 0
+    log_path: "logs/76/AC5.log"

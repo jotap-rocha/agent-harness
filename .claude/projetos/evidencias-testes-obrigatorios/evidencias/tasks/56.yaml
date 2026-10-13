@@ -1,0 +1,9 @@
+task_id: "56"
+criteria:
+  docs:
+    id: docs
+    command: "python3 -m pytest -q tests/evidence_gate/test_docs_dod.py"
+    test_paths:
+      - "tests/evidence_gate/test_docs_dod.py"
+    exit_code: 0
+    log_path: "logs/56/docs.log"

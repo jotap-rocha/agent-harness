@@ -1,0 +1,9 @@
+task_id: "97"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_pipeline_runtime_gates.py::test_pipeline_rule_references_gates tests/data_engineering/test_pipeline_runtime_gates.py::test_medallion_gates_prerequisite_runtime"
+    test_paths:
+      - "tests/data_engineering/test_pipeline_runtime_gates.py"
+    exit_code: 0
+    log_path: "logs/97/gate.log"

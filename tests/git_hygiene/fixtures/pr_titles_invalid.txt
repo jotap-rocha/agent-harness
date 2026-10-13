@@ -1,0 +1,13 @@
+# Casos inválidos de título de PR
+feat(tmp): escopo proibido
+feat(teste): escopo proibido
+feat(nova-branch): escopo proibido
+feat(configuração): acento no escopo
+docs(foo): tipo fora da lista
+feat gate: sem parenteses
+feat(gate-branch-isolada) sem dois pontos
+feat(gate-branch-isolada): este resumo propositalmente excede o limite de setenta e dois caracteres do contrato
+feat(2026-08-06): data solta no escopo
+hotfix(parser): tipo invalido
+feat(escopo-com-mais-de-quarenta-caracteres-excedentes): longo demais
+(sem-tipo): faltou tipo

@@ -1,0 +1,9 @@
+task_id: "90"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_medallion_sdd_gates.py::test_define_gate_section tests/data_engineering/test_medallion_sdd_gates.py::test_define_grill_template"
+    test_paths:
+      - "tests/data_engineering/test_medallion_sdd_gates.py"
+    exit_code: 0
+    log_path: "logs/90/gate.log"

@@ -1,0 +1,6 @@
+# Grants Unity Catalog versionados em filesystem (DE-D005) — sem API live
+grants:
+  - principal: data-readers
+    privilege: SELECT
+  - principal: data-platform
+    privilege: ALL

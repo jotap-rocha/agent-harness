@@ -1,0 +1,37 @@
+task_id: "78"
+criteria:
+  AC10:
+    id: AC10
+    command: "python3 -m pytest -q tests/fluxo_events/test_render_causal.py::test_truncated_id_labels"
+    test_paths:
+      - "tests/fluxo_events/test_render_causal.py"
+    exit_code: 0
+    log_path: "logs/78/AC10.log"
+  AC14:
+    id: AC14
+    command: "python3 -m pytest -q tests/fluxo_events/test_render_dual_map.py"
+    test_paths:
+      - "tests/fluxo_events/test_render_dual_map.py"
+    exit_code: 0
+    log_path: "logs/78/AC14.log"
+  AC7:
+    id: AC7
+    command: "python3 -m pytest -q tests/fluxo_events/test_render_causal.py::test_two_svgs_in_html"
+    test_paths:
+      - "tests/fluxo_events/test_render_causal.py"
+    exit_code: 0
+    log_path: "logs/78/AC7.log"
+  AC8:
+    id: AC8
+    command: "python3 -m pytest -q tests/fluxo_events/test_render_causal.py::test_causal_node_types"
+    test_paths:
+      - "tests/fluxo_events/test_render_causal.py"
+    exit_code: 0
+    log_path: "logs/78/AC8.log"
+  AC9:
+    id: AC9
+    command: "python3 -m pytest -q tests/fluxo_events/test_render_causal.py::test_phase_enter_is_root"
+    test_paths:
+      - "tests/fluxo_events/test_render_causal.py"
+    exit_code: 0
+    log_path: "logs/78/AC9.log"

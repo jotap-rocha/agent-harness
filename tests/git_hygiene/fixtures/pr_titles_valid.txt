@@ -1,0 +1,6 @@
+# Casos válidos de título de PR
+feat(gate-branch-isolada): adiciona contrato regex e fixtures
+fix(parser-data-nula): trata None no parser de data
+chore(atualiza-dependencias): bump de ferramentas de lint
+feat(a): x
+fix(x-y-z): corrige edge case do parser

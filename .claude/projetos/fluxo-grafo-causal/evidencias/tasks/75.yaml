@@ -1,0 +1,37 @@
+task_id: "75"
+criteria:
+  AC1:
+    id: AC1
+    command: "python3 -m pytest -q tests/fluxo_events/test_emit_causal_ids.py::test_allowed_keys_include_causal"
+    test_paths:
+      - "tests/fluxo_events/test_emit_causal_ids.py"
+    exit_code: 0
+    log_path: "logs/75/AC1.log"
+  AC18:
+    id: AC18
+    command: "python3 -m pytest -q tests/fluxo_events/test_emit_causal_ids.py::test_fixtures_metadata_only"
+    test_paths:
+      - "tests/fluxo_events/test_emit_causal_ids.py"
+    exit_code: 0
+    log_path: "logs/75/AC18.log"
+  AC2:
+    id: AC2
+    command: "python3 -m pytest -q tests/fluxo_events/test_emit_causal_ids.py::test_generates_event_id"
+    test_paths:
+      - "tests/fluxo_events/test_emit_causal_ids.py"
+    exit_code: 0
+    log_path: "logs/75/AC2.log"
+  AC3:
+    id: AC3
+    command: "python3 -m pytest -q tests/fluxo_events/test_emit_causal_ids.py::test_run_id_auto_and_override"
+    test_paths:
+      - "tests/fluxo_events/test_emit_causal_ids.py"
+    exit_code: 0
+    log_path: "logs/75/AC3.log"
+  AC6:
+    id: AC6
+    command: "python3 -m pytest -q tests/fluxo_events/test_emit_causal_ids.py::test_legacy_events_without_ids"
+    test_paths:
+      - "tests/fluxo_events/test_emit_causal_ids.py"
+    exit_code: 0
+    log_path: "logs/75/AC6.log"

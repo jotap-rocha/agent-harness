@@ -1,0 +1,23 @@
+task_id: "69"
+criteria:
+  highlight:
+    id: highlight
+    command: "python3 -m pytest -q tests/fluxo_events/test_render_dual_map.py::test_dev_loop_highlight"
+    test_paths:
+      - "tests/fluxo_events/test_render_dual_map.py"
+    exit_code: 0
+    log_path: "logs/69/highlight.log"
+  render:
+    id: render
+    command: "python3 -m pytest -q tests/fluxo_events/test_render_dual_map.py"
+    test_paths:
+      - "tests/fluxo_events/test_render_dual_map.py"
+    exit_code: 0
+    log_path: "logs/69/render.log"
+  sdd:
+    id: sdd
+    command: "python3 -m pytest -q tests/fluxo_events/test_render_dual_map.py::test_render_sdd_unchanged"
+    test_paths:
+      - "tests/fluxo_events/test_render_dual_map.py"
+    exit_code: 0
+    log_path: "logs/69/sdd.log"

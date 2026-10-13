@@ -1,0 +1,9 @@
+task_id: "95"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_pipeline_runtime_gates.py::test_brainstorm_runtime_gate tests/data_engineering/test_pipeline_runtime_gates.py::test_brainstorm_ai_dev_kit_gate"
+    test_paths:
+      - "tests/data_engineering/test_pipeline_runtime_gates.py"
+    exit_code: 0
+    log_path: "logs/95/gate.log"

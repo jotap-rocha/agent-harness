@@ -1,0 +1,9 @@
+task_id: "57"
+criteria:
+  readme_banner:
+    id: readme_banner
+    command: "python3 -m pytest -q tests/install_harness/test_context_rebind.py"
+    test_paths:
+      - "tests/install_harness/test_context_rebind.py"
+    exit_code: 0
+    log_path: "logs/57/readme_banner.log"

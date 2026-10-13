@@ -1,0 +1,30 @@
+task_id: "60"
+criteria:
+  fail-soft:
+    id: fail-soft
+    command: "python -m pytest -q tests/fluxo_events/test_render.py::test_render_fail_soft"
+    test_paths:
+      - "tests/fluxo_events/test_render.py::test_render_fail_soft"
+    exit_code: 0
+    log_path: "logs/60/fail-soft.log"
+  full-map:
+    id: full-map
+    command: "python -m pytest -q tests/fluxo_events/test_render.py::test_render_full_map_empty_log"
+    test_paths:
+      - "tests/fluxo_events/test_render.py::test_render_full_map_empty_log"
+    exit_code: 0
+    log_path: "logs/60/full-map.log"
+  highlight:
+    id: highlight
+    command: "python -m pytest -q tests/fluxo_events/test_render.py::test_render_highlights_active"
+    test_paths:
+      - "tests/fluxo_events/test_render.py::test_render_highlights_active"
+    exit_code: 0
+    log_path: "logs/60/highlight.log"
+  mockup:
+    id: mockup
+    command: "python -m pytest -q tests/fluxo_events/test_render.py::test_fixture_matches_mockup_structure"
+    test_paths:
+      - "tests/fluxo_events/test_render.py::test_fixture_matches_mockup_structure"
+    exit_code: 0
+    log_path: "logs/60/mockup.log"

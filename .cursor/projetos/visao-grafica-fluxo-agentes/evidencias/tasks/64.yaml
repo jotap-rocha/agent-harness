@@ -1,0 +1,9 @@
+task_id: "64"
+criteria:
+  docs-present:
+    id: docs-present
+    command: "python -m pytest -q tests/fluxo_events/test_dogfood.py::test_docs_fluxo_live_present"
+    test_paths:
+      - "tests/fluxo_events/test_dogfood.py"
+    exit_code: 0
+    log_path: "logs/64/docs-present.log"

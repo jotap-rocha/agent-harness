@@ -1,0 +1,5 @@
+# Destino/política de quarentena versionada para DLT (DE-D003)
+quality:
+  invalid_records: quarantine_orders
+  quarantine_table: ops.quarantine_orders
+  on_expectation_fail: quarantine

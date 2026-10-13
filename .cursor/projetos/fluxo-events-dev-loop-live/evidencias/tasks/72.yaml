@@ -1,0 +1,23 @@
+task_id: "72"
+criteria:
+  backfill:
+    id: backfill
+    command: "python3 -m pytest -q tests/fluxo_events/test_backfill_commits.py"
+    test_paths:
+      - "tests/fluxo_events/test_backfill_commits.py"
+    exit_code: 0
+    log_path: "logs/72/backfill.log"
+  no_pending:
+    id: no_pending
+    command: "python3 -m pytest -q tests/fluxo_events/test_backfill_commits.py::test_no_pending_58_65"
+    test_paths:
+      - "tests/fluxo_events/test_backfill_commits.py"
+    exit_code: 0
+    log_path: "logs/72/no_pending.log"
+  untouched:
+    id: untouched
+    command: "python3 -m pytest -q tests/fluxo_events/test_backfill_commits.py::test_other_issues_untouched"
+    test_paths:
+      - "tests/fluxo_events/test_backfill_commits.py"
+    exit_code: 0
+    log_path: "logs/72/untouched.log"

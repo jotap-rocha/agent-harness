@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+# pre-commit — heurística leve de segredos (BLOQUEANTE).
+# Não loga o valor do segredo; só arquivo + tipo detectado + o que fazer.
+set -euo pipefail
+
+# Patterns sintéticos / óbvios (MVP). Caminho futuro: gitleaks — ver README.
+# Use sempre `grep -E --` para padrões que começam com '-' (PEM).
+PATTERNS=(
+  'AKIA[0-9A-Z]{16}'
+  '-----BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY-----'
+  'password[[:space:]]*=[[:space:]]*[^[:space:]]+'
+  'api[_-]?key[[:space:]]*=[[:space:]]*[^[:space:]]+'
+  'secret[[:space:]]*=[[:space:]]*[^[:space:]]+'
+  'ghp_[A-Za-z0-9]{20,}'
+  'xox[baprs]-[A-Za-z0-9-]{10,}'
+)
+
+# Labels SEM substring "chave=valor" — senão o próprio arquivo do hook é bloqueado.
+LABELS=(
+  'AWS Access Key ID (AKIA prefix)'
+  'Private key PEM block'
+  'password assignment'
+  'api key assignment'
+  'secret assignment'
+  'GitHub PAT (ghp_ prefix)'
+  'Slack token (xox prefix)'
+)
+
+if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  exit 0
+fi
+
+DIFF=$(git diff --cached -U0 --no-color --diff-filter=AM 2>/dev/null || true)
+if [[ -z "${DIFF}" ]]; then
+  exit 0
+fi
+
+found=0
+file_hint=""
+label_hint=""
+
+current_file="(unknown)"
+while IFS= read -r line || [[ -n "$line" ]]; do
+  if [[ "$line" =~ ^diff\ --git ]]; then
+    current_file=$(printf '%s\n' "$line" | awk '{print $4}' | sed 's|^b/||')
+    continue
+  fi
+  if [[ "$line" =~ ^\+\+\+ ]]; then
+    continue
+  fi
+  if [[ "$line" =~ ^\+ ]]; then
+    content="${line:1}"
+    for i in "${!PATTERNS[@]}"; do
+      if printf '%s\n' "$content" | grep -Eq -- "${PATTERNS[$i]}"; then
+        found=1
+        file_hint="$current_file"
+        label_hint="${LABELS[$i]}"
+        break 2
+      fi
+    done
+  fi
+done <<< "$DIFF"
+
+if [[ "$found" -eq 1 ]]; then
+  cat >&2 <<EOF
+[git-hygiene] pre-commit BLOQUEOU o commit: possível segredo no staged diff.
+
+  Arquivo: ${file_hint}
+  Tipo:    ${label_hint}
+
+O que fazer:
+  1. Remova o segredo do arquivo (ou tire do stage: git restore --staged <arquivo>).
+  2. Use variável de ambiente / secret manager — nunca hardcode.
+  3. Se o valor já vazou no histórico, rotacione a credencial imediatamente.
+
+Por quê: custo de vazamento é irreversível (rotação). Heurística MVP; gitleaks
+pode ser plugado depois (ver .githooks/README.md).
+
+EOF
+  exit 1
+fi
+
+exit 0

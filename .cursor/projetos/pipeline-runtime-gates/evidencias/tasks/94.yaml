@@ -1,0 +1,9 @@
+task_id: "94"
+criteria:
+  gate:
+    id: gate
+    command: "python -m pytest -q tests/data_engineering/test_pipeline_runtime_gates.py::test_ai_dev_kit_kb_exists tests/data_engineering/test_pipeline_runtime_gates.py::test_ai_dev_kit_kb_dual_tree tests/data_engineering/test_pipeline_runtime_gates.py::test_databricks_index_lists_ai_dev_kit"
+    test_paths:
+      - "tests/data_engineering/test_pipeline_runtime_gates.py"
+    exit_code: 0
+    log_path: "logs/94/gate.log"

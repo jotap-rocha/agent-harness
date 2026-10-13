@@ -1,0 +1,7 @@
+# Casos válidos de nome de branch (um por linha; # = comentário)
+feat/gate-branch-isolada
+fix/parser-data-nula
+chore/atualiza-dependencias
+feat/a
+fix/x-y-z
+chore/sync-ff-only

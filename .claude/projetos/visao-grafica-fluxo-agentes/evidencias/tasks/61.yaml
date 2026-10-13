@@ -1,0 +1,30 @@
+task_id: "61"
+criteria:
+  rotate:
+    id: rotate
+    command: "python -m pytest -q tests/fluxo_events/test_rotate.py::test_rotate_keeps_tail"
+    test_paths:
+      - "tests/fluxo_events/test_rotate.py::test_rotate_keeps_tail"
+    exit_code: 0
+    log_path: "logs/61/rotate.log"
+  ship-event:
+    id: ship-event
+    command: "python -m pytest -q tests/fluxo_events/test_truncate.py::test_ship_truncate_event"
+    test_paths:
+      - "tests/fluxo_events/test_truncate.py::test_ship_truncate_event"
+    exit_code: 0
+    log_path: "logs/61/ship-event.log"
+  trunc-soft:
+    id: trunc-soft
+    command: "python -m pytest -q tests/fluxo_events/test_truncate.py::test_truncate_fail_soft"
+    test_paths:
+      - "tests/fluxo_events/test_truncate.py::test_truncate_fail_soft"
+    exit_code: 0
+    log_path: "logs/61/trunc-soft.log"
+  truncate100:
+    id: truncate100
+    command: "python -m pytest -q tests/fluxo_events/test_truncate.py::test_truncate_keep_100"
+    test_paths:
+      - "tests/fluxo_events/test_truncate.py::test_truncate_keep_100"
+    exit_code: 0
+    log_path: "logs/61/truncate100.log"

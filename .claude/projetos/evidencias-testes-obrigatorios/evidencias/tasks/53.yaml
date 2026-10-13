@@ -1,0 +1,9 @@
+task_id: "53"
+criteria:
+  wire:
+    id: wire
+    command: "python3 -m pytest -q tests/evidence_gate/test_wiring.py"
+    test_paths:
+      - "tests/evidence_gate/test_wiring.py"
+    exit_code: 0
+    log_path: "logs/53/wire.log"

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Fluxo live — chore-tasks-por-slug</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a2332;
+      --text: #e7ecf3;
+      --muted: #8b9bb4;
+      --accent: #3d8bfd;
+      --active: #f0a500;
+    }
+    body {
+      margin: 0; font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1e3a5f 0%, var(--bg) 55%);
+      color: var(--text); min-height: 100vh;
+    }
+    header {
+      padding: 1.5rem 2rem 0.5rem; border-bottom: 1px solid #243044;
+    }
+    header h1 { margin: 0; font-size: 1.4rem; letter-spacing: 0.02em; }
+    header .meta { color: var(--muted); margin-top: 0.35rem; font-size: 0.9rem; }
+    main {
+      display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.25rem;
+      padding: 1.25rem 2rem 2rem;
+    }
+    @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+    .map, .timeline {
+      background: color-mix(in srgb, var(--panel) 92%, black);
+      border: 1px solid #2a3a52; border-radius: 10px; padding: 1rem 1.1rem;
+    }
+    .phase { margin-bottom: 0.9rem; padding: 0.65rem 0.75rem; border-radius: 8px;
+      border: 1px solid transparent; }
+    .phase.active { border-color: var(--active); background: #2a2418; }
+    .phase h2 { margin: 0 0 0.4rem; font-size: 0.95rem; color: var(--muted); }
+    .phase.active h2 { color: var(--active); }
+    .agents { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .agent {
+      padding: 0.25rem 0.55rem; border-radius: 6px; background: #243044;
+      font-size: 0.85rem; border: 1px solid #334860;
+    }
+    .agent.active {
+      background: var(--active); color: #1a1200; border-color: #ffd36a; font-weight: 600;
+    }
+    .timeline h2 { margin: 0 0 0.75rem; font-size: 1rem; }
+    .timeline ol { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+    .timeline .event { margin-bottom: 0.45rem; font-size: 0.85rem; }
+    .timeline code { color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Visão gráfica do fluxo</h1>
+    <p class="meta">slug: <strong>chore-tasks-por-slug</strong> · ativo: fase 4 / harness-ship</p>
+  </header>
+  <main>
+    <div class="map" data-testid="sdd-map">
+      <h2 style="margin-top:0">Mapa SDD 0–4</h2>
+      <section class="phase" data-phase="0"><h2>Fase 0 — IDEIA</h2><ul class="agents"><li class="agent" data-agent="harness-brainstorm">harness-brainstorm</li></ul></section><section class="phase" data-phase="1"><h2>Fase 1 — REQUISITOS</h2><ul class="agents"><li class="agent" data-agent="grill-me">grill-me</li><li class="agent" data-agent="harness-define">harness-define</li></ul></section><section class="phase" data-phase="2"><h2>Fase 2 — PRD_HARNESS</h2><ul class="agents"><li class="agent" data-agent="harness-design">harness-design</li><li class="agent" data-agent="to-prd">to-prd</li><li class="agent" data-agent="harness-architect">harness-architect</li></ul></section><section class="phase" data-phase="3"><h2>Fase 3 — IMPLEMENTAR</h2><ul class="agents"><li class="agent" data-agent="to-tasks">to-tasks</li><li class="agent" data-agent="harness-build">harness-build</li><li class="agent" data-agent="revisor-codigo">revisor-codigo</li></ul></section><section class="phase active" data-phase="4"><h2>Fase 4 — ENCERRAR</h2><ul class="agents"><li class="agent active" data-agent="harness-ship">harness-ship</li><li class="agent" data-agent="/scorecard">/scorecard</li></ul></section>
+    </div>
+    <aside class="timeline" data-testid="timeline">
+      <h2>Timeline</h2>
+      <ol><li class="event" data-type="agent_enter"><time>2026-08-17T18:25:26.099838+00:00</time> · fase 4 · harness-ship · <code>agent_enter</code></li><li class="event" data-type="ship_truncate"><time>2026-08-17T18:28:05.818800+00:00</time> · fase 4 · harness-ship · <code>ship_truncate</code></li><li class="event" data-type="agent_exit"><time>2026-08-17T18:28:06.023014+00:00</time> · fase 4 · harness-ship · <code>agent_exit</code></li></ol>
+    </aside>
+  </main>
+</body>
+</html>

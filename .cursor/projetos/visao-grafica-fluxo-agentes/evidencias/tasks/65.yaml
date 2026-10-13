@@ -1,0 +1,16 @@
+task_id: "65"
+criteria:
+  dogfood:
+    id: dogfood
+    command: "python -m pytest -q tests/fluxo_events/test_dogfood.py::test_project_fluxo_artifacts"
+    test_paths:
+      - "tests/fluxo_events/test_dogfood.py"
+    exit_code: 0
+    log_path: "logs/65/dogfood.log"
+  suite:
+    id: suite
+    command: "python -m pytest -q tests/fluxo_events/"
+    test_paths:
+      - "tests/fluxo_events"
+    exit_code: 0
+    log_path: "logs/65/suite.log"

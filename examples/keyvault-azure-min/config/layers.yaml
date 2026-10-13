@@ -1,0 +1,7 @@
+# Camadas medalhão declaradas para o perfil piloto
+layers:
+  - landing
+  - bronze
+  - silver
+  - gold
+flow: landing -> bronze -> silver -> gold

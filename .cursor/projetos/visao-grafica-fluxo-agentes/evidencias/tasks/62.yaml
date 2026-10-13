@@ -1,0 +1,30 @@
+task_id: "62"
+criteria:
+  agents-emit:
+    id: agents-emit
+    command: "python -m pytest -q tests/fluxo_events/test_wiring_sdd.py::test_agents_mention_emit"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_sdd.py::test_agents_mention_emit"
+    exit_code: 0
+    log_path: "logs/62/agents-emit.log"
+  dual-tree:
+    id: dual-tree
+    command: "python -m pytest -q tests/fluxo_events/test_wiring_sdd.py::test_dual_tree_wiring_mirror"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_sdd.py::test_dual_tree_wiring_mirror"
+    exit_code: 0
+    log_path: "logs/62/dual-tree.log"
+  no-officer:
+    id: no-officer
+    command: "python -m pytest -q tests/fluxo_events/test_wiring_sdd.py::test_no_fluxo_officer_agent"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_sdd.py::test_no_fluxo_officer_agent"
+    exit_code: 0
+    log_path: "logs/62/no-officer.log"
+  ship-trunc:
+    id: ship-trunc
+    command: "python -m pytest -q tests/fluxo_events/test_wiring_sdd.py::test_ship_mentions_truncate"
+    test_paths:
+      - "tests/fluxo_events/test_wiring_sdd.py::test_ship_mentions_truncate"
+    exit_code: 0
+    log_path: "logs/62/ship-trunc.log"

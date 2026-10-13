@@ -1,0 +1,5 @@
+# Metadados mínimos do pipeline exemplo (sintético)
+owner: data-platform
+run_id_field: run_id
+logging: structured
+profile: spark-yarn-airflow
