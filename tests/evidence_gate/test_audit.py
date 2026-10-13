@@ -20,7 +20,7 @@ def test_collect_appends_audit_line(
         root=root,
         task_id="52",
         criterion_id="a1",
-        command=f"{sys.executable} -c \"print('one')\"",
+        command=f"\"{sys.executable}\" -c \"print('one')\"",
         test_paths=("tests/evidence_gate/test_audit.py",),
         contract_path=contract_yaml_path,
     )
@@ -42,7 +42,7 @@ def test_two_collects_two_audit_lines_manifest_lww(
         root=root,
         task_id="52",
         criterion_id="lww",
-        command=f"{sys.executable} -c \"print('v1')\"",
+        command=f"\"{sys.executable}\" -c \"print('v1')\"",
         test_paths=("tests/evidence_gate/test_audit.py",),
         contract_path=contract_yaml_path,
     )
@@ -50,7 +50,7 @@ def test_two_collects_two_audit_lines_manifest_lww(
         root=root,
         task_id="52",
         criterion_id="lww",
-        command=f"{sys.executable} -c \"print('v2')\"",
+        command=f"\"{sys.executable}\" -c \"print('v2')\"",
         test_paths=("tests/evidence_gate/test_audit.py",),
         contract_path=contract_yaml_path,
     )
@@ -72,7 +72,7 @@ def test_check_does_not_rewrite_audit(
         root=root,
         task_id="52",
         criterion_id="stable",
-        command=f"{sys.executable} -c \"print('x')\"",
+        command=f"\"{sys.executable}\" -c \"print('x')\"",
         test_paths=("tests/evidence_gate/test_audit.py",),
         contract_path=contract_yaml_path,
     )

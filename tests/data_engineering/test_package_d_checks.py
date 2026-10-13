@@ -362,6 +362,7 @@ def test_explain_works_for_package_d_rule_ids() -> None:
         cwd=REPO_ROOT,
         capture_output=True,
         text=True,
+        encoding="utf-8",
         check=False,
     )
     assert proc.returncode == EXIT_OK

@@ -29,7 +29,7 @@ def test_collect_ok_writes_log_and_exit_zero(
         root=evidencias_root,
         task_id="50",
         criterion_id="ac-ok",
-        command=f"{sys.executable} -c \"print('hello-evidence')\"",
+        command=f"\"{sys.executable}\" -c \"print('hello-evidence')\"",
         test_paths=("tests/evidence_gate/test_collect.py",),
         contract_path=contract_yaml_path,
     )
@@ -55,7 +55,7 @@ def test_collect_failed_command_records_nonzero(
         root=evidencias_root,
         task_id="50",
         criterion_id="ac-fail",
-        command=f"{sys.executable} -c \"raise SystemExit(7)\"",
+        command=f"\"{sys.executable}\" -c \"raise SystemExit(7)\"",
         test_paths=("tests/evidence_gate/test_collect.py",),
         contract_path=contract_yaml_path,
     )
@@ -85,7 +85,7 @@ def test_collect_over_cap_fails_without_valid_truncated_proof(
         root=evidencias_root,
         task_id="50",
         criterion_id="ac-cap",
-        command=f"{sys.executable} {script}",
+        command=f"\"{sys.executable}\" \"{script}\"",
         test_paths=("tests/evidence_gate/test_collect.py",),
         contract_path=contract_yaml_path,
     )
@@ -123,7 +123,7 @@ def test_cli_collect_with_command_flag_works(
             "--criterion",
             "cli-cmd",
             "--command",
-            f"{sys.executable} -c \"print('cli-ok')\"",
+            f"\"{sys.executable}\" -c \"print('cli-ok')\"",
             "--test-path",
             "tests/evidence_gate/test_collect.py",
         ],
@@ -146,7 +146,7 @@ def test_collect_lww_overwrites_current_proof(
         root=evidencias_root,
         task_id="50",
         criterion_id="ac-lww",
-        command=f"{sys.executable} -c \"print('first')\"",
+        command=f"\"{sys.executable}\" -c \"print('first')\"",
         test_paths=("tests/evidence_gate/test_collect.py",),
         contract_path=contract_yaml_path,
     )
@@ -155,7 +155,7 @@ def test_collect_lww_overwrites_current_proof(
         root=evidencias_root,
         task_id="50",
         criterion_id="ac-lww",
-        command=f"{sys.executable} -c \"print('second')\"",
+        command=f"\"{sys.executable}\" -c \"print('second')\"",
         test_paths=("tests/evidence_gate/test_collect.py",),
         contract_path=contract_yaml_path,
     )

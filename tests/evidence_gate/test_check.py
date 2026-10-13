@@ -24,7 +24,7 @@ def test_check_passes_valid_manifest_and_logs(
         root=root,
         task_id="51",
         criterion_id="ac1",
-        command=f"{sys.executable} -c \"print('ok')\"",
+        command=f"\"{sys.executable}\" -c \"print('ok')\"",
         test_paths=("tests/evidence_gate/test_check.py",),
         contract_path=contract_yaml_path,
     )
@@ -164,7 +164,7 @@ def test_check_fails_broken_or_missing_evidencias_ref(
         root=root,
         task_id="51",
         criterion_id="ac-ref",
-        command=f"{sys.executable} -c \"print('ok')\"",
+        command=f"\"{sys.executable}\" -c \"print('ok')\"",
         test_paths=("tests/evidence_gate/test_check.py",),
         contract_path=contract_yaml_path,
     )

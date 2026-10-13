@@ -51,14 +51,14 @@ def test_collect_check_ref_integration(
         root=root,
         task_id="53",
         criterion_id="wire",
-        command=f"{sys.executable} -c \"print('wire')\"",
+        command=f"\"{sys.executable}\" -c \"print('wire')\"",
         test_paths=("tests/evidence_gate/test_wiring.py",),
         contract_path=contract_yaml_path,
     )
     assert outcome.collect_ok
     assert check.ok, check.errors
     ref = evidencias_ref_for(root, "53", relative_to=tmp_path)
-    assert ref.endswith("tasks/53.yaml")
+    assert ref.replace("\\", "/").endswith("tasks/53.yaml")
     entregas = tmp_path / "entregas.jsonl"
     append_entrega_with_ref(
         entregas,
