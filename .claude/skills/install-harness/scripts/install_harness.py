@@ -961,6 +961,10 @@ def _maybe_bootstrap_githooks(target: Path, *, interactive: bool) -> None:
 # --------------------------------------------------------------------------- main
 
 def main() -> None:
+    # Consoles Windows (cp1252) quebram em caracteres fora do codec; nunca derrubar o instalador por isso.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("destino", nargs="?", help="pasta alvo onde instalar/atualizar o harness")
     parser.add_argument("--canonical", default=DEFAULT_CANONICAL, help="path do canônico (default: %(default)s)")
@@ -1047,7 +1051,7 @@ def main() -> None:
     print("  3. Revisar hooks em .claude/settings.json")
     print("  4. Bootstrap de githooks — só após acordo (Passo 3.5 / pergunta acima)")
     print("  5. /validar — confirmar gate verde antes da primeira sessão de build")
-    print("  6. Espelhar edições de contexto .claude ↔ .cursor quando dual-tree")
+    print("  6. Espelhar edições de contexto .claude <-> .cursor quando dual-tree")
     if (target / ".githooks").is_dir():
         cur = ""
         try:
