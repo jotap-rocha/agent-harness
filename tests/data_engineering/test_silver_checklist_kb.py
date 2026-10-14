@@ -116,7 +116,9 @@ def test_data_engineering_yaml_unchanged() -> None:
         capture_output=True,
         check=True,
     )
-    assert path.read_bytes().decode("utf-8") == result.stdout.decode("utf-8")
+    # Checkout Windows pode converter para CRLF (autocrlf); o conteúdo é o que importa.
+    working = path.read_bytes().decode("utf-8").replace("\r\n", "\n")
+    assert working == result.stdout.decode("utf-8").replace("\r\n", "\n")
 
 
 def test_tasks_index_file_exists() -> None:
