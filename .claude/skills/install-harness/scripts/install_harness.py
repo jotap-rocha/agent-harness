@@ -23,6 +23,7 @@ import argparse
 import difflib
 import filecmp
 import json
+import os
 import re
 import shutil
 import sys
@@ -908,6 +909,26 @@ def summarize(counts: dict) -> str:
     return ", ".join(parts) if parts else "nada a fazer"
 
 
+def _githooks_bootstrap_cmd(target: Path) -> list[str] | None:
+    """Comando de bootstrap dos githooks conforme o SO; None → fallback `git config`.
+
+    Windows: `.ps1` via PowerShell (o `bash` do PATH costuma ser o stub do WSL, sem distro).
+    POSIX: `.sh` via bash.
+    """
+    scripts = target / "scripts"
+    if os.name == "nt":
+        ps1 = scripts / "bootstrap-githooks.ps1"
+        shell = shutil.which("pwsh") or shutil.which("powershell")
+        if ps1.is_file() and shell:
+            return [shell, "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", str(ps1), str(target)]
+        return None
+    sh = scripts / "bootstrap-githooks.sh"
+    bash = shutil.which("bash")
+    if sh.is_file() and bash:
+        return [bash, str(sh), str(target)]
+    return None
+
+
 def _maybe_bootstrap_githooks(target: Path, *, interactive: bool) -> None:
     """Pede confirmação explícita antes de `git config core.hooksPath=.githooks`.
 
@@ -921,11 +942,11 @@ def _maybe_bootstrap_githooks(target: Path, *, interactive: bool) -> None:
     if not (target / ".git").exists():
         print("[git-hygiene] destino sem .git — pule bootstrap de hooks.")
         return
-    bootstrap = target / "scripts" / "bootstrap-githooks.sh"
     if not interactive:
         print(
             "[git-hygiene] hooks copiados. Bootstrap de core.hooksPath NÃO aplicado "
-            "automaticamente neste modo — rode ./scripts/bootstrap-githooks.sh após acordo."
+            "automaticamente neste modo — rode scripts/bootstrap-githooks.sh (POSIX) ou "
+            "scripts\bootstrap-githooks.ps1 (Windows) após acordo."
         )
         return
     ans = input(
@@ -935,11 +956,12 @@ def _maybe_bootstrap_githooks(target: Path, *, interactive: bool) -> None:
     if ans != "s":
         print("[git-hygiene] hooks NÃO bootstrapados — acordo negado ou pulado.")
         return
-    if bootstrap.is_file():
-        result = subprocess.run(["bash", str(bootstrap), str(target)], check=False)
+    cmd = _githooks_bootstrap_cmd(target)
+    if cmd:
+        result = subprocess.run(cmd, check=False)
         if result.returncode != 0:
             print(
-                f"[git-hygiene] ERRO: bootstrap-githooks.sh saiu com código {result.returncode}. "
+                f"[git-hygiene] ERRO: bootstrap-githooks saiu com código {result.returncode}. "
                 "Verifique permissões e se o destino é um repo git.",
                 file=sys.stderr,
             )
@@ -1066,7 +1088,7 @@ def main() -> None:
             cur = "(unset)"
         if cur != ".githooks":
             print(
-                "  → hooks ainda inativos: ./scripts/bootstrap-githooks.sh (após acordo)"
+                "  → hooks ainda inativos: scripts/bootstrap-githooks.sh ou .ps1 no Windows (após acordo)"
             )
 
 
