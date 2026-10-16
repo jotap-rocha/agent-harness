@@ -245,6 +245,8 @@ configurar hooks no destino:
 - **Só** se a resposta for afirmativa, rode no destino:
   ```bash
   bash "$TARGET/scripts/bootstrap-githooks.sh" "$TARGET"
+  # Windows (PowerShell; o `bash` do PATH pode ser o stub do WSL):
+  # powershell -NoProfile -ExecutionPolicy Bypass -File "$TARGET\scriptsootstrap-githooks.ps1" "$TARGET"
   # ou: git -C "$TARGET" config core.hooksPath .githooks
   ```
 - Se negar ou pular: informe que os hooks foram copiados mas **não** ativos até o bootstrap.

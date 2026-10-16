@@ -341,6 +341,10 @@
           "kind": "copy"
         },
         {
+          "path": "scripts/bootstrap-githooks.ps1",
+          "kind": "copy"
+        },
+        {
           "path": ".azuredevops/pull_request_template.md",
           "kind": "copy"
         }
