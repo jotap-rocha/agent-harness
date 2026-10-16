@@ -347,6 +347,22 @@
         {
           "path": ".azuredevops/pull_request_template.md",
           "kind": "copy"
+        },
+        {
+          "path": ".github/pull_request_template.md",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/rules/github-repo.md",
+          "kind": "copy"
+        },
+        {
+          "path": "docs/cheatsheets/github-repo-cheatsheet.md",
+          "kind": "copy"
+        },
+        {
+          "path": "scripts/setup-github-repo.sh",
+          "kind": "copy"
         }
       ]
     },

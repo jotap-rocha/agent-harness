@@ -134,7 +134,7 @@ python -m config.fluxo_events check|emit|render|truncate
 |---|---|---|
 | Agents | `.cursor/agents/` | 35 (5 categorias: `workflow/`, `architect/`, `dev/`, `data-engineering/`, `cloud/`) |
 | Skills | `.cursor/skills/` | 33 (9 vindas do skills.sh — ver `skills-lock.json`) |
-| Rules | `.cursor/rules/` | 12 |
+| Rules | `.cursor/rules/` | 13 |
 | KBs | `.cursor/kb/` | 38 domínios |
 | Commands | `.cursor/commands/` | 24 (10 na raiz + `data-engineering/` + `visual-explainer/` + `/evidencias` + `/fluxo-live`) |
 | Tasks (to-tasks) | `tasks/{slug}/NN-*.md` | alinhado a `.cursor/projetos/{slug}/` — não flat na raiz |
