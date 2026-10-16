@@ -91,11 +91,11 @@ def test_claude_agents_refletem_pacote_e_contagens() -> None:
     claude = CLAUDE_MD.read_text(encoding="utf-8")
     agents = AGENTS_MD.read_text(encoding="utf-8")
     for text in (claude, agents):
-        assert "| 21 |" in text or "21 domínios" in text
+        assert "| 38 |" in text or "38 domínios" in text  # 21 + 17 multi-cloud
         assert "cloud-secrets" in text or "keyvault" in text.lower() or "pacote E" in text
         assert "DE-E" in text or "keyvault-cloud" in text or "secret_store" in text
     # tabela skills/KBs
-    assert "21" in claude and "21" in agents
+    assert "38" in claude and "38" in agents
 
 
 def test_status_projeto_pronto_para_ship() -> None:

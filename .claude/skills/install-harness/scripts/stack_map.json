@@ -676,6 +676,182 @@
           "kind": "copy"
         }
       ]
+    },
+    {
+      "name": "cloud_core",
+      "label": "Cloud — núcleo multi-cloud (condicional)",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "cloud_any"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "_comment": "Dispara se qualquer nuvem for detectada (detect_clouds: `cloud:` no CLAUDE.md, provider em *.tf ou deps de SDK). Agentes e KBs agnósticos + skills genéricas do skills.sh. Especialização por provider fica nas categorias cloud_<provider>.",
+      "artifacts": [
+        {
+          "path": ".claude/agents/cloud",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/cloud-resolution",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/terraform",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/terraform-style-guide",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/terraform-test",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/cost-optimization",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "cloud_azure",
+      "label": "Cloud — Azure (condicional)",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "cloud_azure"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "_comment": "KBs de serviço azure-* (um por role do contrato cloud-resolution) + skills oficiais do vendor vindas do skills.sh. Agentes nunca mudam por provider.",
+      "artifacts": [
+        {
+          "path": ".claude/kb/azure-terraform",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/azure-synapse",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/azure-event-hubs",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/azure-adls-gen2",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/azure-stream-analytics",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/azure-storage",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/azure-synapse-analytics",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "cloud_aws",
+      "label": "Cloud — AWS (condicional)",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "cloud_aws"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "_comment": "KBs de serviço aws-* (um por role do contrato cloud-resolution) + skills oficiais do vendor vindas do skills.sh. Agentes nunca mudam por provider.",
+      "artifacts": [
+        {
+          "path": ".claude/kb/aws-terraform",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/aws-redshift",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/aws-msk",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/aws-s3",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/aws-managed-flink",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/aws-storage",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/aws-billing-and-cost-management",
+          "kind": "copy"
+        }
+      ]
+    },
+    {
+      "name": "cloud_gcp",
+      "label": "Cloud — GCP (condicional)",
+      "condition": {
+        "type": "keyword_in_files",
+        "keywords": [
+          "cloud_gcp"
+        ],
+        "files": [
+          "pyproject.toml",
+          "package.json"
+        ]
+      },
+      "_comment": "KBs de serviço gcp-* (um por role do contrato cloud-resolution) + skills oficiais do vendor vindas do skills.sh. Agentes nunca mudam por provider.",
+      "artifacts": [
+        {
+          "path": ".claude/kb/gcp-terraform",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/gcp-bigquery",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/gcp-managed-kafka",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/gcp-gcs",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/kb/gcp-dataflow",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/bigquery-basics",
+          "kind": "copy"
+        },
+        {
+          "path": ".claude/skills/google-cloud-waf-cost-optimization",
+          "kind": "copy"
+        }
+      ]
     }
   ]
 }

@@ -111,7 +111,7 @@ Cada item tem `path`, `kind` (`copy`/`generate`/`scaffold`) e `action`:
 | `CONFLICT` | Existe, **não** está rastreado no manifest — precisa perguntar ao usuário |
 
 A tabela stack→artefatos (categorias Foundation / Dev workflow / Git Hygiene / Code quality
-sempre + 9 blocos condicionais por stack) vive em `scripts/stack_map.json` — é a fonte única;
+sempre + 13 blocos condicionais por stack) vive em `scripts/stack_map.json` — é a fonte única;
 não a duplique aqui.
 As keywords de detecção (`langgraph`, `dbt`, `airflow`, ...) também vêm só de lá — o script deriva
 o vocabulário do próprio `stack_map.json`, não há lista duplicada em nenhum lugar.
@@ -134,6 +134,22 @@ entra pela foundation (`config/`). Examples Databricks (`databricks-sdp-min` /
 `databricks-dlt-min`) **não** entram no install — ficam só no canônico.
 
 **Cloud secrets / Key Vault:** categoria `cloud_secrets` (keywords `secret_store|keyvault|azure-keyvault|oci-vault`; marker `secret_store` também injeta o sinal) propaga skill `cloud-secrets` + KBs `oci-vault` e `azure-keyvault`. **Não** está acoplada a `pipeline_dados`. Examples `keyvault-*-min` ficam fora do install.
+
+**Cloud multi-provider (Azure / AWS / GCP):** detecção por `detect_clouds()` — linha `cloud: azure|aws|gcp|multi`
+no `CLAUDE.md` do filho (vence; `multi` ativa as três), senão blocos `provider` em `*.tf`
+(raiz, `infra/`, `terraform/`, `iac/`), senão prefixos de SDK nas dependências. Injeta as
+keywords sintéticas `cloud_any` e `cloud_<provider>`.
+
+| Categoria | Dispara com | Propaga |
+|---|---|---|
+| `cloud_core` | qualquer nuvem | `agents/cloud/` (`cloud-data-engineer`, `iac-engineer`), KBs `cloud-resolution` + `terraform`, skills genéricas do skills.sh (`terraform-style-guide`, `terraform-test`, `cost-optimization`) |
+| `cloud_azure` | `cloud_azure` | KBs `azure-*` (1 por role) + skills oficiais do vendor (skills.sh) |
+| `cloud_aws` | `cloud_aws` | KBs `aws-*` + skills oficiais do vendor |
+| `cloud_gcp` | `cloud_gcp` | KBs `gcp-*` + skills oficiais do vendor |
+
+Agentes de nuvem são agnósticos: provider novo = KBs + categoria nova, nenhum agente muda
+(contrato em `kb/cloud-resolution/patterns/service-kb-contract.md`). Projeto novo sem `.tf`
+nem dependência ainda: `--force-category cloud_core --force-category cloud_<provider>`.
 
 Monte e apresente o Install Plan em markdown a partir do JSON, agrupando por `action` (mesmo
 espírito de antes: COPIAR / GERAR / SCAFFOLD / ATUALIZAR / PULAR / NÃO TOCAR / CONFLITOS).
