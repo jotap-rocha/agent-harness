@@ -61,6 +61,18 @@ deste harness (sem tier/kb_domains/confidence scoring), não copiada ao pé da l
 | `data-contracts-engineer` | Contratos ODCS, SLA, governança de schema |
 | `data-quality-analyst` | Great Expectations, Soda, testes dbt, observabilidade |
 
+## `cloud/` — operação de nuvem pública (agnóstica de provider)
+
+Agentes **sem nenhum nome de provider ou serviço** no corpo. Resolvem a nuvem do projeto e o
+papel da tarefa pela KB `cloud-resolution` e se especializam carregando a KB de serviço
+`{provider}-{serviço}` (filtro `provider` + `role` no `_index.yaml`). Provider novo = KBs novas,
+nenhum agente muda. Propagados pela categoria `cloud_core` do `install-harness`.
+
+| Agente | Quando |
+|---|---|
+| `cloud-data-engineer` | Opera serviço de dados gerenciado por papel (warehouse, streaming, object storage, stream processing) + custo de conta free tier/crédito |
+| `iac-engineer` | Terraform: state remoto, módulos por papel, plan → acordo → apply, teardown |
+
 ## Mapa de escalação
 
 Não existe um arquivo central de "router" — cada agente já declara, na própria seção
@@ -87,6 +99,16 @@ lakehouse-architect <-> data-platform-engineer  table format <-> infra/custo clo
 data-contracts-engineer <-> data-quality-analyst  contrato <-> implementação do check
 data-contracts-engineer <-> schema-designer   contrato <-> design de schema do zero
 data-quality-analyst <-> sql-optimizer        qualidade <-> query lenta
+```
+
+### `cloud/` <-> `cloud/` e `data-engineering/`
+
+```text
+cloud-data-engineer <-> iac-engineer            operar o serviço <-> escrever/aplicar Terraform
+cloud-data-engineer <-> data-platform-engineer  operar na nuvem <-> comparar plataformas
+cloud-data-engineer <-> streaming-engineer      broker gerenciado <-> lógica de stream
+cloud-data-engineer  -> schema-designer         desenho do SCD antes do MERGE
+iac-engineer         -> pipeline-architect      orquestração não é IaC
 ```
 
 ### `data-engineering/` <-> `architect/`

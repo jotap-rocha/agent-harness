@@ -37,6 +37,31 @@ DEFAULT_CANONICAL = str(Path(__file__).resolve().parents[4])
 MANIFEST_REL = ".claude/harness-manifest.json"
 KEYWORD_FILES = ["pyproject.toml", "package.json"]  # fallback: scan bruto se o parse estruturado falhar
 
+# Detecção de nuvem (categorias cloud_*): campo `cloud:` do CLAUDE.md, blocos `provider` em *.tf
+# e prefixos de dependência. Injeta keywords sintéticas `cloud_<provider>` + `cloud_any`.
+CLOUD_PROVIDERS = ("azure", "aws", "gcp")
+# `cloud: aws`, `cloud: aws, gcp`, `cloud: multi`, `cloud: none`; tolera bullet/negrito/crase.
+# Linha de template com `|` (ex.: `azure | aws | gcp | multi`) não é declaração.
+CLOUD_FIELD_RE = re.compile(
+    r"^[ \t>*\-]*\**cloud:\**[ \t]*`?([A-Za-z, ]+?)`?[ \t]*(?:#.*)?$", re.MULTILINE
+)
+FENCED_BLOCK_RE = re.compile(r"```.*?```", re.DOTALL)
+TF_PROVIDER_RE = re.compile(r'provider\s+"(azurerm|azuread|aws|google|google-beta)"')
+TF_SOURCE_RE = re.compile(r'source\s*=\s*"hashicorp/(azurerm|azuread|aws|google|google-beta)"')
+TF_COMMENT_RE = re.compile(r"(?m)(?:#|//).*$")
+TF_PROVIDER_TO_CLOUD = {"azurerm": "azure", "azuread": "azure", "aws": "aws",
+                        "google": "gcp", "google-beta": "gcp"}
+TF_SKIP_DIRS = {".git", ".terraform", "node_modules", ".venv", "venv", "__pycache__"}
+TF_MAX_DEPTH = 4
+# Só dependências DECLARADAS (pyproject/package.json/requirements) — lockfiles trazem transitivas
+# (ex.: dbt-snowflake -> boto3, mssql -> @azure/identity) e dariam falso positivo.
+CLOUD_DEP_PREFIXES = {
+    "azure": ("azure-", "@azure/"),
+    "aws": ("boto3", "botocore", "aioboto3", "awswrangler", "aws-cdk", "aws-lambda-powertools",
+            "aws-sdk", "@aws-sdk/", "@aws-cdk/"),
+    "gcp": ("google-cloud-", "@google-cloud/"),
+}
+
 # Hook de aviso de drift de contexto: avisa, nunca bloqueia (exit 0 sempre). Sai silencioso se a
 # skill sync-context não foi instalada, e usa stamp file para avisar no máximo a cada 4h.
 CONTEXT_DRIFT_HOOK_COMMAND = (
@@ -222,6 +247,7 @@ def detect_stack_signals(target: Path, keywords: set[str]) -> dict:
         dep_names |= _names_from_package_json(target / "package.json")
     if (target / "requirements.txt").exists():
         dep_names |= _names_from_requirements_txt(target / "requirements.txt")
+    declared_deps = set(dep_names)  # antes dos lockfiles (detecção de nuvem usa só estas)
     if (target / "uv.lock").exists():
         dep_names |= _names_from_toml_lockfile(target / "uv.lock")
     if (target / "poetry.lock").exists():
@@ -258,7 +284,69 @@ def detect_stack_signals(target: Path, keywords: set[str]) -> dict:
         if "secret_store" in marker_text.lower():
             signals["keywords"].add("secret_store")
 
+    clouds = detect_clouds(target, declared_deps)
+    signals["clouds"] = sorted(clouds)  # lista: signals vai para json.dumps em --json
+    signals["keywords"].update(f"cloud_{c}" for c in clouds)
+    if clouds:
+        signals["keywords"].add("cloud_any")
+
     return signals
+
+
+def _declared_clouds(claude_md: Path) -> set[str] | None:
+    """Lê `cloud:` do CLAUDE.md fora de blocos de código. None = sem declaração válida."""
+    try:
+        text = FENCED_BLOCK_RE.sub("", claude_md.read_text(encoding="utf-8", errors="ignore"))
+    except OSError:
+        return None
+    for match in CLOUD_FIELD_RE.finditer(text):
+        tokens = {t.strip().lower() for t in match.group(1).split(",") if t.strip()}
+        if not tokens:
+            continue
+        if tokens == {"none"}:
+            return set()
+        if "multi" in tokens:
+            return set(CLOUD_PROVIDERS)
+        if tokens <= set(CLOUD_PROVIDERS):
+            return tokens
+    return None
+
+
+def _terraform_clouds(target: Path) -> set[str]:
+    """Nuvens por `provider "x"` / `source = "hashicorp/x"` em *.tf (recursivo, com limite)."""
+    clouds: set[str] = set()
+    root_depth = len(target.parts)
+    for dirpath, dirnames, filenames in os.walk(target):
+        dirnames[:] = [d for d in dirnames if d not in TF_SKIP_DIRS]
+        if len(Path(dirpath).parts) - root_depth >= TF_MAX_DEPTH:
+            dirnames[:] = []
+        for name in filenames:
+            if not name.endswith(".tf"):
+                continue
+            try:
+                text = (Path(dirpath) / name).read_text(encoding="utf-8", errors="ignore")
+            except OSError:
+                continue
+            text = TF_COMMENT_RE.sub("", text)
+            found = TF_PROVIDER_RE.findall(text) + TF_SOURCE_RE.findall(text)
+            clouds.update(TF_PROVIDER_TO_CLOUD[p] for p in found)
+    return clouds
+
+
+def detect_clouds(target: Path, declared_deps: set[str]) -> set[str]:
+    """Nuvens do projeto-alvo. O campo `cloud:` do CLAUDE.md é declaração explícita e vence
+    (`cloud: none` suprime a inferência); sem ele, infere por *.tf e por deps declaradas."""
+    claude_md = target / "CLAUDE.md"
+    if claude_md.is_file():
+        declared = _declared_clouds(claude_md)
+        if declared is not None:
+            return declared
+
+    clouds = _terraform_clouds(target)
+    for cloud, prefixes in CLOUD_DEP_PREFIXES.items():
+        if any(name.startswith(prefixes) for name in declared_deps):
+            clouds.add(cloud)
+    return clouds
 
 
 def condition_matches(condition: dict, signals: dict) -> bool:
@@ -1069,7 +1157,7 @@ def main() -> None:
     print("  0. CONTEXT_REBIND — confirmar que CLAUDE/AGENTS/CONTEXT/README falam do filho")
     print("     (não do canônico). Soft-block até /grill-with-docs, /grill-me ou harness-architect.")
     print("  1. /grill-with-docs — preencher CONTEXT.md com terminologia real do domínio")
-    print("  2. /grill-me — refinar CLAUDE.md (inclua scm: azure | github)")
+    print("  2. /grill-me — refinar CLAUDE.md (inclua scm: azure | github e, se usar nuvem, cloud:)")
     print("  3. Revisar hooks em .claude/settings.json")
     print("  4. Bootstrap de githooks — só após acordo (Passo 3.5 / pergunta acima)")
     print("  5. /validar — confirmar gate verde antes da primeira sessão de build")

@@ -114,6 +114,17 @@ python -m config.fluxo_events check|emit|render|truncate
   **fluxo** (com **x**); aviso UX 1× no enter: SDD (`harness-brainstorm` / `harness-build`)
   e Dev Loop (`prompt-crafter` / `dev-loop-executor` / `/dev`) — path `live.html` /
   `/fluxo-live`; guardrail pytest naming no pacote (`tests/fluxo_events/test_naming_ptbr.py`)
+- **Cloud multi-provider (Azure/AWS/GCP):** agentes `agents/cloud/` (`cloud-data-engineer`,
+  `iac-engineer`) **nunca** citam provider/serviço (skills de terceiros do skills.sh em
+  `cloud_core` podem trazer exemplos de várias nuvens) — especialização só
+  via KB `{provider}-{serviço}` com `provider:`/`role:` no `_index.yaml` (roles `iac-provider`,
+  `warehouse`, `streaming`, `object-storage`, `stream-processing`); Passo 0 e contrato em
+  `kb/cloud-resolution/`; núcleo IaC agnóstico em `kb/terraform/`; provider novo = KBs +
+  categoria `cloud_<provider>`, zero mudança em agente; install `cloud_core` +
+  `cloud_{azure,aws,gcp}` via `detect_clouds` (`cloud:` no CLAUDE.md › `*.tf` › deps);
+  skills novas **sempre do skills.sh** (`npx skills add`, `skills-lock.json`) — lacuna sem
+  skill madura vira `patterns/` de KB, não skill escrita à mão; guardrail
+  `tests/install_harness/test_cloud_catalog.py` (agnosticidade + matriz role×provider)
 - **Tasks por slug:** issues locais em `tasks/{slug}/NN-*.md` (mesmo `{slug}` de
   `.cursor/projetos/{slug}/`) — **não** flat na raiz de `tasks/`; numeração global `NN`
 
@@ -121,10 +132,10 @@ python -m config.fluxo_events check|emit|render|truncate
 
 | O que | Onde | Qtd |
 |---|---|---|
-| Agents | `.cursor/agents/` | 33 (4 categorias: `workflow/`, `architect/`, `dev/`, `data-engineering/`) |
-| Skills | `.cursor/skills/` | 24 |
+| Agents | `.cursor/agents/` | 35 (5 categorias: `workflow/`, `architect/`, `dev/`, `data-engineering/`, `cloud/`) |
+| Skills | `.cursor/skills/` | 33 (9 vindas do skills.sh — ver `skills-lock.json`) |
 | Rules | `.cursor/rules/` | 12 |
-| KBs | `.cursor/kb/` | 21 domínios |
+| KBs | `.cursor/kb/` | 38 domínios |
 | Commands | `.cursor/commands/` | 24 (10 na raiz + `data-engineering/` + `visual-explainer/` + `/evidencias` + `/fluxo-live`) |
 | Tasks (to-tasks) | `tasks/{slug}/NN-*.md` | alinhado a `.cursor/projetos/{slug}/` — não flat na raiz |
 | Dev Loop | `.cursor/dev/` | progress/logs/templates (conceitual `DEV-LOOP.md`) — **≠** `tasks/{slug}/` do SDD |
@@ -169,6 +180,10 @@ python -m config.fluxo_events check|emit|render|truncate
 | Cheatsheet fluxo-events | `docs/cheatsheets/fluxo-events-cheatsheet.md` | 1 página + Opção C + delegação task/subagente + Dev Loop + naming PT-BR + §1.3 |
 | Command `/fluxo-live` | `.cursor/commands/fluxo-live.md` | abrir/servir `live.html` do slug |
 | Testes fluxo-events | `tests/fluxo_events/` | contrato · emit · stack · exec trail · delegação · causal SVG · dual-map · Dev Loop · naming · wiring · install · dogfood |
+| Agents de nuvem | `.cursor/agents/cloud/` | `cloud-data-engineer`, `iac-engineer` — agnósticos |
+| Contrato multi-cloud | `.cursor/kb/cloud-resolution/` | Passo 0 · roles · contrato de KB de serviço |
+| KBs de serviço de nuvem | `.cursor/kb/{azure,aws,gcp}-*` | 5 roles × 3 providers |
+| Testes multi-cloud | `tests/install_harness/test_cloud_catalog.py` | agnosticidade · matriz · detecção · espelho |
 | Template CLAUDE.md | `.cursor/skills/harness-architect/references/claude-dir-templates.md` | — |
 | Schema do manifest | `.cursor/skills/install-harness/references/install-manifest-schema.md` | — |
 | Guia de uso do harness | `docs/manuais/harness-guide.md` | — |

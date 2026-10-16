@@ -66,17 +66,34 @@ FROZEN_DE_COMMANDS = frozenset(
 )
 # Loop 3: 18→19 KBs (databricks) · 19→20 skills (de-conformidade)
 # Key Vault: 19→21 KBs (oci-vault, azure-keyvault) · 20→21 skills (cloud-secrets)
+# Multi-cloud: 21→38 KBs (cloud-resolution, terraform, 15 {azure,aws,gcp}-*) · 24→33 skills (skills.sh)
 FROZEN_KB_DOMAINS = frozenset(
     {
         "airflow",
+        "aws-managed-flink",
+        "aws-msk",
+        "aws-redshift",
+        "aws-s3",
+        "aws-terraform",
+        "azure-adls-gen2",
+        "azure-event-hubs",
         "azure-keyvault",
+        "azure-stream-analytics",
+        "azure-synapse",
+        "azure-terraform",
         "cloud-platforms",
+        "cloud-resolution",
         "data-modeling",
         "data-quality",
         "databricks",
         "dbt",
         "design-instrucional",
         "fastapi",
+        "gcp-bigquery",
+        "gcp-dataflow",
+        "gcp-gcs",
+        "gcp-managed-kafka",
+        "gcp-terraform",
         "lakehouse",
         "langgraph",
         "multi-tenant",
@@ -88,19 +105,27 @@ FROZEN_KB_DOMAINS = frozenset(
         "sql-patterns",
         "streaming",
         "supabase",
+        "terraform",
         "testing",
     }
 )
 FROZEN_SKILL_DIRS = frozenset(
     {
         "adversarial-judge",
+        "aws-billing-and-cost-management",
+        "aws-storage",
+        "azure-storage",
+        "azure-synapse-analytics",
+        "bigquery-basics",
         "cloud-secrets",
+        "cost-optimization",
         "create-rag-pipeline",
         "de-conformidade",
         "documentation-writer",
         "excalidraw-diagram",
         "find-skills",
         "gen-tests",
+        "google-cloud-waf-cost-optimization",
         "grill-me",
         "grill-with-docs",
         "guia-architect",
@@ -111,6 +136,8 @@ FROZEN_SKILL_DIRS = frozenset(
         "new-adr",
         "search-strategy-check",
         "sync-context",
+        "terraform-style-guide",
+        "terraform-test",
         "to-brd",
         "to-issues",
         "to-prd",
@@ -187,7 +214,7 @@ def test_stack_map_sem_artifacts_databricks_examples() -> None:
 
 
 def test_inventario_agents_skills_kbs_loop3() -> None:
-    """Inventário canônico — 10 agents DE, 7 commands DE, 24 skills, 21 KBs."""
+    """Inventário canônico — 10 agents DE, 7 commands DE, 33 skills, 38 KBs."""
     for agents_root in (
         REPO_ROOT / ".claude" / "agents" / "data-engineering",
         REPO_ROOT / ".cursor" / "agents" / "data-engineering",
@@ -205,14 +232,14 @@ def test_inventario_agents_skills_kbs_loop3() -> None:
     for skills_root in (REPO_ROOT / ".claude" / "skills", REPO_ROOT / ".cursor" / "skills"):
         skill_dirs = {path.name for path in skills_root.iterdir() if path.is_dir()}
         assert skill_dirs == FROZEN_SKILL_DIRS
-        assert len(skill_dirs) == 24
+        assert len(skill_dirs) == 33
         assert "de-conformidade" in skill_dirs
         assert "cloud-secrets" in skill_dirs
 
     for kb_root in (REPO_ROOT / ".claude" / "kb", REPO_ROOT / ".cursor" / "kb"):
         domains = {path.name for path in kb_root.iterdir() if path.is_dir()}
         assert domains == FROZEN_KB_DOMAINS
-        assert len(domains) == 21
+        assert len(domains) == 38
         assert "databricks" in domains
         assert "oci-vault" in domains and "azure-keyvault" in domains
 
