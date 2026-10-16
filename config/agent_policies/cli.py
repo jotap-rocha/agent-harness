@@ -62,7 +62,7 @@ def main(argv: list[str] | None = None) -> int:
                 contract_path=args.path,
                 profile_path=args.profile,
             )
-        except Exception as exc:  # noqa: BLE001 — boundary CLI
+        except Exception as exc:
             print(f"generate failed: {exc}", file=sys.stderr)
             return 1
         if args.dry_run or args.out_dir is None:
@@ -77,7 +77,7 @@ def main(argv: list[str] | None = None) -> int:
 def _cmd_check(path: Path) -> int:
     try:
         contract = AgentPoliciesContract.load(path)
-    except Exception as exc:  # noqa: BLE001 — boundary CLI
+    except Exception as exc:
         print(f"check failed: {exc}", file=sys.stderr)
         return 1
     print(

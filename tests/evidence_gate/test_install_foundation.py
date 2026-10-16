@@ -81,8 +81,8 @@ def test_install_foundation_has_evidence_gate(tmp_path: Path) -> None:
         [
             sys.executable,
             "-c",
-            "from config.evidence_gate import EvidenceGateContract; "
-            "print(EvidenceGateContract.load('evidence-gate.yaml').version)",
+            ("from config.evidence_gate import EvidenceGateContract; "
+            "print(EvidenceGateContract.load('evidence-gate.yaml').version)"),
         ],
         cwd=target,
         capture_output=True,

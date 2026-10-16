@@ -7,14 +7,14 @@ import re
 import uuid
 from pathlib import Path
 
+from config.fluxo_events.contract import SddPhase
 from config.fluxo_events.emit import ALLOWED_KEYS, emit_event
 from config.fluxo_events.paths import fluxo_dir_for_slug
 from config.fluxo_events.render import build_html, derive_active_state
-from config.fluxo_events.contract import SddPhase
 
 UUID_V4 = re.compile(
     r"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
-    re.I,
+    re.IGNORECASE,
 )
 
 

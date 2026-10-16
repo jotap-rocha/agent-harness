@@ -19,7 +19,6 @@ from config.canonical_data_check.de_marker import (
 )
 from config.canonical_data_check.waivers_yaml import parse_waivers_document
 from config.data_engineering.yaml_loader import load_mapping
-
 from tests.data_engineering._secret_fixtures import credential_assignment
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

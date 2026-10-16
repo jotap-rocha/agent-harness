@@ -105,7 +105,7 @@ def truncate_events(
         )
     except OSError as exc:
         return _soft_fail(f"truncate FS error: {exc}", kept=0)
-    except Exception as exc:  # noqa: BLE001 — boundary fail-soft
+    except Exception as exc:
         return _soft_fail(f"truncate failed: {exc}", kept=0)
 
 

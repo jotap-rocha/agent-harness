@@ -19,7 +19,6 @@ from config.canonical_data_check.de_marker import (
 from config.canonical_data_check.findings import Finding
 from config.canonical_data_check.scanner import TextFile
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 CONTRACT_PATH = REPO_ROOT / "data-engineering.yaml"
 

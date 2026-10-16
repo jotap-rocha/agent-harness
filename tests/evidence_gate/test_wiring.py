@@ -15,7 +15,6 @@ from config.evidence_gate.close import (
     require_evidencias_ref_field,
 )
 
-
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 

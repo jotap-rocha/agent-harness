@@ -95,7 +95,7 @@ def render_live(
         )
     except OSError as exc:
         return _soft_fail(f"render FS error: {exc}")
-    except Exception as exc:  # noqa: BLE001 — boundary fail-soft
+    except Exception as exc:
         return _soft_fail(f"render failed: {exc}")
 
 
@@ -191,10 +191,10 @@ def build_flow_svg(
         svg_classes += f" {svg_extra_class.strip()}"
 
     parts: list[str] = [
-        f'<svg data-testid="fluxograma" class="{svg_classes}" '
+        (f'<svg data-testid="fluxograma" class="{svg_classes}" '
         f'viewBox="0 0 {width} {height}" width="100%" '
         f'preserveAspectRatio="xMinYMin meet" role="img" '
-        f'aria-label="Fluxograma do fluxo de agentes">',
+        f'aria-label="Fluxograma do fluxo de agentes">'),
         (
             '<defs><marker id="arrowhead" markerWidth="9" markerHeight="9" '
             'refX="7" refY="3" orient="auto" markerUnits="strokeWidth">'
@@ -390,10 +390,10 @@ def build_execution_trail_svg(
     height = _EXEC_MARGIN * 2 + _EXEC_NODE_H + _EXEC_BADGE_H + 12 + extra_h
 
     parts: list[str] = [
-        f'<svg data-testid="fluxograma-execucao" class="fluxograma fluxograma-execucao" '
+        (f'<svg data-testid="fluxograma-execucao" class="fluxograma fluxograma-execucao" '
         f'viewBox="0 0 {width:.0f} {height:.0f}" width="100%" '
         f'preserveAspectRatio="xMinYMin meet" role="img" '
-        f'aria-label="Trilha de execução real dos agentes">',
+        f'aria-label="Trilha de execução real dos agentes">'),
         (
             '<defs><marker id="exec-arrow" markerWidth="9" markerHeight="9" '
             'refX="7" refY="3" orient="auto" markerUnits="strokeWidth">'
@@ -755,10 +755,10 @@ def build_causal_svg(events: list[dict[str, Any]]) -> str:
             positions[eid] = (x, y)
 
     parts: list[str] = [
-        f'<svg data-testid="fluxograma-causal" class="fluxograma fluxograma-causal" '
+        (f'<svg data-testid="fluxograma-causal" class="fluxograma fluxograma-causal" '
         f'viewBox="0 0 {width:.0f} {height:.0f}" width="100%" '
         f'preserveAspectRatio="xMinYMin meet" role="img" '
-        f'aria-label="Grafo causal da execução">',
+        f'aria-label="Grafo causal da execução">'),
         (
             '<defs><marker id="causal-arrow" markerWidth="9" markerHeight="9" '
             'refX="7" refY="3" orient="auto" markerUnits="strokeWidth">'

@@ -21,9 +21,8 @@ _SPARK_CONF_REF = re.compile(r"(?i)spark\.conf|config/spark\.conf")
 
 def detect_airflow(project_root: Path, files: tuple[TextFile, ...]) -> bool:
     """Detecta presença de Airflow/DAG no projeto."""
-    if (project_root / "dags").is_dir():
-        if any((project_root / "dags").rglob("*.py")):
-            return True
+    if (project_root / "dags").is_dir() and any((project_root / "dags").rglob("*.py")):
+        return True
     if (project_root / "airflow.cfg").is_file():
         return True
     for file in files:
@@ -73,7 +72,7 @@ def _dag_files(project_root: Path, files: tuple[TextFile, ...]) -> tuple[TextFil
     if selected:
         return tuple(selected)
     # fallback: qualquer py sob dags já coberto; se detectou por airflow.cfg vazio
-    return tuple()
+    return ()
 
 
 def _fail(rule_id: str, path: str, message: str) -> Finding:

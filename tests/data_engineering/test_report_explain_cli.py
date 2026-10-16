@@ -8,7 +8,6 @@ import sys
 from pathlib import Path
 
 from config.canonical_data_check import EXIT_BLOCKERS, EXIT_OK, EXIT_USAGE
-
 from tests.data_engineering._secret_fixtures import credential_assignment
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

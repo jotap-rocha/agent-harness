@@ -6,10 +6,11 @@ import json
 import re
 import sys
 import uuid
+from collections.abc import Mapping
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 
 from config.fluxo_events.contract import FluxoEventsContract
 from config.fluxo_events.paths import (
@@ -37,18 +38,18 @@ ALLOWED_KEYS: frozenset[str] = frozenset(
 )
 
 FORBIDDEN_KEY_PATTERNS: tuple[re.Pattern[str], ...] = (
-    re.compile(r"prompt", re.I),
-    re.compile(r"message", re.I),
-    re.compile(r"content", re.I),
-    re.compile(r"diff", re.I),
-    re.compile(r"secret", re.I),
-    re.compile(r"password", re.I),
-    re.compile(r"token", re.I),
-    re.compile(r"api[_-]?key", re.I),
-    re.compile(r"cpf", re.I),
-    re.compile(r"email", re.I),
-    re.compile(r"telefone|phone", re.I),
-    re.compile(r"connection.?string", re.I),
+    re.compile(r"prompt", re.IGNORECASE),
+    re.compile(r"message", re.IGNORECASE),
+    re.compile(r"content", re.IGNORECASE),
+    re.compile(r"diff", re.IGNORECASE),
+    re.compile(r"secret", re.IGNORECASE),
+    re.compile(r"password", re.IGNORECASE),
+    re.compile(r"token", re.IGNORECASE),
+    re.compile(r"api[_-]?key", re.IGNORECASE),
+    re.compile(r"cpf", re.IGNORECASE),
+    re.compile(r"email", re.IGNORECASE),
+    re.compile(r"telefone|phone", re.IGNORECASE),
+    re.compile(r"connection.?string", re.IGNORECASE),
 )
 
 PHASE_SLUGS: dict[str, int] = {
@@ -153,7 +154,7 @@ def emit_event(
         line = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
         target = events_path(proj_root, slug, paths=contract.paths)
         _ensure_fluxo_dir(proj_root, slug)
-        from config.fluxo_events.rotate import append_with_rotate  # noqa: PLC0415
+        from config.fluxo_events.rotate import append_with_rotate
 
         rotate_warn = append_with_rotate(
             target,
@@ -164,7 +165,7 @@ def emit_event(
 
         rendered = False
         if auto_render:
-            from config.fluxo_events.render import render_live  # noqa: PLC0415
+            from config.fluxo_events.render import render_live
 
             render_result = render_live(
                 slug=slug,
@@ -192,7 +193,7 @@ def emit_event(
         )
     except OSError as exc:
         return _soft_fail(f"emit FS error: {exc}")
-    except Exception as exc:  # noqa: BLE001 — boundary fail-soft
+    except Exception as exc:
         return _soft_fail(f"emit failed: {exc}")
 
 
@@ -226,7 +227,7 @@ def _build_payload(
 
     payload: dict[str, Any] = {
         "event_type": event_type,
-        "ts": ts or datetime.now(timezone.utc).isoformat(),
+        "ts": ts or datetime.now(UTC).isoformat(),
         "phase": phase_num,
         "agent": agent.strip(),
         "slug": slug.strip(),
@@ -302,10 +303,10 @@ def _resolve_parent(
     if projetos_root is None:
         return None, None
     try:
-        from config.fluxo_events.stack import (  # noqa: PLC0415
+        from config.fluxo_events.stack import (
             peek_parent,
-            push_event,
             pop_event,
+            push_event,
         )
 
         stack_parent, warn = peek_parent(projetos_root, slug)
@@ -318,7 +319,7 @@ def _resolve_parent(
         return stack_parent, warn
     except ImportError:
         return None, None
-    except Exception as exc:  # noqa: BLE001 — fail-soft
+    except Exception as exc:
         return None, f"stack resolve soft: {exc}"
 
 
@@ -333,7 +334,7 @@ def _stack_touch_after_emit(
     if projetos_root is None:
         return
     try:
-        from config.fluxo_events.stack import push_event, pop_event  # noqa: PLC0415
+        from config.fluxo_events.stack import pop_event, push_event
 
         if event_type in {"agent_enter", "task_enter", "phase_enter"}:
             push_event(projetos_root, slug, event_id)
@@ -341,7 +342,7 @@ def _stack_touch_after_emit(
             pop_event(projetos_root, slug)
     except ImportError:
         return
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         _warn(f"stack touch soft: {exc}")
 
 
@@ -382,7 +383,7 @@ def _mirror_best_effort(
     try:
         cursor_root = resolve_projetos_root(None, repo_root=repo_root, tree="cursor")
         target = events_path(cursor_root, slug, paths=contract.paths)
-        from config.fluxo_events.rotate import append_with_rotate  # noqa: PLC0415
+        from config.fluxo_events.rotate import append_with_rotate
 
         append_with_rotate(
             target,
@@ -390,7 +391,7 @@ def _mirror_best_effort(
             max_bytes=contract.limits.max_events_bytes,
         )
         if auto_render:
-            from config.fluxo_events.render import render_live  # noqa: PLC0415
+            from config.fluxo_events.render import render_live
 
             render_live(
                 slug=slug,

@@ -18,7 +18,6 @@ from config.canonical_data_check import (
     validate_project,
 )
 from config.canonical_data_check.cli import main as cli_main
-
 from tests.data_engineering._secret_fixtures import credential_assignment
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

@@ -153,7 +153,7 @@ def _check_evidencias_ref(
         except OSError:
             pass
         return [
-            f"evidencias_ref aponta para {ref_path}, "
-            f"esperado manifesto {expected}"
+            (f"evidencias_ref aponta para {ref_path}, "
+            f"esperado manifesto {expected}")
         ]
     return []
