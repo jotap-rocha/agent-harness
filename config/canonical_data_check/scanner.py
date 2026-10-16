@@ -84,8 +84,5 @@ def iter_text_files(project_root: Path) -> tuple[TextFile, ...]:
 def _is_text_candidate(path: Path) -> bool:
     if path.name in TEXT_BASENAMES:
         return True
-    suffix = path.suffix.lower()
-    if suffix in TEXT_SUFFIXES:
-        return True
     # arquivos sem extensão como OWNER já cobertos; .env real não é lido de propósito
-    return False
+    return path.suffix.lower() in TEXT_SUFFIXES

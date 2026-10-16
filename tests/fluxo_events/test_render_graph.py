@@ -9,10 +9,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from config.fluxo_events.contract import SddPhase
 from config.fluxo_events.emit import emit_event
 from config.fluxo_events.paths import live_html_path
 from config.fluxo_events.render import build_flow_svg, render_live
-from config.fluxo_events.contract import SddPhase
 
 
 def _read(tmp_path: Path, slug: str) -> str:

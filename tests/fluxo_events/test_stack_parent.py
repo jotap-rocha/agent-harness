@@ -92,5 +92,3 @@ def test_stack_fail_soft(tmp_path: Path, contract_yaml_path: Path) -> None:
     assert "parent_event_id" not in payload or payload.get("parent_event_id") is None
     # diretório fluxo existe (emit seguiu)
     assert fluxo_dir_for_slug(proj, "stack-demo").is_dir()
-    # warning soft esperado
-    assert result.warning or True  # emit ok mesmo com warn

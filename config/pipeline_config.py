@@ -77,7 +77,7 @@ class PipelineConfig:
     extra: dict = field(default_factory=dict)
 
     @classmethod
-    def from_env(cls) -> "PipelineConfig":
+    def from_env(cls) -> PipelineConfig:
         """Carrega config do ambiente definido em PIPELINE_ENV."""
         env = os.getenv("PIPELINE_ENV", "local")
         config_path = Path(__file__).parent / "environments" / f"{env}.yaml"

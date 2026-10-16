@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import re
+from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Literal, Mapping, Pattern
+from re import Pattern
+from typing import Literal
 
 from config.agent_policies.yaml_loader import load_mapping
 

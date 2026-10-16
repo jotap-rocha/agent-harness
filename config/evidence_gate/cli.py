@@ -118,7 +118,7 @@ def main(argv: list[str] | None = None) -> int:
 def _cmd_check_contract(path: Path) -> int:
     try:
         contract = EvidenceGateContract.load(path)
-    except Exception as exc:  # noqa: BLE001 — boundary CLI
+    except Exception as exc:
         print(f"check --contract failed: {exc}", file=sys.stderr)
         return 1
     print(
@@ -130,7 +130,7 @@ def _cmd_check_contract(path: Path) -> int:
 
 
 def _cmd_check_manifest(args: argparse.Namespace) -> int:
-    from config.evidence_gate.check import check_task  # noqa: PLC0415
+    from config.evidence_gate.check import check_task
 
     if args.root is None or args.task is None:
         print(
@@ -148,7 +148,7 @@ def _cmd_check_manifest(args: argparse.Namespace) -> int:
             issue=args.issue,
             ref_base=args.entregas.parent if args.entregas else None,
         )
-    except Exception as exc:  # noqa: BLE001 — boundary CLI
+    except Exception as exc:
         print(f"check failed: {exc}", file=sys.stderr)
         return 1
     if not result.ok:
@@ -160,7 +160,7 @@ def _cmd_check_manifest(args: argparse.Namespace) -> int:
 
 
 def _cmd_collect(args: argparse.Namespace) -> int:
-    from config.evidence_gate.collect import collect_criterion  # noqa: PLC0415
+    from config.evidence_gate.collect import collect_criterion
 
     try:
         outcome = collect_criterion(
@@ -172,7 +172,7 @@ def _cmd_collect(args: argparse.Namespace) -> int:
             contract_path=args.path,
             cwd=args.cwd,
         )
-    except Exception as exc:  # noqa: BLE001 — boundary CLI
+    except Exception as exc:
         print(f"collect failed: {exc}", file=sys.stderr)
         return 1
     print(

@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import os
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -27,7 +27,6 @@ from config.canonical_data_check.waivers_yaml import (
     WaiversYamlError,
     parse_waivers_document,
 )
-
 
 BASELINE_FILENAME = "baseline.json"
 PROFILE_FILENAME = "project_profile.yaml"
@@ -64,7 +63,7 @@ class Waiver:
 
     @property
     def is_active(self) -> bool:
-        today_utc = datetime.now(timezone.utc).date()
+        today_utc = datetime.now(UTC).date()
         return bool(self.owner.strip()) and self.expiry >= today_utc
 
 
@@ -117,7 +116,7 @@ def write_baseline(
     payload: dict[str, object] = {
         "version": BASELINE_VERSION,
         "profile": effective_profile,
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"),
         "findings": [entry.to_dict() for entry in entries],
     }
     effective_profiles = _profiles_for_baseline(effective_profile)

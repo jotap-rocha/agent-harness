@@ -14,7 +14,7 @@ from config.fluxo_events.render import ActiveState, build_execution_trail_svg
 
 UUID_RE = re.compile(
     r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
-    re.I,
+    re.IGNORECASE,
 )
 
 

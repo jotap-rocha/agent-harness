@@ -31,7 +31,7 @@ def peek_parent(projetos_root: Path, slug: str) -> tuple[str | None, str | None]
         msg = f"stack peek FS soft: {exc}"
         _warn(msg)
         return None, msg
-    except Exception as exc:  # noqa: BLE001 — fail-soft
+    except Exception as exc:
         msg = f"stack peek soft: {exc}"
         _warn(msg)
         return None, msg
@@ -51,7 +51,7 @@ def push_event(projetos_root: Path, slug: str, event_id: str) -> str | None:
         msg = f"stack push FS soft: {exc}"
         _warn(msg)
         return msg
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         msg = f"stack push soft: {exc}"
         _warn(msg)
         return msg
@@ -70,7 +70,7 @@ def pop_event(projetos_root: Path, slug: str) -> str | None:
         msg = f"stack pop FS soft: {exc}"
         _warn(msg)
         return msg
-    except Exception as exc:  # noqa: BLE001
+    except Exception as exc:
         msg = f"stack pop soft: {exc}"
         _warn(msg)
         return msg

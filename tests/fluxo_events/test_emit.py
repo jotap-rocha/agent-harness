@@ -77,16 +77,16 @@ def test_emit_fail_soft(tmp_path: Path, contract_yaml_path: Path) -> None:
 
 def test_append_best_effort(tmp_path: Path, contract_yaml_path: Path) -> None:
     """Dois emits sequenciais sem mutex (G2-a)."""
-    kwargs = dict(
-        slug="demo-slug",
-        event_type="task_enter",
-        agent="harness-build",
-        phase=3,
-        task_id="59",
-        contract_path=contract_yaml_path,
-        projetos_root=tmp_path / "projetos",
-        auto_render=False,
-    )
+    kwargs = {
+        "slug": "demo-slug",
+        "event_type": "task_enter",
+        "agent": "harness-build",
+        "phase": 3,
+        "task_id": "59",
+        "contract_path": contract_yaml_path,
+        "projetos_root": tmp_path / "projetos",
+        "auto_render": False,
+    }
     r1 = emit_event(**kwargs)  # type: ignore[arg-type]
     r2 = emit_event(
         slug="demo-slug",

@@ -15,7 +15,6 @@ from config.canonical_data_check.de_marker import (
     is_dab_manifest,
 )
 from config.canonical_data_check.scanner import iter_text_files
-
 from tests.data_engineering._secret_fixtures import credential_assignment
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

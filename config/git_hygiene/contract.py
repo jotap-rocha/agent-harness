@@ -5,7 +5,8 @@ from __future__ import annotations
 import re
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Pattern
+from re import Pattern
+from typing import Any
 
 from config.git_hygiene.yaml_loader import load_mapping
 
@@ -91,9 +92,7 @@ class GitHygieneContract:
             return False
         if len(summary) > self.summary_max_length:
             return False
-        if not summary.strip():
-            return False
-        return True
+        return bool(summary.strip())
 
     def _is_valid_scope(self, scope: str) -> bool:
         if len(scope) > self.scope_max_length:

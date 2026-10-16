@@ -83,7 +83,7 @@ def collect_criterion(
 
     max_bytes = contract.limits.max_log_bytes
     fail_on_exceed = contract.limits.fail_on_exceed
-    exit_code, invalid_cap, bytes_written = _run_and_capture(
+    exit_code, invalid_cap, _bytes_written = _run_and_capture(
         command=resolved_command,
         log_path=abs_log,
         max_bytes=max_bytes,

@@ -116,8 +116,8 @@ def test_child_template_fluxo(tmp_path: Path) -> None:
         [
             sys.executable,
             "-c",
-            f"from config.{PKG} import FluxoEventsContract; "
-            f"print(FluxoEventsContract.load('{X}-events.yaml').version)",
+            (f"from config.{PKG} import FluxoEventsContract; "
+            f"print(FluxoEventsContract.load('{X}-events.yaml').version)"),
         ],
         cwd=target,
         capture_output=True,

@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 import sys
 from dataclasses import dataclass
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Literal
 
@@ -69,7 +69,7 @@ def evaluate_command(
         decision = match_command(
             command, contract, extra_family_ids=extras
         )
-    except Exception as exc:  # noqa: BLE001 — boundary do guard
+    except Exception as exc:
         return _fail_mode_result(exc, assumed_severity)
 
     if decision.action == "deny" and _bypass_enabled():
@@ -133,7 +133,7 @@ def _log_bypass(
 ) -> None:
     # Redação leve: nunca logar valor de secret; truncar comando longo.
     safe_cmd = _redact_command(command)
-    ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    ts = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     print(
         f"AUDIT bypass ts={ts} adapter={adapter} "
         f"family={decision.family_id} pattern={decision.pattern_id} "

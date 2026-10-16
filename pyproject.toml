@@ -1,0 +1,14 @@
+# Config de lint/tipos do canônico (framework). Não é pacote de produto: sem [project].
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = [".agents", "examples"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+
+[tool.ruff.lint]
+# TRY004: loaders de contrato levantam ValueError por design (erro de conteúdo do YAML, não de tipo).
+# BLE001: instalador e engines são fail-soft por invariante (nunca derrubar o fluxo).
+ignore = ["TRY004", "BLE001"]

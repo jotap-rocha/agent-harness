@@ -578,7 +578,7 @@ def _load_agent_policies_artifacts(
     root = str(canonical.resolve())
     if root not in sys.path:
         sys.path.insert(0, root)
-    from config.agent_policies.generate import (  # noqa: PLC0415
+    from config.agent_policies.generate import (
         build_claude_pretooluse_hooks,
         generate_artifacts,
     )
@@ -601,7 +601,7 @@ def _load_cursor_hooks(canonical: Path | None, target: Path | None = None) -> di
     root = str(canonical.resolve())
     if root not in sys.path:
         sys.path.insert(0, root)
-    from config.agent_policies.generate import generate_artifacts  # noqa: PLC0415
+    from config.agent_policies.generate import generate_artifacts
 
     profile = None
     if target is not None:
@@ -1034,7 +1034,7 @@ def _maybe_bootstrap_githooks(target: Path, *, interactive: bool) -> None:
         print(
             "[git-hygiene] hooks copiados. Bootstrap de core.hooksPath NÃO aplicado "
             "automaticamente neste modo — rode scripts/bootstrap-githooks.sh (POSIX) ou "
-            "scripts\bootstrap-githooks.ps1 (Windows) após acordo."
+            "scripts\\bootstrap-githooks.ps1 (Windows) após acordo."
         )
         return
     ans = input(

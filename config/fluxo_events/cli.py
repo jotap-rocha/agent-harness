@@ -107,7 +107,7 @@ def main(argv: list[str] | None = None) -> int:
 def _cmd_check(path: Path) -> int:
     try:
         contract = FluxoEventsContract.load(path)
-    except Exception as exc:  # noqa: BLE001 — boundary CLI
+    except Exception as exc:
         print(f"check failed: {exc}", file=sys.stderr)
         return 1
     print(
