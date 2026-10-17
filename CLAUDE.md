@@ -67,6 +67,10 @@ python -m config.fluxo_events check|emit|render|truncate
 - **Git hygiene:** fonte de regex em `git-hygiene.yaml`; rule agnóstica de SCM; adapter em
   `config/git_hygiene/scm.py`; tag `prod-*` fora do MVP (Fase 2); §1.3 — sem Edit policies nenhum
   gate impede de fato
+- **GitHub repo (baseline):** rule `github-repo.md` + `scripts/setup-github-repo.sh` (dry-run por
+  padrão) propagados na categoria `git_hygiene`; aplicar `--apply` só com acordo explícito
+  (config de servidor é outward-facing); check obrigatório só após o CI rodar 1×; §1.3 honesty
+  (`enforce_admins` off em projeto solo)
 - **Kernel DE (Loop 1):** norma em `data-engineering.yaml`; enforcement via
   `config/canonical_data_check`; seed `.harness/data-check` com `seed: true` (re-install = KEEP);
   sql-capacity neste ship = somente leitura
@@ -132,7 +136,7 @@ python -m config.fluxo_events check|emit|render|truncate
 |---|---|---|
 | Agents | `.claude/agents/` | 35 (5 categorias: `workflow/`, `architect/`, `dev/`, `data-engineering/`, `cloud/`) |
 | Skills | `.claude/skills/` | 33 (9 vindas do skills.sh — ver `skills-lock.json`) |
-| Rules | `.claude/rules/` | 12 |
+| Rules | `.claude/rules/` | 13 |
 | KBs | `.claude/kb/` | 38 domínios |
 | Commands | `.claude/commands/` | 24 (10 na raiz + `data-engineering/` + `visual-explainer/` + `/evidencias` + `/fluxo-live`) |
 | Tasks (to-tasks) | `tasks/{slug}/NN-*.md` | alinhado a `.claude/projetos/{slug}/` — não flat na raiz |
@@ -148,6 +152,9 @@ python -m config.fluxo_events check|emit|render|truncate
 | Contrato Git hygiene | `git-hygiene.yaml` | fonte única de regex (branch + título PR) |
 | Rule Git hygiene | `.claude/rules/git-hygiene.md` | invariantes SCM-agnósticos (espelho `.mdc`) |
 | Cheatsheet Git | `docs/cheatsheets/git-hygiene-cheatsheet.md` | 1 página + declaração §1.3 |
+| Rule GitHub repo | `.claude/rules/github-repo.md` | baseline de PR/merge/proteção; aplicar só com acordo (espelho `.mdc`) |
+| Cheatsheet GitHub | `docs/cheatsheets/github-repo-cheatsheet.md` | antes→depois + armadilhas + §1.3 |
+| Setup GitHub | `scripts/setup-github-repo.sh` | dry-run por padrão; `--apply` grava branch protection + squash-only |
 | Adapter SCM / PR híbrido | `config/git_hygiene/` · `docs/cheatsheets/scm-pr-hibrido.md` | azure \| github |
 | Githooks locais | `.githooks/` | pre-commit (segredos), commit-msg, pre-push |
 | Template PR Azure | `.azuredevops/pull_request_template.md` | checklist versionado |

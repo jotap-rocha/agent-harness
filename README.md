@@ -167,7 +167,7 @@ Dependências de dev (`ruff`, `mypy`, `pytest`) vêm do ambiente `uv` do clone.
 |---|---|---|
 | Agents | `.claude/agents/` | 33 — `workflow/`, `architect/`, `dev/`, `data-engineering/` |
 | Skills | `.claude/skills/` | 24 |
-| Rules | `.claude/rules/` | 12 |
+| Rules | `.claude/rules/` | 13 |
 | KBs | `.claude/kb/` | 21 domínios |
 | Commands | `.claude/commands/` | 24 (raiz + `data-engineering/` + `visual-explainer/` + `/evidencias` + `/fluxo-live`) |
 | Tasks SDD | `tasks/{slug}/NN-*.md` | alinhado a `.claude/projetos/{slug}/` |
